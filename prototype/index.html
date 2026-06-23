@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI 看世足｜台灣球迷的世足賽前數據懶人包</title>
+    <meta
+      name="description"
+      content="AI 看世足整理台灣運彩倍率、世界盃歷史戰績、晉級條件與模型預估比分，提供台灣球迷白話賽前分析。"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header" id="top">
+      <a class="brand" href="#top" aria-label="AI 看世足首頁">
+        <span class="brand-mark" aria-hidden="true">AI</span>
+        <span>
+          <strong>AI 看世足</strong>
+          <small>台灣球迷的賽前數據懶人包</small>
+        </span>
+      </a>
+      <nav class="main-nav" aria-label="主要導覽">
+        <button class="nav-button is-active" type="button" data-view="dashboard">賽事看板</button>
+        <button class="nav-button" type="button" data-view="match">單場分析</button>
+        <button class="nav-button" type="button" data-view="groups">小組晉級</button>
+        <button class="nav-button" type="button" data-view="teams">球隊資料</button>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero-dashboard" aria-labelledby="hero-title">
+        <div class="hero-media" aria-hidden="true"></div>
+        <div class="hero-content">
+          <div class="hero-copy">
+            <span class="eyebrow">2026 世界盃賽前研究站</span>
+            <h1 id="hero-title">AI 看世足</h1>
+            <p>用白話看懂盤口、市場訊號、歷史戰績與模型預估比分。</p>
+          </div>
+          <div class="hero-panel" aria-label="今日焦點摘要">
+            <span class="panel-label">焦點賽事</span>
+            <h2 id="hero-match-title">阿根廷 vs 克羅埃西亞</h2>
+            <div class="hero-score" id="hero-score">2 - 1</div>
+            <p id="hero-summary">模型略看好阿根廷，但和局風險不低。</p>
+            <button class="primary-action" type="button" data-open-match="arg-cro">
+              看完整分析
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section class="status-strip" aria-label="資料狀態">
+        <div>
+          <span class="strip-label">資料狀態</span>
+          <strong>示範資料</strong>
+          <small>欄位已依正式站架構設計，可替換成真實賽程、倍率與模型輸出。</small>
+        </div>
+        <div>
+          <span class="strip-label">倍率更新</span>
+          <strong id="odds-updated">2026/06/23 18:40</strong>
+          <small>台灣運彩倍率僅作市場參考。</small>
+        </div>
+        <div>
+          <span class="strip-label">模型版本</span>
+          <strong>Scout v0.1</strong>
+          <small>Elo、近況、攻防強度與盤口隱含機率。</small>
+        </div>
+      </section>
+
+      <section class="view-section is-active" id="dashboard-view" data-view-panel="dashboard">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">Today Board</span>
+            <h2>今日焦點賽事</h2>
+          </div>
+          <div class="segmented-control" aria-label="賽事篩選">
+            <button class="segment is-active" type="button" data-filter="all">全部</button>
+            <button class="segment" type="button" data-filter="high">高關注</button>
+            <button class="segment" type="button" data-filter="group">小組關鍵</button>
+          </div>
+        </div>
+        <div class="match-grid" id="match-grid"></div>
+
+        <div class="dashboard-columns">
+          <section class="content-band" aria-labelledby="advance-title">
+            <div class="section-heading compact">
+              <div>
+                <span class="eyebrow">Qualification Heat</span>
+                <h2 id="advance-title">小組晉級熱區</h2>
+              </div>
+            </div>
+            <div class="heat-list" id="heat-list"></div>
+          </section>
+
+          <section class="content-band" aria-labelledby="updates-title">
+            <div class="section-heading compact">
+              <div>
+                <span class="eyebrow">Model Notes</span>
+                <h2 id="updates-title">最新模型觀察</h2>
+              </div>
+            </div>
+            <div class="notes-list" id="notes-list"></div>
+          </section>
+        </div>
+      </section>
+
+      <section class="view-section" id="match-view" data-view-panel="match" aria-live="polite">
+        <div class="match-toolbar">
+          <div>
+            <span class="eyebrow">Match Room</span>
+            <h2>單場分析</h2>
+          </div>
+          <label class="select-label" for="match-select">
+            選擇賽事
+            <select id="match-select"></select>
+          </label>
+        </div>
+
+        <article class="match-detail" id="match-detail"></article>
+      </section>
+
+      <section class="view-section" id="groups-view" data-view-panel="groups">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">Group Tracker</span>
+            <h2>小組晉級</h2>
+          </div>
+          <p class="heading-note">依小組前二與最佳第三名情境呈現，正式版可接賽果自動重算。</p>
+        </div>
+        <div class="group-grid" id="group-grid"></div>
+        <div class="third-place-panel" id="third-place-panel"></div>
+      </section>
+
+      <section class="view-section" id="teams-view" data-view-panel="teams">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">Team Profiles</span>
+            <h2>球隊資料</h2>
+          </div>
+          <p class="heading-note">整理世界盃歷史、近期狀態與模型評分，支援單場分析快速引用。</p>
+        </div>
+        <div class="team-grid" id="team-grid"></div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <strong>AI 看世足</strong>
+      <span>模型預估不等於比賽結果。內容僅供球迷資訊參考，不提供下注功能，也不保證獲利。</span>
+      <a href="#top">回到頂端</a>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
