@@ -24,6 +24,10 @@ npm run typecheck
 npm run build
 ```
 
+## GitHub Pages 部署
+
+`.github/workflows/deploy-pages.yml` 會在推送到 `main` 後部署，也會每天台灣時間 00:10 自動重建一次。建置時會把 `NEXT_PUBLIC_BOARD_DATE_TW` 設為台灣賽事日；晚上 18:00 後會切到隔天賽事日，首頁「今日焦點賽事」會依 `lib/data.ts` 裡每場賽事的 `matchDateTw` 自動篩選。
+
 ## 目前包含
 
 - 首頁賽事看板與焦點賽事

@@ -60,6 +60,7 @@ export interface Match {
   id: string;
   group: string;
   round: string;
+  matchDateTw: string;
   kickoffTw: string;
   venue: string;
   homeTeam: TeamCode;

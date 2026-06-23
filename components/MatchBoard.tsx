@@ -6,6 +6,8 @@ import { MatchCard } from "./MatchCard";
 
 interface MatchBoardProps {
   matches: Match[];
+  boardDateTw: string;
+  isToday: boolean;
 }
 
 const filters = [
@@ -17,7 +19,7 @@ const filters = [
 
 type FilterValue = (typeof filters)[number]["value"];
 
-export function MatchBoard({ matches }: MatchBoardProps) {
+export function MatchBoard({ matches, boardDateTw, isToday }: MatchBoardProps) {
   const [activeFilter, setActiveFilter] = useState<FilterValue>("all");
   const visibleMatches = useMemo(() => {
     if (activeFilter === "all") return matches;
@@ -29,7 +31,8 @@ export function MatchBoard({ matches }: MatchBoardProps) {
       <div className="section-toolbar">
         <div>
           <span className="eyebrow">Today Board</span>
-          <h2>今日焦點賽事</h2>
+          <h2>{isToday ? "今日焦點賽事" : "下一個比賽日焦點"}</h2>
+          <p className="board-date-note">台灣時間 {boardDateTw}</p>
         </div>
         <div className="segmented-control" aria-label="賽事篩選">
           {filters.map((filter) => (

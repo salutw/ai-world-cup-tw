@@ -332,6 +332,13 @@ h3 {
   margin-top: 0;
 }
 
+.board-date-note {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 800;
+}
+
 .segmented-control {
   display: flex;
   gap: 4px;

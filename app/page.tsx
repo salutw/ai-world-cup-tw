@@ -1,10 +1,11 @@
 import Link from "next/link";
 import { MatchBoard } from "@/components/MatchBoard";
-import { getFeaturedMatch, getTeam, getTodayMatches, heatItems, editorialNotes } from "@/lib/data";
+import { getFeaturedMatch, getTeam, getTodayBoard, heatItems, editorialNotes } from "@/lib/data";
 import { scoreWithSpaces } from "@/lib/format";
 
 export default function HomePage() {
-  const todayMatches = getTodayMatches();
+  const todayBoard = getTodayBoard();
+  const todayMatches = todayBoard.matches;
   const featured = todayMatches[0] ?? getFeaturedMatch();
   const home = getTeam(featured.homeTeam);
   const away = getTeam(featured.awayTeam);
@@ -52,7 +53,7 @@ export default function HomePage() {
       </section>
 
       <section className="page-section">
-        <MatchBoard matches={todayMatches} />
+        <MatchBoard boardDateTw={todayBoard.boardDateTw} isToday={todayBoard.isToday} matches={todayMatches} />
 
         <div className="dashboard-columns">
           <section className="content-panel" aria-labelledby="advance-title">

@@ -6,6 +6,8 @@ on:
       - master
       - main
   workflow_dispatch:
+  schedule:
+    - cron: "10 16 * * *"
 
 permissions:
   contents: read
@@ -37,10 +39,16 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Resolve Taiwan date
+        id: taiwan-date
+        run: echo "date=$(TZ=Asia/Taipei date -d '+6 hours' +%F)" >> "$GITHUB_OUTPUT"
+
       - name: Build static site
         run: npm run build:github
         env:
           DEPLOY_TARGET: github-pages
+          NEXT_PUBLIC_BOARD_DATE_TW: ${{ steps.taiwan-date.outputs.date }}
+          NEXT_PUBLIC_TODAY_TW: ${{ steps.taiwan-date.outputs.date }}
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

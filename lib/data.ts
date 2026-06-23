@@ -314,13 +314,26 @@ function makePrediction(
   };
 }
 
-const todayMatchIds = ["por-uzb", "eng-ghana", "pan-cro", "col-cod"];
+const taiwanTimeZone = "Asia/Taipei";
+const matchdayRolloverOffsetHours = 6;
+
+function getTaiwanDateKey(date = new Date()) {
+  const adjustedDate = new Date(date.getTime() + matchdayRolloverOffsetHours * 60 * 60 * 1000);
+
+  return new Intl.DateTimeFormat("en-CA", {
+    timeZone: taiwanTimeZone,
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit"
+  }).format(adjustedDate);
+}
 
 export const matches: Match[] = [
   {
     id: "por-uzb",
     group: "K 組",
     round: "小組賽第 2 輪",
+    matchDateTw: "2026-06-24",
     kickoffTw: "06/24 01:00",
     venue: "NRG Stadium",
     homeTeam: "POR",
@@ -340,6 +353,7 @@ export const matches: Match[] = [
     id: "eng-ghana",
     group: "L 組",
     round: "小組賽第 2 輪",
+    matchDateTw: "2026-06-24",
     kickoffTw: "06/24 04:00",
     venue: "Gillette Stadium",
     homeTeam: "ENG",
@@ -359,6 +373,7 @@ export const matches: Match[] = [
     id: "pan-cro",
     group: "L 組",
     round: "小組賽第 2 輪",
+    matchDateTw: "2026-06-24",
     kickoffTw: "06/24 07:00",
     venue: "Toronto Stadium",
     homeTeam: "PAN",
@@ -378,6 +393,7 @@ export const matches: Match[] = [
     id: "col-cod",
     group: "K 組",
     round: "小組賽第 2 輪",
+    matchDateTw: "2026-06-24",
     kickoffTw: "06/24 10:00",
     venue: "Estadio Guadalajara",
     homeTeam: "COL",
@@ -397,6 +413,7 @@ export const matches: Match[] = [
     id: "cze-mex",
     group: "A 組",
     round: "小組賽第 3 輪",
+    matchDateTw: "2026-06-25",
     kickoffTw: "06/25 08:00",
     venue: "Estadio Azteca",
     homeTeam: "CZE",
@@ -416,6 +433,7 @@ export const matches: Match[] = [
     id: "sco-bra",
     group: "C 組",
     round: "小組賽第 3 輪",
+    matchDateTw: "2026-06-25",
     kickoffTw: "06/25 06:00",
     venue: "Hard Rock Stadium",
     homeTeam: "SCO",
@@ -455,8 +473,33 @@ export function getMatch(id: string) {
   return matches.find((match) => match.id === id);
 }
 
+export function getCurrentTaiwanDateKey() {
+  return process.env.NEXT_PUBLIC_BOARD_DATE_TW || process.env.NEXT_PUBLIC_TODAY_TW || getTaiwanDateKey();
+}
+
+export function getMatchesByDate(dateKey: string) {
+  return matches.filter((match) => match.matchDateTw === dateKey);
+}
+
+export function getTodayBoard() {
+  const todayDateTw = getCurrentTaiwanDateKey();
+  const matchDates = Array.from(new Set(matches.map((match) => match.matchDateTw))).sort();
+  const boardDateTw =
+    matchDates.find((matchDate) => matchDate === todayDateTw) ||
+    matchDates.find((matchDate) => matchDate > todayDateTw) ||
+    matchDates.at(-1) ||
+    todayDateTw;
+
+  return {
+    todayDateTw,
+    boardDateTw,
+    isToday: boardDateTw === todayDateTw,
+    matches: getMatchesByDate(boardDateTw)
+  };
+}
+
 export function getTodayMatches() {
-  return matches.filter((match) => todayMatchIds.includes(match.id));
+  return getTodayBoard().matches;
 }
 
 export function getFeaturedMatch() {
