@@ -410,11 +410,71 @@ export const matches: Match[] = [
     qualificationImpact: { homeWin: "哥倫比亞贏球可大幅接近晉級。", draw: "平手會讓 K 組前二與第三名比較繼續混戰。", awayWin: "剛果民主共和國勝出會把小組排序完全打開。" }
   },
   {
+    id: "sui-can",
+    group: "B 組",
+    round: "小組賽第 3 輪",
+    matchDateTw: "2026-06-25",
+    kickoffTw: "06/25 03:00",
+    venue: "BC Place",
+    homeTeam: "SUI",
+    awayTeam: "CAN",
+    status: "scheduled",
+    attentionTags: ["地主焦點", "小組頭名"],
+    filterTags: ["high", "group"],
+    odds: { ...demoOdds, homeWinOdds: 2.55, drawOdds: 3.25, awayWinOdds: 2.65 },
+    prediction: makePrediction("1-1", "中等", { homeWin: 35, draw: 30, awayWin: 35, over: 43, bothTeamsToScore: 53 }),
+    summary: "瑞士與加拿大正面爭奪 B 組頭名，兩隊攻守差距不大，主場氣勢是加拿大的加分項。",
+    plainLanguageAnalysis: ["這場比較像五五波。瑞士比賽控制較穩，加拿大速度與主場能量更好，模型認為雙方互有進球但難拉開差距。"],
+    keyFactors: ["加拿大前場速度", "瑞士中場控球", "同分時的淨勝球比較"],
+    historyNote: "兩隊賽前同處 B 組前段，最後一輪結果會直接決定淘汰賽籤位。",
+    qualificationImpact: { homeWin: "瑞士贏球可掌握 B 組第一。", draw: "平手後須以淨勝球決定排名。", awayWin: "加拿大勝出可用地主優勢拿下較佳籤位。" }
+  },
+  {
+    id: "bih-qat",
+    group: "B 組",
+    round: "小組賽第 3 輪",
+    matchDateTw: "2026-06-25",
+    kickoffTw: "06/25 03:00",
+    venue: "Lumen Field",
+    homeTeam: "BIH",
+    awayTeam: "QAT",
+    status: "scheduled",
+    attentionTags: ["晉級生死戰", "小組關鍵"],
+    filterTags: ["group", "goals"],
+    odds: { ...demoOdds, homeWinOdds: 1.75, drawOdds: 3.5, awayWinOdds: 4.5 },
+    prediction: makePrediction("2-0", "中高", { homeWin: 55, draw: 26, awayWin: 19, over: 45, bothTeamsToScore: 38 }),
+    summary: "波士尼亞與赫塞哥維納需要勝利累積第三名比較本錢，卡達則要避免防線再度失控。",
+    plainLanguageAnalysis: ["波士尼亞與赫塞哥維納身材、禁區對抗與定位球較有優勢。卡達若撐不過開場壓力，比分可能提早被拉開。"],
+    keyFactors: ["波士尼亞高空球", "卡達禁區防守", "第三名淨勝球需求"],
+    historyNote: "B 組第三名仍可能透過八席最佳第三名晉級，因此勝負之外，淨勝球也很重要。",
+    qualificationImpact: { homeWin: "波士尼亞勝出可大幅提升最佳第三名晉級機率。", draw: "平手可能讓波士尼亞陷入跨組比較劣勢。", awayWin: "卡達贏球仍有機會翻動 B 組第三名排序。" }
+  },
+  {
+    id: "mar-hai",
+    group: "C 組",
+    round: "小組賽第 3 輪",
+    matchDateTw: "2026-06-25",
+    kickoffTw: "06/25 06:00",
+    venue: "Mercedes-Benz Stadium",
+    homeTeam: "MAR",
+    awayTeam: "HAI",
+    status: "scheduled",
+    attentionTags: ["小組頭名", "進球期待"],
+    filterTags: ["high", "group", "goals"],
+    odds: { ...demoOdds, homeWinOdds: 1.22, drawOdds: 5.6, awayWinOdds: 11 },
+    prediction: makePrediction("3-0", "高", { homeWin: 75, draw: 17, awayWin: 8, over: 58, bothTeamsToScore: 29 }),
+    summary: "摩洛哥要用勝利與淨勝球爭取 C 組第一，海地則希望在最後一戰踢出進攻表現。",
+    plainLanguageAnalysis: ["摩洛哥整體速度、壓迫和防守完整度都占優，而且有追求淨勝球的動機。模型看好摩洛哥主導比賽。"],
+    keyFactors: ["摩洛哥前場壓迫", "海地防線退守速度", "摩洛哥爭小組第一的淨勝球需求"],
+    historyNote: "摩洛哥與巴西的排名可能需要比較淨勝球，領先後仍有持續進攻的理由。",
+    qualificationImpact: { homeWin: "摩洛哥贏球可鎖定晉級並爭取小組第一。", draw: "平手可能把 C 組頭名讓給巴西。", awayWin: "海地爆冷將大幅改變 C 組最終排序。" }
+  },
+  {
     id: "cze-mex",
     group: "A 組",
     round: "小組賽第 3 輪",
     matchDateTw: "2026-06-25",
-    kickoffTw: "06/25 08:00",
+    kickoffTw: "06/25 09:00",
     venue: "Estadio Azteca",
     homeTeam: "CZE",
     awayTeam: "MEX",
@@ -448,6 +508,26 @@ export const matches: Match[] = [
     keyFactors: ["巴西邊路突破", "蘇格蘭低位防守", "淨勝球對第三名比較的影響"],
     historyNote: "C 組目前巴西與摩洛哥同分，最後一輪仍會影響小組第一。",
     qualificationImpact: { homeWin: "蘇格蘭贏球可直接衝擊前二。", draw: "平手對蘇格蘭第三名比較很有幫助。", awayWin: "巴西勝出可接近鎖定前二。" }
+  },
+  {
+    id: "rsa-kor",
+    group: "A 組",
+    round: "小組賽第 3 輪",
+    matchDateTw: "2026-06-25",
+    kickoffTw: "06/25 09:00",
+    venue: "Estadio Monterrey",
+    homeTeam: "RSA",
+    awayTeam: "KOR",
+    status: "scheduled",
+    attentionTags: ["亞洲焦點", "晉級生死戰"],
+    filterTags: ["high", "group", "asia"],
+    odds: { ...demoOdds, homeWinOdds: 3.6, drawOdds: 3.3, awayWinOdds: 2.05 },
+    prediction: makePrediction("1-1", "中等", { homeWin: 27, draw: 31, awayWin: 42, over: 42, bothTeamsToScore: 51 }),
+    summary: "南韓希望守住 A 組前段位置，南非則必須主動搶勝，兩隊都不能只看同場比分。",
+    plainLanguageAnalysis: ["南韓整體速度與轉換較好，但南非背水一戰會提高壓迫強度。模型略偏南韓，和局機率仍然很高。"],
+    keyFactors: ["南韓反擊速度", "南非前場壓迫", "與墨西哥對捷克同步賽果的連動"],
+    historyNote: "A 組最後兩場同時開踢，兩隊需要隨另一場比分即時調整風險。",
+    qualificationImpact: { homeWin: "南非贏球可直接衝擊前二或取得最佳第三名優勢。", draw: "平手較有利南韓維持晉級位置。", awayWin: "南韓勝出可穩固前二並爭取更好籤位。" }
   }
 ];
 
@@ -478,7 +558,9 @@ export function getCurrentTaiwanDateKey() {
 }
 
 export function getMatchesByDate(dateKey: string) {
-  return matches.filter((match) => match.matchDateTw === dateKey);
+  return matches
+    .filter((match) => match.matchDateTw === dateKey)
+    .sort((first, second) => first.kickoffTw.localeCompare(second.kickoffTw) || first.id.localeCompare(second.id));
 }
 
 export function getTodayBoard() {

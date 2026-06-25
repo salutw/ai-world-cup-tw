@@ -32,7 +32,9 @@ export function MatchBoard({ matches, boardDateTw, isToday }: MatchBoardProps) {
         <div>
           <span className="eyebrow">Today Board</span>
           <h2>{isToday ? "今日焦點賽事" : "下一個比賽日焦點"}</h2>
-          <p className="board-date-note">台灣時間 {boardDateTw}</p>
+          <p className="board-date-note">
+            台灣時間 {boardDateTw} · 共 {matches.length} 場
+          </p>
         </div>
         <div className="segmented-control" aria-label="賽事篩選">
           {filters.map((filter) => (
