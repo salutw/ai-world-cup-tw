@@ -339,6 +339,33 @@ h3 {
   font-weight: 800;
 }
 
+.board-controls {
+  display: grid;
+  justify-items: end;
+  gap: 8px;
+}
+
+.date-select-control {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.date-select-control select {
+  min-width: 150px;
+  height: 40px;
+  padding: 0 34px 0 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #fff;
+  color: var(--ink);
+  font-weight: 900;
+  cursor: pointer;
+}
+
 .segmented-control {
   display: flex;
   gap: 4px;
@@ -1087,6 +1114,19 @@ h3 {
   .section-toolbar {
     align-items: stretch;
     flex-direction: column;
+  }
+
+  .board-controls {
+    justify-items: stretch;
+  }
+
+  .date-select-control {
+    justify-content: space-between;
+  }
+
+  .date-select-control select {
+    flex: 1;
+    max-width: 220px;
   }
 
   .field-grid {

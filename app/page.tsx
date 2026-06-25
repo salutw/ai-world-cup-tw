@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { MatchBoard } from "@/components/MatchBoard";
-import { getFeaturedMatch, getTeam, getTodayBoard, heatItems, editorialNotes } from "@/lib/data";
+import { getFeaturedMatch, getTeam, getTodayBoard, heatItems, editorialNotes, matches } from "@/lib/data";
 import { scoreWithSpaces } from "@/lib/format";
 
 export default function HomePage() {
@@ -53,7 +53,11 @@ export default function HomePage() {
       </section>
 
       <section className="page-section">
-        <MatchBoard boardDateTw={todayBoard.boardDateTw} isToday={todayBoard.isToday} matches={todayMatches} />
+        <MatchBoard
+          initialDateTw={todayBoard.boardDateTw}
+          matches={matches}
+          todayDateTw={todayBoard.todayDateTw}
+        />
 
         <div className="dashboard-columns">
           <section className="content-panel" aria-labelledby="advance-title">
