@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-25T10:56:35.774Z",
+  "updatedAt": "2026-06-25T23:48:41.699Z",
   "source": "ESPN FIFA World Cup scoreboard and summary",
   "records": [
     {
@@ -672,6 +672,138 @@
         "fetchedAt": "2026-06-25T10:56:35.768Z"
       },
       "recordedAt": "2026-06-25T10:55:16.555Z"
+    },
+    {
+      "matchId": "cuw-civ",
+      "espnEventId": "760473",
+      "group": "E 組",
+      "round": "小組賽第 3 輪",
+      "matchDateTw": "2026-06-26",
+      "kickoffTw": "06/26 04:00",
+      "homeTeam": "CUW",
+      "awayTeam": "CIV",
+      "homeScore": 0,
+      "awayScore": 2,
+      "finalScore": "0-2",
+      "completedAt": "2026-06-25T20:00Z",
+      "predictionSnapshot": {
+        "predictedScore": "0-2",
+        "probabilities": {
+          "homeWin": 17,
+          "draw": 25,
+          "awayWin": 58,
+          "over": 47,
+          "bothTeamsToScore": 39
+        },
+        "confidence": "中高",
+        "modelVersion": "Scout v0.1",
+        "modelUpdatedAt": "2026/06/23 20:00"
+      },
+      "evaluation": {
+        "grade": "exact",
+        "exactScore": true,
+        "resultCorrect": true,
+        "homeGoalError": 0,
+        "awayGoalError": 0,
+        "totalGoalError": 0,
+        "scoreDistance": 0
+      },
+      "statistics": {
+        "home": {
+          "possessionPct": 36.6,
+          "totalShots": 11,
+          "shotsOnTarget": 2,
+          "corners": 4,
+          "saves": 1,
+          "yellowCards": 2,
+          "redCards": 0
+        },
+        "away": {
+          "possessionPct": 63.4,
+          "totalShots": 7,
+          "shotsOnTarget": 3,
+          "corners": 6,
+          "saves": 2,
+          "yellowCards": 1,
+          "redCards": 0
+        }
+      },
+      "analysisReasons": [
+        "模型精確命中比分，勝負方向與兩隊進球數都符合賽前估計。"
+      ],
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760473",
+        "fetchedAt": "2026-06-25T23:48:41.666Z"
+      },
+      "recordedAt": "2026-06-25T23:48:41.666Z"
+    },
+    {
+      "matchId": "ecu-ger",
+      "espnEventId": "760468",
+      "group": "E 組",
+      "round": "小組賽第 3 輪",
+      "matchDateTw": "2026-06-26",
+      "kickoffTw": "06/26 04:00",
+      "homeTeam": "ECU",
+      "awayTeam": "GER",
+      "homeScore": 2,
+      "awayScore": 1,
+      "finalScore": "2-1",
+      "completedAt": "2026-06-25T20:00Z",
+      "predictionSnapshot": {
+        "predictedScore": "0-2",
+        "probabilities": {
+          "homeWin": 15,
+          "draw": 23,
+          "awayWin": 62,
+          "over": 49,
+          "bothTeamsToScore": 37
+        },
+        "confidence": "中高",
+        "modelVersion": "Scout v0.1",
+        "modelUpdatedAt": "2026/06/23 20:00"
+      },
+      "evaluation": {
+        "grade": "miss",
+        "exactScore": false,
+        "resultCorrect": false,
+        "homeGoalError": 2,
+        "awayGoalError": 1,
+        "totalGoalError": 1,
+        "scoreDistance": 3
+      },
+      "statistics": {
+        "home": {
+          "possessionPct": 38.9,
+          "totalShots": 7,
+          "shotsOnTarget": 3,
+          "corners": 3,
+          "saves": 2,
+          "yellowCards": 3,
+          "redCards": 0
+        },
+        "away": {
+          "possessionPct": 61.1,
+          "totalShots": 11,
+          "shotsOnTarget": 3,
+          "corners": 2,
+          "saves": 1,
+          "yellowCards": 1,
+          "redCards": 0
+        }
+      },
+      "analysisReasons": [
+        "實際賽果的賽前機率只有 15%，屬於模型明顯低估的結果。",
+        "實際總進球比預估多 1 球，比賽節奏或把握機會效率高於模型假設。",
+        "厄瓜多完成 3 次射正並攻入 2 球，主隊火力高於預期。"
+      ],
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760468",
+        "fetchedAt": "2026-06-25T23:48:41.692Z"
+      },
+      "recordedAt": "2026-06-25T23:48:41.692Z"
     }
   ]
 }
