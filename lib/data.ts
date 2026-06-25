@@ -314,6 +314,65 @@ function makePrediction(
   };
 }
 
+interface FinalGroupMatchSeed {
+  id: string;
+  group: string;
+  matchDateTw: string;
+  kickoffTw: string;
+  venue: string;
+  homeTeam: TeamCode;
+  awayTeam: TeamCode;
+  predictedScore: string;
+  probabilities: MatchProbability;
+  odds: [number, number, number];
+  attentionTags: string[];
+  filterTags: Match["filterTags"];
+}
+
+function makeFinalGroupMatch(seed: FinalGroupMatchSeed): Match {
+  const home = getTeam(seed.homeTeam);
+  const away = getTeam(seed.awayTeam);
+  const probabilityGap = seed.probabilities.homeWin - seed.probabilities.awayWin;
+  const modelLean =
+    probabilityGap >= 10
+      ? `模型較看好${home.nameZh}`
+      : probabilityGap <= -10
+        ? `模型較看好${away.nameZh}`
+        : "模型認為勝負接近";
+
+  return {
+    id: seed.id,
+    group: seed.group,
+    round: "小組賽第 3 輪",
+    matchDateTw: seed.matchDateTw,
+    kickoffTw: seed.kickoffTw,
+    venue: seed.venue,
+    homeTeam: seed.homeTeam,
+    awayTeam: seed.awayTeam,
+    status: "scheduled",
+    attentionTags: seed.attentionTags,
+    filterTags: seed.filterTags,
+    odds: {
+      ...demoOdds,
+      homeWinOdds: seed.odds[0],
+      drawOdds: seed.odds[1],
+      awayWinOdds: seed.odds[2]
+    },
+    prediction: makePrediction(seed.predictedScore, Math.abs(probabilityGap) >= 25 ? "中高" : "中等", seed.probabilities),
+    summary: `${home.nameZh}與${away.nameZh}在${seed.group}最後一輪交手，晉級、排名與淨勝球都會受同組另一場影響。`,
+    plainLanguageAnalysis: [
+      `${modelLean}。最後一輪不能只看紙面實力，兩隊也會依照同步賽事比分調整進攻風險。`
+    ],
+    keyFactors: ["最後一輪同組同步賽果", "淨勝球與最佳第三名比較", "先進球一方的比賽控制"],
+    historyNote: `${seed.group}最後一輪兩場同步進行，晉級與排名會隨另一場比分即時變化。`,
+    qualificationImpact: {
+      homeWin: `${home.nameZh}贏球可提高晉級或排名優勢。`,
+      draw: "平手後仍需比較同組賽果、積分與淨勝球。",
+      awayWin: `${away.nameZh}贏球可提高晉級或排名優勢。`
+    }
+  };
+}
+
 const taiwanTimeZone = "Asia/Taipei";
 const matchdayRolloverOffsetHours = 6;
 
@@ -528,7 +587,259 @@ export const matches: Match[] = [
     keyFactors: ["南韓反擊速度", "南非前場壓迫", "與墨西哥對捷克同步賽果的連動"],
     historyNote: "A 組最後兩場同時開踢，兩隊需要隨另一場比分即時調整風險。",
     qualificationImpact: { homeWin: "南非贏球可直接衝擊前二或取得最佳第三名優勢。", draw: "平手較有利南韓維持晉級位置。", awayWin: "南韓勝出可穩固前二並爭取更好籤位。" }
-  }
+  },
+  makeFinalGroupMatch({
+    id: "cuw-civ",
+    group: "E 組",
+    matchDateTw: "2026-06-26",
+    kickoffTw: "06/26 04:00",
+    venue: "Lincoln Financial Field",
+    homeTeam: "CUW",
+    awayTeam: "CIV",
+    predictedScore: "0-2",
+    probabilities: { homeWin: 17, draw: 25, awayWin: 58, over: 47, bothTeamsToScore: 39 },
+    odds: [5.8, 3.8, 1.55],
+    attentionTags: ["晉級生死戰", "小組關鍵"],
+    filterTags: ["group"]
+  }),
+  makeFinalGroupMatch({
+    id: "ecu-ger",
+    group: "E 組",
+    matchDateTw: "2026-06-26",
+    kickoffTw: "06/26 04:00",
+    venue: "MetLife Stadium",
+    homeTeam: "ECU",
+    awayTeam: "GER",
+    predictedScore: "0-2",
+    probabilities: { homeWin: 15, draw: 23, awayWin: 62, over: 49, bothTeamsToScore: 37 },
+    odds: [6.2, 4.1, 1.48],
+    attentionTags: ["高關注", "小組頭名"],
+    filterTags: ["high", "group"]
+  }),
+  makeFinalGroupMatch({
+    id: "jpn-swe",
+    group: "F 組",
+    matchDateTw: "2026-06-26",
+    kickoffTw: "06/26 07:00",
+    venue: "AT&T Stadium",
+    homeTeam: "JPN",
+    awayTeam: "SWE",
+    predictedScore: "1-1",
+    probabilities: { homeWin: 38, draw: 30, awayWin: 32, over: 46, bothTeamsToScore: 54 },
+    odds: [2.3, 3.25, 3],
+    attentionTags: ["亞洲焦點", "小組關鍵"],
+    filterTags: ["high", "group", "asia"]
+  }),
+  makeFinalGroupMatch({
+    id: "tun-ned",
+    group: "F 組",
+    matchDateTw: "2026-06-26",
+    kickoffTw: "06/26 07:00",
+    venue: "GEHA Field at Arrowhead Stadium",
+    homeTeam: "TUN",
+    awayTeam: "NED",
+    predictedScore: "0-2",
+    probabilities: { homeWin: 13, draw: 22, awayWin: 65, over: 52, bothTeamsToScore: 34 },
+    odds: [7, 4.4, 1.4],
+    attentionTags: ["高關注", "進球期待"],
+    filterTags: ["high", "group", "goals"]
+  }),
+  makeFinalGroupMatch({
+    id: "par-aus",
+    group: "D 組",
+    matchDateTw: "2026-06-26",
+    kickoffTw: "06/26 10:00",
+    venue: "Levi's Stadium",
+    homeTeam: "PAR",
+    awayTeam: "AUS",
+    predictedScore: "1-1",
+    probabilities: { homeWin: 39, draw: 30, awayWin: 31, over: 44, bothTeamsToScore: 52 },
+    odds: [2.35, 3.25, 2.9],
+    attentionTags: ["晉級生死戰", "小組關鍵"],
+    filterTags: ["group"]
+  }),
+  makeFinalGroupMatch({
+    id: "tur-usa",
+    group: "D 組",
+    matchDateTw: "2026-06-26",
+    kickoffTw: "06/26 10:00",
+    venue: "SoFi Stadium",
+    homeTeam: "TUR",
+    awayTeam: "USA",
+    predictedScore: "1-2",
+    probabilities: { homeWin: 24, draw: 27, awayWin: 49, over: 53, bothTeamsToScore: 55 },
+    odds: [4, 3.5, 1.85],
+    attentionTags: ["地主焦點", "高關注"],
+    filterTags: ["high", "group", "goals"]
+  }),
+  makeFinalGroupMatch({
+    id: "nor-fra",
+    group: "I 組",
+    matchDateTw: "2026-06-27",
+    kickoffTw: "06/27 03:00",
+    venue: "Gillette Stadium",
+    homeTeam: "NOR",
+    awayTeam: "FRA",
+    predictedScore: "1-2",
+    probabilities: { homeWin: 21, draw: 26, awayWin: 53, over: 56, bothTeamsToScore: 57 },
+    odds: [4.8, 3.7, 1.67],
+    attentionTags: ["高關注", "小組頭名"],
+    filterTags: ["high", "group", "goals"]
+  }),
+  makeFinalGroupMatch({
+    id: "sen-irq",
+    group: "I 組",
+    matchDateTw: "2026-06-27",
+    kickoffTw: "06/27 03:00",
+    venue: "BMO Field",
+    homeTeam: "SEN",
+    awayTeam: "IRQ",
+    predictedScore: "2-0",
+    probabilities: { homeWin: 58, draw: 26, awayWin: 16, over: 45, bothTeamsToScore: 36 },
+    odds: [1.58, 3.8, 5.6],
+    attentionTags: ["晉級生死戰", "小組關鍵"],
+    filterTags: ["group", "asia"]
+  }),
+  makeFinalGroupMatch({
+    id: "cpv-ksa",
+    group: "H 組",
+    matchDateTw: "2026-06-27",
+    kickoffTw: "06/27 08:00",
+    venue: "NRG Stadium",
+    homeTeam: "CPV",
+    awayTeam: "KSA",
+    predictedScore: "1-1",
+    probabilities: { homeWin: 30, draw: 31, awayWin: 39, over: 42, bothTeamsToScore: 50 },
+    odds: [3.1, 3.2, 2.25],
+    attentionTags: ["亞洲焦點", "晉級生死戰"],
+    filterTags: ["group", "asia"]
+  }),
+  makeFinalGroupMatch({
+    id: "uru-esp",
+    group: "H 組",
+    matchDateTw: "2026-06-27",
+    kickoffTw: "06/27 08:00",
+    venue: "Estadio Akron",
+    homeTeam: "URU",
+    awayTeam: "ESP",
+    predictedScore: "1-2",
+    probabilities: { homeWin: 24, draw: 27, awayWin: 49, over: 54, bothTeamsToScore: 58 },
+    odds: [3.9, 3.4, 1.9],
+    attentionTags: ["高關注", "小組頭名"],
+    filterTags: ["high", "group", "goals"]
+  }),
+  makeFinalGroupMatch({
+    id: "egy-irn",
+    group: "G 組",
+    matchDateTw: "2026-06-27",
+    kickoffTw: "06/27 11:00",
+    venue: "Lumen Field",
+    homeTeam: "EGY",
+    awayTeam: "IRN",
+    predictedScore: "1-1",
+    probabilities: { homeWin: 37, draw: 31, awayWin: 32, over: 40, bothTeamsToScore: 49 },
+    odds: [2.45, 3.1, 2.9],
+    attentionTags: ["亞洲焦點", "小組關鍵"],
+    filterTags: ["group", "asia"]
+  }),
+  makeFinalGroupMatch({
+    id: "nzl-bel",
+    group: "G 組",
+    matchDateTw: "2026-06-27",
+    kickoffTw: "06/27 11:00",
+    venue: "BC Place",
+    homeTeam: "NZL",
+    awayTeam: "BEL",
+    predictedScore: "0-3",
+    probabilities: { homeWin: 8, draw: 15, awayWin: 77, over: 63, bothTeamsToScore: 28 },
+    odds: [12, 6, 1.2],
+    attentionTags: ["高關注", "進球期待"],
+    filterTags: ["high", "group", "goals"]
+  }),
+  makeFinalGroupMatch({
+    id: "cro-gha",
+    group: "L 組",
+    matchDateTw: "2026-06-28",
+    kickoffTw: "06/28 05:00",
+    venue: "Lincoln Financial Field",
+    homeTeam: "CRO",
+    awayTeam: "GHA",
+    predictedScore: "2-1",
+    probabilities: { homeWin: 51, draw: 27, awayWin: 22, over: 51, bothTeamsToScore: 54 },
+    odds: [1.82, 3.5, 4.1],
+    attentionTags: ["晉級生死戰", "小組關鍵"],
+    filterTags: ["high", "group", "goals"]
+  }),
+  makeFinalGroupMatch({
+    id: "pan-eng",
+    group: "L 組",
+    matchDateTw: "2026-06-28",
+    kickoffTw: "06/28 05:00",
+    venue: "MetLife Stadium",
+    homeTeam: "PAN",
+    awayTeam: "ENG",
+    predictedScore: "0-3",
+    probabilities: { homeWin: 8, draw: 16, awayWin: 76, over: 61, bothTeamsToScore: 30 },
+    odds: [11, 6, 1.22],
+    attentionTags: ["高關注", "進球期待"],
+    filterTags: ["high", "group", "goals"]
+  }),
+  makeFinalGroupMatch({
+    id: "col-por",
+    group: "K 組",
+    matchDateTw: "2026-06-28",
+    kickoffTw: "06/28 07:30",
+    venue: "Hard Rock Stadium",
+    homeTeam: "COL",
+    awayTeam: "POR",
+    predictedScore: "1-1",
+    probabilities: { homeWin: 32, draw: 30, awayWin: 38, over: 48, bothTeamsToScore: 55 },
+    odds: [2.9, 3.25, 2.35],
+    attentionTags: ["高關注", "小組頭名"],
+    filterTags: ["high", "group", "goals"]
+  }),
+  makeFinalGroupMatch({
+    id: "cod-uzb",
+    group: "K 組",
+    matchDateTw: "2026-06-28",
+    kickoffTw: "06/28 07:30",
+    venue: "Mercedes-Benz Stadium",
+    homeTeam: "COD",
+    awayTeam: "UZB",
+    predictedScore: "1-1",
+    probabilities: { homeWin: 38, draw: 31, awayWin: 31, over: 41, bothTeamsToScore: 50 },
+    odds: [2.4, 3.1, 2.9],
+    attentionTags: ["首次參賽", "晉級生死戰"],
+    filterTags: ["group", "asia"]
+  }),
+  makeFinalGroupMatch({
+    id: "alg-aut",
+    group: "J 組",
+    matchDateTw: "2026-06-28",
+    kickoffTw: "06/28 10:00",
+    venue: "GEHA Field at Arrowhead Stadium",
+    homeTeam: "ALG",
+    awayTeam: "AUT",
+    predictedScore: "1-2",
+    probabilities: { homeWin: 27, draw: 29, awayWin: 44, over: 48, bothTeamsToScore: 54 },
+    odds: [3.3, 3.25, 2.15],
+    attentionTags: ["晉級生死戰", "小組關鍵"],
+    filterTags: ["group", "goals"]
+  }),
+  makeFinalGroupMatch({
+    id: "jor-arg",
+    group: "J 組",
+    matchDateTw: "2026-06-28",
+    kickoffTw: "06/28 10:00",
+    venue: "AT&T Stadium",
+    homeTeam: "JOR",
+    awayTeam: "ARG",
+    predictedScore: "0-3",
+    probabilities: { homeWin: 6, draw: 14, awayWin: 80, over: 64, bothTeamsToScore: 27 },
+    odds: [15, 7, 1.15],
+    attentionTags: ["高關注", "亞洲焦點"],
+    filterTags: ["high", "group", "asia", "goals"]
+  })
 ];
 
 export const editorialNotes: EditorialNote[] = [
