@@ -56,6 +56,58 @@ export interface QualificationImpact {
   awayWin: string;
 }
 
+export interface MatchStatistics {
+  possessionPct: number | null;
+  totalShots: number | null;
+  shotsOnTarget: number | null;
+  corners: number | null;
+  saves: number | null;
+  yellowCards: number | null;
+  redCards: number | null;
+}
+
+export interface MatchResult {
+  matchId: string;
+  espnEventId: string;
+  group: string;
+  round: string;
+  matchDateTw: string;
+  kickoffTw: string;
+  homeTeam: TeamCode;
+  awayTeam: TeamCode;
+  homeScore: number;
+  awayScore: number;
+  finalScore: string;
+  completedAt: string;
+  predictionSnapshot: {
+    predictedScore: string;
+    probabilities: MatchProbability;
+    confidence: ConfidenceLevel;
+    modelVersion: string;
+    modelUpdatedAt: string;
+  };
+  evaluation: {
+    grade: "exact" | "result" | "miss";
+    exactScore: boolean;
+    resultCorrect: boolean;
+    homeGoalError: number;
+    awayGoalError: number;
+    totalGoalError: number;
+    scoreDistance: number;
+  };
+  statistics: {
+    home: MatchStatistics;
+    away: MatchStatistics;
+  };
+  analysisReasons: string[];
+  source: {
+    name: string;
+    eventUrl: string;
+    fetchedAt: string;
+  };
+  recordedAt: string;
+}
+
 export interface Match {
   id: string;
   group: string;
@@ -75,6 +127,7 @@ export interface Match {
   keyFactors: string[];
   historyNote: string;
   qualificationImpact: QualificationImpact;
+  result?: MatchResult;
 }
 
 export interface StandingRow {

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getTeam } from "@/lib/data";
 import { scoreWithSpaces } from "@/lib/format";
+import { evaluationLabel } from "@/lib/history";
 import type { Match } from "@/lib/types";
 import { OddsBox } from "./OddsBox";
 import { ProbabilityBars } from "./ProbabilityBars";
@@ -13,6 +14,7 @@ interface MatchCardProps {
 export function MatchCard({ match }: MatchCardProps) {
   const home = getTeam(match.homeTeam);
   const away = getTeam(match.awayTeam);
+  const result = match.result;
 
   return (
     <article className="match-card">
@@ -30,8 +32,22 @@ export function MatchCard({ match }: MatchCardProps) {
       </div>
 
       <div className="score-summary">
-        <div className="score-box">{scoreWithSpaces(match.prediction.predictedScore)}</div>
-        <p>{match.summary}</p>
+        <div className={result ? "score-box score-box--final" : "score-box"}>
+          <small>{result ? "完場" : "預估"}</small>
+          <strong>{scoreWithSpaces(result?.finalScore ?? match.prediction.predictedScore)}</strong>
+        </div>
+        <div>
+          {result ? (
+            <p className="result-comparison">
+              模型預估 {scoreWithSpaces(result.predictionSnapshot.predictedScore)}
+              <span className={`evaluation-badge evaluation-badge--${result.evaluation.grade}`}>
+                {evaluationLabel(result.evaluation.grade)}
+              </span>
+            </p>
+          ) : (
+            <p>{match.summary}</p>
+          )}
+        </div>
       </div>
 
       <ProbabilityBars

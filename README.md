@@ -26,7 +26,20 @@ npm run build
 
 ## GitHub Pages 部署
 
-`.github/workflows/deploy-pages.yml` 會在推送到 `main` 後部署，也會每天台灣時間 00:10 自動重建一次。建置時會把 `NEXT_PUBLIC_BOARD_DATE_TW` 設為台灣賽事日；晚上 18:00 後會切到隔天賽事日，首頁「今日焦點賽事」會依 `lib/data.ts` 裡每場賽事的 `matchDateTw` 自動篩選。
+`.github/workflows/deploy-pages.yml` 會在推送到 `main` 後部署，也會每兩小時檢查一次完場賽事並重建。建置時會把 `NEXT_PUBLIC_BOARD_DATE_TW` 設為台灣賽事日；晚上 18:00 後會切到隔天賽事日，首頁「今日焦點賽事」會依 `lib/data.ts` 裡每場賽事的 `matchDateTw` 自動篩選。
+
+## 賽後自動更新
+
+GitHub Actions 會自動：
+
+- 更新實際比分與完場統計
+- 比較模型預估比分與實際比分
+- 產生白話落差原因
+- 寫入 `data/match-history.json`
+- 同步到 `data/world-cup-history.sqlite`
+- 重新部署 GitHub Pages
+
+JSON 提供網站建置使用，SQLite 保存可供後續 32 強、16 強、8 強與決賽模型校正的結構化歷史資料。
 
 ## 目前包含
 
@@ -34,6 +47,7 @@ npm run build
 - `/matches/[id]` 單場分析 SEO 頁
 - `/groups` 小組晉級與最佳第三名觀察
 - `/teams` 球隊資料
+- `/history` 模型歷史戰績與賽後驗證
 - `/admin` 台灣運彩倍率輸入流程
 - `/api/matches` 賽事資料 API
 - `/api/admin/odds` 倍率 payload 驗證 API

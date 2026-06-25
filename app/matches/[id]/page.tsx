@@ -6,6 +6,7 @@ import { ProbabilityBars } from "@/components/ProbabilityBars";
 import { TeamBadge } from "@/components/TeamBadge";
 import { getMatch, getTeam, matches, scorelineGoalLimit } from "@/lib/data";
 import { scoreWithSpaces } from "@/lib/format";
+import { evaluationLabel } from "@/lib/history";
 
 interface MatchPageProps {
   params: Promise<{ id: string }>;
@@ -18,6 +19,10 @@ function formatScorelineProbability(probability: number) {
 
 function getScorelineBarValue(probability: number) {
   return Math.max(0.8, Math.min(100, probability * 6));
+}
+
+function formatStat(value: number | null, suffix = "") {
+  return value == null ? "-" : `${value}${suffix}`;
 }
 
 export function generateStaticParams() {
@@ -44,6 +49,7 @@ export default async function MatchPage({ params }: MatchPageProps) {
 
   const home = getTeam(match.homeTeam);
   const away = getTeam(match.awayTeam);
+  const result = match.result;
 
   return (
     <main className="page-shell">
@@ -67,12 +73,71 @@ export default async function MatchPage({ params }: MatchPageProps) {
             </div>
           </div>
           <div className="score-callout">
-            <span>模型預估比分</span>
-            <strong>{scoreWithSpaces(match.prediction.predictedScore)}</strong>
+            <span>{result ? "完場比分" : "模型預估比分"}</span>
+            <strong>{scoreWithSpaces(result?.finalScore ?? match.prediction.predictedScore)}</strong>
+            {result ? <small>模型預估 {scoreWithSpaces(result.predictionSnapshot.predictedScore)}</small> : null}
           </div>
         </section>
 
         <div className="detail-grid">
+          {result ? (
+            <section className="detail-panel detail-panel--wide postmatch-panel">
+              <div className="panel-title-row">
+                <div>
+                  <span className="eyebrow">Post-match Review</span>
+                  <h2>賽後驗證</h2>
+                </div>
+                <span className={`evaluation-badge evaluation-badge--${result.evaluation.grade}`}>
+                  {evaluationLabel(result.evaluation.grade)}
+                </span>
+              </div>
+              <div className="metric-grid postmatch-metrics">
+                <div className="metric">
+                  <span>模型預估</span>
+                  <strong>{scoreWithSpaces(result.predictionSnapshot.predictedScore)}</strong>
+                </div>
+                <div className="metric">
+                  <span>實際比分</span>
+                  <strong>{scoreWithSpaces(result.finalScore)}</strong>
+                </div>
+                <div className="metric">
+                  <span>比分距離</span>
+                  <strong>{result.evaluation.scoreDistance}</strong>
+                </div>
+              </div>
+              <div className="postmatch-analysis">
+                <div>
+                  <h3>落差原因</h3>
+                  <ul className="factor-list">
+                    {result.analysisReasons.map((reason) => (
+                      <li key={reason}>{reason}</li>
+                    ))}
+                  </ul>
+                </div>
+                <div>
+                  <h3>完場數據</h3>
+                  <div className="match-stat-grid">
+                    <span>球隊</span>
+                    <strong>{home.nameZh}</strong>
+                    <strong>{away.nameZh}</strong>
+                    <span>射門</span>
+                    <strong>{formatStat(result.statistics.home.totalShots)}</strong>
+                    <strong>{formatStat(result.statistics.away.totalShots)}</strong>
+                    <span>射正</span>
+                    <strong>{formatStat(result.statistics.home.shotsOnTarget)}</strong>
+                    <strong>{formatStat(result.statistics.away.shotsOnTarget)}</strong>
+                    <span>控球率</span>
+                    <strong>{formatStat(result.statistics.home.possessionPct, "%")}</strong>
+                    <strong>{formatStat(result.statistics.away.possessionPct, "%")}</strong>
+                  </div>
+                </div>
+              </div>
+              <p className="muted-copy">
+                賽果與完場統計來源：{result.source.name}。此筆預測快照已存入歷史資料庫，不會被後續模型更新覆蓋。
+              </p>
+            </section>
+          ) : null}
+
           <section className="detail-panel">
             <h2>一眼看懂</h2>
             <div className="metric-grid">

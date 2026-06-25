@@ -7,10 +7,10 @@ on:
       - main
   workflow_dispatch:
   schedule:
-    - cron: "10 16 * * *"
+    - cron: "20 */2 * * *"
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -24,6 +24,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -42,6 +44,34 @@ jobs:
       - name: Resolve Taiwan date
         id: taiwan-date
         run: echo "date=$(TZ=Asia/Taipei date -d '+6 hours' +%F)" >> "$GITHUB_OUTPUT"
+
+      - name: Build match catalog
+        run: npm run build:github
+        env:
+          DEPLOY_TARGET: github-pages
+          NEXT_PUBLIC_BOARD_DATE_TW: ${{ steps.taiwan-date.outputs.date }}
+          NEXT_PUBLIC_TODAY_TW: ${{ steps.taiwan-date.outputs.date }}
+
+      - name: Update completed match history
+        run: npm run update:results
+
+      - name: Sync SQLite history database
+        shell: bash
+        run: |
+          if ! git diff --quiet -- data/match-history.json || [ ! -f data/world-cup-history.sqlite ]; then
+            python scripts/build-history-db.py
+          fi
+
+      - name: Commit new match history
+        shell: bash
+        run: |
+          if ! git diff --quiet -- data; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add data/match-history.json data/world-cup-history.sqlite
+            git commit -m "Update completed match history"
+            git push
+          fi
 
       - name: Build static site
         run: npm run build:github

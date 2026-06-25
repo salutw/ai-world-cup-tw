@@ -1,14 +1,18 @@
 import { NextResponse } from "next/server";
-import { matches } from "@/lib/data";
+import { getTeam, matches } from "@/lib/data";
 
 export const dynamic = "force-static";
 
 export function GET() {
   return NextResponse.json({
-    data: matches,
+    data: matches.map((match) => ({
+      ...match,
+      homeTeamNameZh: getTeam(match.homeTeam).nameZh,
+      awayTeamNameZh: getTeam(match.awayTeam).nameZh
+    })),
     meta: {
       count: matches.length,
-      source: "seed-data",
+      source: "match-catalog",
       generatedAt: new Date().toISOString()
     }
   });

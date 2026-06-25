@@ -2,6 +2,7 @@ import Link from "next/link";
 
 const navItems = [
   { href: "/", label: "賽事看板" },
+  { href: "/history", label: "模型戰績" },
   { href: "/groups", label: "小組晉級" },
   { href: "/teams", label: "球隊資料" },
   { href: "/admin", label: "管理後台" }

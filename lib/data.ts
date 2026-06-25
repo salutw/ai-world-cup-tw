@@ -1,4 +1,15 @@
-import type { EditorialNote, GroupStanding, Match, MatchProbability, ScorelineProbability, StandingRow, Team, TeamCode } from "./types";
+import matchHistoryData from "../data/match-history.json";
+import type {
+  EditorialNote,
+  GroupStanding,
+  Match,
+  MatchProbability,
+  MatchResult,
+  ScorelineProbability,
+  StandingRow,
+  Team,
+  TeamCode
+} from "./types";
 
 const confederationLabel: Record<string, string> = {
   AFC: "亞洲足聯",
@@ -387,7 +398,7 @@ function getTaiwanDateKey(date = new Date()) {
   }).format(adjustedDate);
 }
 
-export const matches: Match[] = [
+const scheduledMatches: Match[] = [
   {
     id: "por-uzb",
     group: "K 組",
@@ -841,6 +852,14 @@ export const matches: Match[] = [
     filterTags: ["high", "group", "asia", "goals"]
   })
 ];
+
+export const matchHistory = matchHistoryData.records as MatchResult[];
+const resultsByMatchId = new Map(matchHistory.map((result) => [result.matchId, result]));
+
+export const matches: Match[] = scheduledMatches.map((match) => {
+  const result = resultsByMatchId.get(match.id);
+  return result ? { ...match, status: "final", result } : match;
+});
 
 export const editorialNotes: EditorialNote[] = [
   { title: "48 隊賽制第三名變得很重要", text: "12 組前二名加 8 支最佳第三名晉級，所以 3 分與淨勝球會直接影響淘汰賽席位。" },

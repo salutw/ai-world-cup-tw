@@ -7,7 +7,9 @@
     "build": "next build",
     "build:github": "next build",
     "start": "next start --hostname 127.0.0.1 --port 3026",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "update:results": "node scripts/update-match-results.mjs",
+    "build:history-db": "python scripts/build-history-db.py"
   },
   "dependencies": {
     "next": "latest",
