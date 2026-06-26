@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-26T04:44:46.670Z",
+  "updatedAt": "2026-06-26T21:44:14.584Z",
   "source": "ESPN FIFA World Cup scoreboard and summary",
   "records": [
     {
@@ -1070,6 +1070,140 @@
         "fetchedAt": "2026-06-26T04:44:46.661Z"
       },
       "recordedAt": "2026-06-26T04:44:46.661Z"
+    },
+    {
+      "matchId": "nor-fra",
+      "espnEventId": "760475",
+      "group": "I 組",
+      "round": "小組賽第 3 輪",
+      "matchDateTw": "2026-06-27",
+      "kickoffTw": "06/27 03:00",
+      "homeTeam": "NOR",
+      "awayTeam": "FRA",
+      "homeScore": 1,
+      "awayScore": 4,
+      "finalScore": "1-4",
+      "completedAt": "2026-06-26T19:00Z",
+      "predictionSnapshot": {
+        "predictedScore": "1-2",
+        "probabilities": {
+          "homeWin": 21,
+          "draw": 26,
+          "awayWin": 53,
+          "over": 56,
+          "bothTeamsToScore": 57
+        },
+        "confidence": "中高",
+        "modelVersion": "Scout v0.1",
+        "modelUpdatedAt": "2026/06/23 20:00"
+      },
+      "evaluation": {
+        "grade": "result",
+        "exactScore": false,
+        "resultCorrect": true,
+        "homeGoalError": 0,
+        "awayGoalError": 2,
+        "totalGoalError": 2,
+        "scoreDistance": 2
+      },
+      "statistics": {
+        "home": {
+          "possessionPct": 43.2,
+          "totalShots": 10,
+          "shotsOnTarget": 4,
+          "corners": 4,
+          "saves": 5,
+          "yellowCards": 1,
+          "redCards": 0
+        },
+        "away": {
+          "possessionPct": 56.8,
+          "totalShots": 18,
+          "shotsOnTarget": 9,
+          "corners": 5,
+          "saves": 3,
+          "yellowCards": 1,
+          "redCards": 0
+        }
+      },
+      "analysisReasons": [
+        "勝負方向判斷正確，但兩隊實際進球分布與模型的中央預估不同。",
+        "實際總進球比預估多 2 球，比賽節奏或把握機會效率高於模型假設。",
+        "法國完成 9 次射正並攻入 4 球，客隊火力高於預期。"
+      ],
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760475",
+        "fetchedAt": "2026-06-26T21:44:14.554Z"
+      },
+      "recordedAt": "2026-06-26T21:44:14.554Z"
+    },
+    {
+      "matchId": "sen-irq",
+      "espnEventId": "760474",
+      "group": "I 組",
+      "round": "小組賽第 3 輪",
+      "matchDateTw": "2026-06-27",
+      "kickoffTw": "06/27 03:00",
+      "homeTeam": "SEN",
+      "awayTeam": "IRQ",
+      "homeScore": 5,
+      "awayScore": 0,
+      "finalScore": "5-0",
+      "completedAt": "2026-06-26T19:00Z",
+      "predictionSnapshot": {
+        "predictedScore": "2-0",
+        "probabilities": {
+          "homeWin": 58,
+          "draw": 26,
+          "awayWin": 16,
+          "over": 45,
+          "bothTeamsToScore": 36
+        },
+        "confidence": "中高",
+        "modelVersion": "Scout v0.1",
+        "modelUpdatedAt": "2026/06/23 20:00"
+      },
+      "evaluation": {
+        "grade": "result",
+        "exactScore": false,
+        "resultCorrect": true,
+        "homeGoalError": 3,
+        "awayGoalError": 0,
+        "totalGoalError": 3,
+        "scoreDistance": 3
+      },
+      "statistics": {
+        "home": {
+          "possessionPct": 69.3,
+          "totalShots": 28,
+          "shotsOnTarget": 12,
+          "corners": 12,
+          "saves": 1,
+          "yellowCards": 2,
+          "redCards": 0
+        },
+        "away": {
+          "possessionPct": 30.7,
+          "totalShots": 6,
+          "shotsOnTarget": 1,
+          "corners": 3,
+          "saves": 7,
+          "yellowCards": 2,
+          "redCards": 1
+        }
+      },
+      "analysisReasons": [
+        "勝負方向判斷正確，但兩隊實際進球分布與模型的中央預估不同。",
+        "實際總進球比預估多 3 球，比賽節奏或把握機會效率高於模型假設。",
+        "塞內加爾完成 12 次射正並攻入 5 球，主隊火力高於預期。"
+      ],
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760474",
+        "fetchedAt": "2026-06-26T21:44:14.574Z"
+      },
+      "recordedAt": "2026-06-26T21:44:14.574Z"
     }
   ]
 }
