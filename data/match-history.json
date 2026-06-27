@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-27T09:07:59.934Z",
+  "updatedAt": "2026-06-27T23:31:58.080Z",
   "source": "ESPN FIFA World Cup scoreboard and summary",
   "records": [
     {
@@ -1470,6 +1470,138 @@
         "fetchedAt": "2026-06-27T09:07:59.927Z"
       },
       "recordedAt": "2026-06-27T09:07:59.927Z"
+    },
+    {
+      "matchId": "cro-gha",
+      "espnEventId": "760480",
+      "group": "L 組",
+      "round": "小組賽第 3 輪",
+      "matchDateTw": "2026-06-28",
+      "kickoffTw": "06/28 05:00",
+      "homeTeam": "CRO",
+      "awayTeam": "GHA",
+      "homeScore": 2,
+      "awayScore": 1,
+      "finalScore": "2-1",
+      "completedAt": "2026-06-27T21:00Z",
+      "predictionSnapshot": {
+        "predictedScore": "2-1",
+        "probabilities": {
+          "homeWin": 51,
+          "draw": 27,
+          "awayWin": 22,
+          "over": 51,
+          "bothTeamsToScore": 54
+        },
+        "confidence": "中高",
+        "modelVersion": "Scout v0.1",
+        "modelUpdatedAt": "2026/06/23 20:00"
+      },
+      "evaluation": {
+        "grade": "exact",
+        "exactScore": true,
+        "resultCorrect": true,
+        "homeGoalError": 0,
+        "awayGoalError": 0,
+        "totalGoalError": 0,
+        "scoreDistance": 0
+      },
+      "statistics": {
+        "home": {
+          "possessionPct": 53.3,
+          "totalShots": 8,
+          "shotsOnTarget": 4,
+          "corners": 3,
+          "saves": 0,
+          "yellowCards": 1,
+          "redCards": 0
+        },
+        "away": {
+          "possessionPct": 46.7,
+          "totalShots": 6,
+          "shotsOnTarget": 1,
+          "corners": 2,
+          "saves": 2,
+          "yellowCards": 1,
+          "redCards": 0
+        }
+      },
+      "analysisReasons": [
+        "模型精確命中比分，勝負方向與兩隊進球數都符合賽前估計。"
+      ],
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760480",
+        "fetchedAt": "2026-06-27T23:31:58.042Z"
+      },
+      "recordedAt": "2026-06-27T23:31:58.042Z"
+    },
+    {
+      "matchId": "pan-eng",
+      "espnEventId": "760485",
+      "group": "L 組",
+      "round": "小組賽第 3 輪",
+      "matchDateTw": "2026-06-28",
+      "kickoffTw": "06/28 05:00",
+      "homeTeam": "PAN",
+      "awayTeam": "ENG",
+      "homeScore": 0,
+      "awayScore": 2,
+      "finalScore": "0-2",
+      "completedAt": "2026-06-27T21:00Z",
+      "predictionSnapshot": {
+        "predictedScore": "0-3",
+        "probabilities": {
+          "homeWin": 8,
+          "draw": 16,
+          "awayWin": 76,
+          "over": 61,
+          "bothTeamsToScore": 30
+        },
+        "confidence": "中高",
+        "modelVersion": "Scout v0.1",
+        "modelUpdatedAt": "2026/06/23 20:00"
+      },
+      "evaluation": {
+        "grade": "result",
+        "exactScore": false,
+        "resultCorrect": true,
+        "homeGoalError": 0,
+        "awayGoalError": 1,
+        "totalGoalError": 1,
+        "scoreDistance": 1
+      },
+      "statistics": {
+        "home": {
+          "possessionPct": 32.8,
+          "totalShots": 13,
+          "shotsOnTarget": 2,
+          "corners": 3,
+          "saves": 4,
+          "yellowCards": 2,
+          "redCards": 0
+        },
+        "away": {
+          "possessionPct": 67.2,
+          "totalShots": 17,
+          "shotsOnTarget": 6,
+          "corners": 7,
+          "saves": 2,
+          "yellowCards": 1,
+          "redCards": 0
+        }
+      },
+      "analysisReasons": [
+        "勝負方向判斷正確，但兩隊實際進球分布與模型的中央預估不同。",
+        "實際總進球比預估少 1 球，進攻轉化率低於模型假設。",
+        "英格蘭只有 6 次射正，客隊進球產出低於預期。"
+      ],
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760485",
+        "fetchedAt": "2026-06-27T23:31:58.073Z"
+      },
+      "recordedAt": "2026-06-27T23:31:58.073Z"
     }
   ]
 }
