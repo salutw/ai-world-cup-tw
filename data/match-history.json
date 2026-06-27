@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-26T21:44:14.584Z",
+  "updatedAt": "2026-06-27T04:29:28.874Z",
   "source": "ESPN FIFA World Cup scoreboard and summary",
   "records": [
     {
@@ -1204,6 +1204,140 @@
         "fetchedAt": "2026-06-26T21:44:14.574Z"
       },
       "recordedAt": "2026-06-26T21:44:14.574Z"
+    },
+    {
+      "matchId": "cpv-ksa",
+      "espnEventId": "760478",
+      "group": "H 組",
+      "round": "小組賽第 3 輪",
+      "matchDateTw": "2026-06-27",
+      "kickoffTw": "06/27 08:00",
+      "homeTeam": "CPV",
+      "awayTeam": "KSA",
+      "homeScore": 0,
+      "awayScore": 0,
+      "finalScore": "0-0",
+      "completedAt": "2026-06-27T00:00Z",
+      "predictionSnapshot": {
+        "predictedScore": "1-1",
+        "probabilities": {
+          "homeWin": 30,
+          "draw": 31,
+          "awayWin": 39,
+          "over": 42,
+          "bothTeamsToScore": 50
+        },
+        "confidence": "中等",
+        "modelVersion": "Scout v0.1",
+        "modelUpdatedAt": "2026/06/23 20:00"
+      },
+      "evaluation": {
+        "grade": "result",
+        "exactScore": false,
+        "resultCorrect": true,
+        "homeGoalError": 1,
+        "awayGoalError": 1,
+        "totalGoalError": 2,
+        "scoreDistance": 2
+      },
+      "statistics": {
+        "home": {
+          "possessionPct": 51.2,
+          "totalShots": 15,
+          "shotsOnTarget": 2,
+          "corners": 4,
+          "saves": 3,
+          "yellowCards": 1,
+          "redCards": 0
+        },
+        "away": {
+          "possessionPct": 48.8,
+          "totalShots": 7,
+          "shotsOnTarget": 3,
+          "corners": 2,
+          "saves": 2,
+          "yellowCards": 3,
+          "redCards": 0
+        }
+      },
+      "analysisReasons": [
+        "勝負方向判斷正確，但兩隊實際進球分布與模型的中央預估不同。",
+        "實際總進球比預估少 2 球，進攻轉化率低於模型假設。",
+        "維德角只有 2 次射正，主隊進球產出低於預期。"
+      ],
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760478",
+        "fetchedAt": "2026-06-27T04:29:28.810Z"
+      },
+      "recordedAt": "2026-06-27T04:29:28.810Z"
+    },
+    {
+      "matchId": "uru-esp",
+      "espnEventId": "760479",
+      "group": "H 組",
+      "round": "小組賽第 3 輪",
+      "matchDateTw": "2026-06-27",
+      "kickoffTw": "06/27 08:00",
+      "homeTeam": "URU",
+      "awayTeam": "ESP",
+      "homeScore": 0,
+      "awayScore": 1,
+      "finalScore": "0-1",
+      "completedAt": "2026-06-27T00:00Z",
+      "predictionSnapshot": {
+        "predictedScore": "1-2",
+        "probabilities": {
+          "homeWin": 24,
+          "draw": 27,
+          "awayWin": 49,
+          "over": 54,
+          "bothTeamsToScore": 58
+        },
+        "confidence": "中高",
+        "modelVersion": "Scout v0.1",
+        "modelUpdatedAt": "2026/06/23 20:00"
+      },
+      "evaluation": {
+        "grade": "result",
+        "exactScore": false,
+        "resultCorrect": true,
+        "homeGoalError": 1,
+        "awayGoalError": 1,
+        "totalGoalError": 2,
+        "scoreDistance": 2
+      },
+      "statistics": {
+        "home": {
+          "possessionPct": 33,
+          "totalShots": 5,
+          "shotsOnTarget": 1,
+          "corners": 1,
+          "saves": 0,
+          "yellowCards": 3,
+          "redCards": 1
+        },
+        "away": {
+          "possessionPct": 67,
+          "totalShots": 6,
+          "shotsOnTarget": 1,
+          "corners": 6,
+          "saves": 2,
+          "yellowCards": 1,
+          "redCards": 0
+        }
+      },
+      "analysisReasons": [
+        "勝負方向判斷正確，但兩隊實際進球分布與模型的中央預估不同。",
+        "實際總進球比預估少 2 球，進攻轉化率低於模型假設。",
+        "烏拉圭只有 1 次射正，主隊進球產出低於預期。"
+      ],
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760479",
+        "fetchedAt": "2026-06-27T04:29:28.866Z"
+      },
+      "recordedAt": "2026-06-27T04:29:28.866Z"
     }
   ]
 }
