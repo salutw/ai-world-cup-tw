@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-27T23:31:58.080Z",
+  "updatedAt": "2026-06-28T04:56:34.635Z",
   "source": "ESPN FIFA World Cup scoreboard and summary",
   "records": [
     {
@@ -1602,6 +1602,274 @@
         "fetchedAt": "2026-06-27T23:31:58.073Z"
       },
       "recordedAt": "2026-06-27T23:31:58.073Z"
+    },
+    {
+      "matchId": "col-por",
+      "espnEventId": "760481",
+      "group": "K 組",
+      "round": "小組賽第 3 輪",
+      "matchDateTw": "2026-06-28",
+      "kickoffTw": "06/28 07:30",
+      "homeTeam": "COL",
+      "awayTeam": "POR",
+      "homeScore": 0,
+      "awayScore": 0,
+      "finalScore": "0-0",
+      "completedAt": "2026-06-27T23:30Z",
+      "predictionSnapshot": {
+        "predictedScore": "1-1",
+        "probabilities": {
+          "homeWin": 32,
+          "draw": 30,
+          "awayWin": 38,
+          "over": 48,
+          "bothTeamsToScore": 55
+        },
+        "confidence": "中等",
+        "modelVersion": "Scout v0.1",
+        "modelUpdatedAt": "2026/06/23 20:00"
+      },
+      "evaluation": {
+        "grade": "result",
+        "exactScore": false,
+        "resultCorrect": true,
+        "homeGoalError": 1,
+        "awayGoalError": 1,
+        "totalGoalError": 2,
+        "scoreDistance": 2
+      },
+      "statistics": {
+        "home": {
+          "possessionPct": 54.6,
+          "totalShots": 24,
+          "shotsOnTarget": 6,
+          "corners": 5,
+          "saves": 2,
+          "yellowCards": 1,
+          "redCards": 0
+        },
+        "away": {
+          "possessionPct": 45.4,
+          "totalShots": 13,
+          "shotsOnTarget": 2,
+          "corners": 2,
+          "saves": 6,
+          "yellowCards": 0,
+          "redCards": 0
+        }
+      },
+      "analysisReasons": [
+        "勝負方向判斷正確，但兩隊實際進球分布與模型的中央預估不同。",
+        "實際總進球比預估少 2 球，進攻轉化率低於模型假設。",
+        "哥倫比亞只有 6 次射正，主隊進球產出低於預期。"
+      ],
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760481",
+        "fetchedAt": "2026-06-28T04:56:34.476Z"
+      },
+      "recordedAt": "2026-06-28T04:56:34.476Z"
+    },
+    {
+      "matchId": "cod-uzb",
+      "espnEventId": "760482",
+      "group": "K 組",
+      "round": "小組賽第 3 輪",
+      "matchDateTw": "2026-06-28",
+      "kickoffTw": "06/28 07:30",
+      "homeTeam": "COD",
+      "awayTeam": "UZB",
+      "homeScore": 3,
+      "awayScore": 1,
+      "finalScore": "3-1",
+      "completedAt": "2026-06-27T23:30Z",
+      "predictionSnapshot": {
+        "predictedScore": "1-1",
+        "probabilities": {
+          "homeWin": 38,
+          "draw": 31,
+          "awayWin": 31,
+          "over": 41,
+          "bothTeamsToScore": 50
+        },
+        "confidence": "中等",
+        "modelVersion": "Scout v0.1",
+        "modelUpdatedAt": "2026/06/23 20:00"
+      },
+      "evaluation": {
+        "grade": "miss",
+        "exactScore": false,
+        "resultCorrect": false,
+        "homeGoalError": 2,
+        "awayGoalError": 0,
+        "totalGoalError": 2,
+        "scoreDistance": 2
+      },
+      "statistics": {
+        "home": {
+          "possessionPct": 57.6,
+          "totalShots": 19,
+          "shotsOnTarget": 4,
+          "corners": 2,
+          "saves": 1,
+          "yellowCards": 3,
+          "redCards": 0
+        },
+        "away": {
+          "possessionPct": 42.4,
+          "totalShots": 3,
+          "shotsOnTarget": 1,
+          "corners": 4,
+          "saves": 1,
+          "yellowCards": 2,
+          "redCards": 0
+        }
+      },
+      "analysisReasons": [
+        "實際賽果的賽前機率為 38%，模型有保留可能性，但中央比分選錯方向。",
+        "實際總進球比預估多 2 球，比賽節奏或把握機會效率高於模型假設。",
+        "剛果民主共和國完成 4 次射正並攻入 3 球，主隊火力高於預期。"
+      ],
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760482",
+        "fetchedAt": "2026-06-28T04:56:34.524Z"
+      },
+      "recordedAt": "2026-06-28T04:56:34.524Z"
+    },
+    {
+      "matchId": "alg-aut",
+      "espnEventId": "760484",
+      "group": "J 組",
+      "round": "小組賽第 3 輪",
+      "matchDateTw": "2026-06-28",
+      "kickoffTw": "06/28 10:00",
+      "homeTeam": "ALG",
+      "awayTeam": "AUT",
+      "homeScore": 3,
+      "awayScore": 3,
+      "finalScore": "3-3",
+      "completedAt": "2026-06-28T02:00Z",
+      "predictionSnapshot": {
+        "predictedScore": "1-2",
+        "probabilities": {
+          "homeWin": 27,
+          "draw": 29,
+          "awayWin": 44,
+          "over": 48,
+          "bothTeamsToScore": 54
+        },
+        "confidence": "中等",
+        "modelVersion": "Scout v0.1",
+        "modelUpdatedAt": "2026/06/23 20:00"
+      },
+      "evaluation": {
+        "grade": "miss",
+        "exactScore": false,
+        "resultCorrect": false,
+        "homeGoalError": 2,
+        "awayGoalError": 1,
+        "totalGoalError": 3,
+        "scoreDistance": 3
+      },
+      "statistics": {
+        "home": {
+          "possessionPct": 65.1,
+          "totalShots": 12,
+          "shotsOnTarget": 5,
+          "corners": 0,
+          "saves": 1,
+          "yellowCards": 0,
+          "redCards": 0
+        },
+        "away": {
+          "possessionPct": 34.9,
+          "totalShots": 10,
+          "shotsOnTarget": 3,
+          "corners": 3,
+          "saves": 2,
+          "yellowCards": 1,
+          "redCards": 0
+        }
+      },
+      "analysisReasons": [
+        "實際賽果的賽前機率為 29%，模型有保留可能性，但中央比分選錯方向。",
+        "實際總進球比預估多 3 球，比賽節奏或把握機會效率高於模型假設。",
+        "阿爾及利亞完成 5 次射正並攻入 3 球，主隊火力高於預期。"
+      ],
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760484",
+        "fetchedAt": "2026-06-28T04:56:34.573Z"
+      },
+      "recordedAt": "2026-06-28T04:56:34.573Z"
+    },
+    {
+      "matchId": "jor-arg",
+      "espnEventId": "760483",
+      "group": "J 組",
+      "round": "小組賽第 3 輪",
+      "matchDateTw": "2026-06-28",
+      "kickoffTw": "06/28 10:00",
+      "homeTeam": "JOR",
+      "awayTeam": "ARG",
+      "homeScore": 1,
+      "awayScore": 3,
+      "finalScore": "1-3",
+      "completedAt": "2026-06-28T02:00Z",
+      "predictionSnapshot": {
+        "predictedScore": "0-3",
+        "probabilities": {
+          "homeWin": 6,
+          "draw": 14,
+          "awayWin": 80,
+          "over": 64,
+          "bothTeamsToScore": 27
+        },
+        "confidence": "中高",
+        "modelVersion": "Scout v0.1",
+        "modelUpdatedAt": "2026/06/23 20:00"
+      },
+      "evaluation": {
+        "grade": "result",
+        "exactScore": false,
+        "resultCorrect": true,
+        "homeGoalError": 1,
+        "awayGoalError": 0,
+        "totalGoalError": 1,
+        "scoreDistance": 1
+      },
+      "statistics": {
+        "home": {
+          "possessionPct": 26.7,
+          "totalShots": 5,
+          "shotsOnTarget": 1,
+          "corners": 2,
+          "saves": 1,
+          "yellowCards": 3,
+          "redCards": 0
+        },
+        "away": {
+          "possessionPct": 73.3,
+          "totalShots": 12,
+          "shotsOnTarget": 4,
+          "corners": 6,
+          "saves": 0,
+          "yellowCards": 0,
+          "redCards": 0
+        }
+      },
+      "analysisReasons": [
+        "勝負方向判斷正確，但兩隊實際進球分布與模型的中央預估不同。",
+        "實際總進球比預估多 1 球，比賽節奏或把握機會效率高於模型假設。",
+        "約旦完成 1 次射正並攻入 1 球，主隊火力高於預期。"
+      ],
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760483",
+        "fetchedAt": "2026-06-28T04:56:34.628Z"
+      },
+      "recordedAt": "2026-06-28T04:56:34.628Z"
     }
   ]
 }
