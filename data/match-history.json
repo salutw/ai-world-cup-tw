@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-28T04:56:34.635Z",
+  "updatedAt": "2026-07-01T11:45:29.337Z",
   "source": "ESPN FIFA World Cup scoreboard and summary",
   "records": [
     {
@@ -710,7 +710,7 @@
       },
       "statistics": {
         "home": {
-          "possessionPct": 36.6,
+          "possessionPct": 36.7,
           "totalShots": 11,
           "shotsOnTarget": 2,
           "corners": 4,
@@ -719,7 +719,7 @@
           "redCards": 0
         },
         "away": {
-          "possessionPct": 63.4,
+          "possessionPct": 63.3,
           "totalShots": 7,
           "shotsOnTarget": 3,
           "corners": 6,
@@ -734,9 +734,9 @@
       "source": {
         "name": "ESPN",
         "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760473",
-        "fetchedAt": "2026-06-25T23:48:41.666Z"
+        "fetchedAt": "2026-07-01T11:44:23.226Z"
       },
-      "recordedAt": "2026-06-25T23:48:41.666Z"
+      "recordedAt": "2026-07-01T11:44:23.226Z"
     },
     {
       "matchId": "ecu-ger",
@@ -801,9 +801,9 @@
       "source": {
         "name": "ESPN",
         "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760468",
-        "fetchedAt": "2026-06-25T23:48:41.692Z"
+        "fetchedAt": "2026-07-01T11:44:23.421Z"
       },
-      "recordedAt": "2026-06-25T23:48:41.692Z"
+      "recordedAt": "2026-07-01T11:44:23.421Z"
     },
     {
       "matchId": "jpn-swe",
@@ -866,9 +866,9 @@
       "source": {
         "name": "ESPN",
         "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760471",
-        "fetchedAt": "2026-06-26T04:44:46.585Z"
+        "fetchedAt": "2026-07-01T11:44:23.619Z"
       },
-      "recordedAt": "2026-06-26T04:44:46.585Z"
+      "recordedAt": "2026-07-01T11:44:23.619Z"
     },
     {
       "matchId": "tun-ned",
@@ -933,9 +933,9 @@
       "source": {
         "name": "ESPN",
         "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760472",
-        "fetchedAt": "2026-06-26T04:44:46.610Z"
+        "fetchedAt": "2026-07-01T11:44:23.859Z"
       },
-      "recordedAt": "2026-06-26T04:44:46.610Z"
+      "recordedAt": "2026-07-01T11:44:23.859Z"
     },
     {
       "matchId": "par-aus",
@@ -974,7 +974,7 @@
       },
       "statistics": {
         "home": {
-          "possessionPct": 44.1,
+          "possessionPct": 44,
           "totalShots": 7,
           "shotsOnTarget": 2,
           "corners": 1,
@@ -983,7 +983,7 @@
           "redCards": 0
         },
         "away": {
-          "possessionPct": 55.9,
+          "possessionPct": 56,
           "totalShots": 12,
           "shotsOnTarget": 5,
           "corners": 3,
@@ -1000,9 +1000,9 @@
       "source": {
         "name": "ESPN",
         "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760469",
-        "fetchedAt": "2026-06-26T04:44:46.641Z"
+        "fetchedAt": "2026-07-01T11:44:24.045Z"
       },
-      "recordedAt": "2026-06-26T04:44:46.641Z"
+      "recordedAt": "2026-07-01T11:44:24.045Z"
     },
     {
       "matchId": "tur-usa",
@@ -1041,7 +1041,7 @@
       },
       "statistics": {
         "home": {
-          "possessionPct": 47.5,
+          "possessionPct": 47.4,
           "totalShots": 9,
           "shotsOnTarget": 3,
           "corners": 2,
@@ -1050,7 +1050,7 @@
           "redCards": 0
         },
         "away": {
-          "possessionPct": 52.5,
+          "possessionPct": 52.6,
           "totalShots": 18,
           "shotsOnTarget": 7,
           "corners": 9,
@@ -1067,9 +1067,9 @@
       "source": {
         "name": "ESPN",
         "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760470",
-        "fetchedAt": "2026-06-26T04:44:46.661Z"
+        "fetchedAt": "2026-07-01T11:44:24.240Z"
       },
-      "recordedAt": "2026-06-26T04:44:46.661Z"
+      "recordedAt": "2026-07-01T11:44:24.240Z"
     },
     {
       "matchId": "nor-fra",
@@ -1108,7 +1108,7 @@
       },
       "statistics": {
         "home": {
-          "possessionPct": 43.2,
+          "possessionPct": 43.3,
           "totalShots": 10,
           "shotsOnTarget": 4,
           "corners": 4,
@@ -1117,7 +1117,7 @@
           "redCards": 0
         },
         "away": {
-          "possessionPct": 56.8,
+          "possessionPct": 56.7,
           "totalShots": 18,
           "shotsOnTarget": 9,
           "corners": 5,
@@ -1134,9 +1134,9 @@
       "source": {
         "name": "ESPN",
         "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760475",
-        "fetchedAt": "2026-06-26T21:44:14.554Z"
+        "fetchedAt": "2026-07-01T11:44:24.460Z"
       },
-      "recordedAt": "2026-06-26T21:44:14.554Z"
+      "recordedAt": "2026-07-01T11:44:24.460Z"
     },
     {
       "matchId": "sen-irq",
@@ -1175,7 +1175,7 @@
       },
       "statistics": {
         "home": {
-          "possessionPct": 69.3,
+          "possessionPct": 69.2,
           "totalShots": 28,
           "shotsOnTarget": 12,
           "corners": 12,
@@ -1184,7 +1184,7 @@
           "redCards": 0
         },
         "away": {
-          "possessionPct": 30.7,
+          "possessionPct": 30.8,
           "totalShots": 6,
           "shotsOnTarget": 1,
           "corners": 3,
@@ -1201,9 +1201,9 @@
       "source": {
         "name": "ESPN",
         "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760474",
-        "fetchedAt": "2026-06-26T21:44:14.574Z"
+        "fetchedAt": "2026-07-01T11:44:24.660Z"
       },
-      "recordedAt": "2026-06-26T21:44:14.574Z"
+      "recordedAt": "2026-07-01T11:44:24.660Z"
     },
     {
       "matchId": "cpv-ksa",
@@ -1242,7 +1242,7 @@
       },
       "statistics": {
         "home": {
-          "possessionPct": 51.2,
+          "possessionPct": 51,
           "totalShots": 15,
           "shotsOnTarget": 2,
           "corners": 4,
@@ -1251,7 +1251,7 @@
           "redCards": 0
         },
         "away": {
-          "possessionPct": 48.8,
+          "possessionPct": 49,
           "totalShots": 7,
           "shotsOnTarget": 3,
           "corners": 2,
@@ -1268,9 +1268,9 @@
       "source": {
         "name": "ESPN",
         "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760478",
-        "fetchedAt": "2026-06-27T04:29:28.810Z"
+        "fetchedAt": "2026-07-01T11:44:24.846Z"
       },
-      "recordedAt": "2026-06-27T04:29:28.810Z"
+      "recordedAt": "2026-07-01T11:44:24.846Z"
     },
     {
       "matchId": "uru-esp",
@@ -1309,7 +1309,7 @@
       },
       "statistics": {
         "home": {
-          "possessionPct": 33,
+          "possessionPct": 33.1,
           "totalShots": 5,
           "shotsOnTarget": 1,
           "corners": 1,
@@ -1318,7 +1318,7 @@
           "redCards": 1
         },
         "away": {
-          "possessionPct": 67,
+          "possessionPct": 66.9,
           "totalShots": 6,
           "shotsOnTarget": 1,
           "corners": 6,
@@ -1335,9 +1335,9 @@
       "source": {
         "name": "ESPN",
         "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760479",
-        "fetchedAt": "2026-06-27T04:29:28.866Z"
+        "fetchedAt": "2026-07-01T11:44:25.044Z"
       },
-      "recordedAt": "2026-06-27T04:29:28.866Z"
+      "recordedAt": "2026-07-01T11:44:25.044Z"
     },
     {
       "matchId": "egy-irn",
@@ -1400,9 +1400,9 @@
       "source": {
         "name": "ESPN",
         "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760476",
-        "fetchedAt": "2026-06-27T09:07:59.880Z"
+        "fetchedAt": "2026-07-01T11:44:25.237Z"
       },
-      "recordedAt": "2026-06-27T09:07:59.880Z"
+      "recordedAt": "2026-07-01T11:44:25.237Z"
     },
     {
       "matchId": "nzl-bel",
@@ -1467,9 +1467,9 @@
       "source": {
         "name": "ESPN",
         "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760477",
-        "fetchedAt": "2026-06-27T09:07:59.927Z"
+        "fetchedAt": "2026-07-01T11:44:25.430Z"
       },
-      "recordedAt": "2026-06-27T09:07:59.927Z"
+      "recordedAt": "2026-07-01T11:44:25.431Z"
     },
     {
       "matchId": "cro-gha",
@@ -1532,9 +1532,9 @@
       "source": {
         "name": "ESPN",
         "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760480",
-        "fetchedAt": "2026-06-27T23:31:58.042Z"
+        "fetchedAt": "2026-07-01T11:44:25.637Z"
       },
-      "recordedAt": "2026-06-27T23:31:58.042Z"
+      "recordedAt": "2026-07-01T11:44:25.637Z"
     },
     {
       "matchId": "pan-eng",
@@ -1573,7 +1573,7 @@
       },
       "statistics": {
         "home": {
-          "possessionPct": 32.8,
+          "possessionPct": 32.9,
           "totalShots": 13,
           "shotsOnTarget": 2,
           "corners": 3,
@@ -1582,7 +1582,7 @@
           "redCards": 0
         },
         "away": {
-          "possessionPct": 67.2,
+          "possessionPct": 67.1,
           "totalShots": 17,
           "shotsOnTarget": 6,
           "corners": 7,
@@ -1599,9 +1599,9 @@
       "source": {
         "name": "ESPN",
         "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760485",
-        "fetchedAt": "2026-06-27T23:31:58.073Z"
+        "fetchedAt": "2026-07-01T11:44:25.851Z"
       },
-      "recordedAt": "2026-06-27T23:31:58.073Z"
+      "recordedAt": "2026-07-01T11:44:25.851Z"
     },
     {
       "matchId": "col-por",
@@ -1666,9 +1666,9 @@
       "source": {
         "name": "ESPN",
         "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760481",
-        "fetchedAt": "2026-06-28T04:56:34.476Z"
+        "fetchedAt": "2026-07-01T11:44:26.194Z"
       },
-      "recordedAt": "2026-06-28T04:56:34.476Z"
+      "recordedAt": "2026-07-01T11:44:26.194Z"
     },
     {
       "matchId": "cod-uzb",
@@ -1733,9 +1733,9 @@
       "source": {
         "name": "ESPN",
         "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760482",
-        "fetchedAt": "2026-06-28T04:56:34.524Z"
+        "fetchedAt": "2026-07-01T11:44:26.403Z"
       },
-      "recordedAt": "2026-06-28T04:56:34.524Z"
+      "recordedAt": "2026-07-01T11:44:26.403Z"
     },
     {
       "matchId": "alg-aut",
@@ -1774,7 +1774,7 @@
       },
       "statistics": {
         "home": {
-          "possessionPct": 65.1,
+          "possessionPct": 65,
           "totalShots": 12,
           "shotsOnTarget": 5,
           "corners": 0,
@@ -1783,7 +1783,7 @@
           "redCards": 0
         },
         "away": {
-          "possessionPct": 34.9,
+          "possessionPct": 35,
           "totalShots": 10,
           "shotsOnTarget": 3,
           "corners": 3,
@@ -1800,9 +1800,9 @@
       "source": {
         "name": "ESPN",
         "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760484",
-        "fetchedAt": "2026-06-28T04:56:34.573Z"
+        "fetchedAt": "2026-07-01T11:44:26.598Z"
       },
-      "recordedAt": "2026-06-28T04:56:34.573Z"
+      "recordedAt": "2026-07-01T11:44:26.598Z"
     },
     {
       "matchId": "jor-arg",
@@ -1867,9 +1867,473 @@
       "source": {
         "name": "ESPN",
         "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760483",
-        "fetchedAt": "2026-06-28T04:56:34.628Z"
+        "fetchedAt": "2026-07-01T11:44:26.807Z"
       },
-      "recordedAt": "2026-06-28T04:56:34.628Z"
+      "recordedAt": "2026-07-01T11:44:26.807Z"
+    },
+    {
+      "matchId": "rsa-can-760486",
+      "espnEventId": "760486",
+      "group": "淘汰賽",
+      "round": "32強淘汰賽",
+      "matchDateTw": "2026-06-29",
+      "kickoffTw": "06/29 03:00",
+      "homeTeam": "RSA",
+      "awayTeam": "CAN",
+      "homeScore": 0,
+      "awayScore": 1,
+      "finalScore": "0-1",
+      "completedAt": "2026-06-28T19:00Z",
+      "predictionSnapshot": {
+        "predictedScore": "0-2",
+        "probabilities": {
+          "homeWin": 20,
+          "draw": 23,
+          "awayWin": 57,
+          "over": 50,
+          "bothTeamsToScore": 46
+        },
+        "confidence": "高",
+        "modelVersion": "Scout v0.1",
+        "modelUpdatedAt": "2026/06/23 20:00"
+      },
+      "evaluation": {
+        "grade": "result",
+        "exactScore": false,
+        "resultCorrect": true,
+        "homeGoalError": 0,
+        "awayGoalError": 1,
+        "totalGoalError": 1,
+        "scoreDistance": 1
+      },
+      "statistics": {
+        "home": {
+          "possessionPct": 58.4,
+          "totalShots": 6,
+          "shotsOnTarget": 1,
+          "corners": 1,
+          "saves": 5,
+          "yellowCards": 0,
+          "redCards": 0
+        },
+        "away": {
+          "possessionPct": 41.6,
+          "totalShots": 12,
+          "shotsOnTarget": 7,
+          "corners": 4,
+          "saves": 1,
+          "yellowCards": 2,
+          "redCards": 0
+        }
+      },
+      "analysisReasons": [
+        "勝負方向判斷正確，但兩隊實際進球分布與模型的中央預估不同。",
+        "實際總進球比預估少 1 球，進攻轉化率低於模型假設。",
+        "加拿大只有 7 次射正，客隊進球產出低於預期。"
+      ],
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760486",
+        "fetchedAt": "2026-07-01T11:45:28.034Z"
+      },
+      "recordedAt": "2026-07-01T11:45:28.034Z"
+    },
+    {
+      "matchId": "bra-jpn-760487",
+      "espnEventId": "760487",
+      "group": "淘汰賽",
+      "round": "32強淘汰賽",
+      "matchDateTw": "2026-06-30",
+      "kickoffTw": "06/30 01:00",
+      "homeTeam": "BRA",
+      "awayTeam": "JPN",
+      "homeScore": 2,
+      "awayScore": 1,
+      "finalScore": "2-1",
+      "completedAt": "2026-06-29T17:00Z",
+      "predictionSnapshot": {
+        "predictedScore": "3-0",
+        "probabilities": {
+          "homeWin": 67,
+          "draw": 20,
+          "awayWin": 13,
+          "over": 58,
+          "bothTeamsToScore": 47
+        },
+        "confidence": "高",
+        "modelVersion": "Scout v0.1",
+        "modelUpdatedAt": "2026/06/23 20:00"
+      },
+      "evaluation": {
+        "grade": "result",
+        "exactScore": false,
+        "resultCorrect": true,
+        "homeGoalError": 1,
+        "awayGoalError": 1,
+        "totalGoalError": 0,
+        "scoreDistance": 2
+      },
+      "statistics": {
+        "home": {
+          "possessionPct": 68.6,
+          "totalShots": 19,
+          "shotsOnTarget": 7,
+          "corners": 6,
+          "saves": 1,
+          "yellowCards": 2,
+          "redCards": 0
+        },
+        "away": {
+          "possessionPct": 31.4,
+          "totalShots": 5,
+          "shotsOnTarget": 2,
+          "corners": 2,
+          "saves": 4,
+          "yellowCards": 3,
+          "redCards": 0
+        }
+      },
+      "analysisReasons": [
+        "勝負方向判斷正確，但兩隊實際進球分布與模型的中央預估不同。",
+        "巴西只有 7 次射正，主隊進球產出低於預期。"
+      ],
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760487",
+        "fetchedAt": "2026-07-01T11:45:28.375Z"
+      },
+      "recordedAt": "2026-07-01T11:45:28.375Z"
+    },
+    {
+      "matchId": "ger-par-760489",
+      "espnEventId": "760489",
+      "group": "淘汰賽",
+      "round": "32強淘汰賽",
+      "matchDateTw": "2026-06-30",
+      "kickoffTw": "06/30 04:30",
+      "homeTeam": "GER",
+      "awayTeam": "PAR",
+      "homeScore": 1,
+      "awayScore": 1,
+      "finalScore": "1-1",
+      "completedAt": "2026-06-29T20:30Z",
+      "predictionSnapshot": {
+        "predictedScore": "3-0",
+        "probabilities": {
+          "homeWin": 75,
+          "draw": 18,
+          "awayWin": 7,
+          "over": 61,
+          "bothTeamsToScore": 47
+        },
+        "confidence": "高",
+        "modelVersion": "Scout v0.1",
+        "modelUpdatedAt": "2026/06/23 20:00"
+      },
+      "evaluation": {
+        "grade": "miss",
+        "exactScore": false,
+        "resultCorrect": false,
+        "homeGoalError": 2,
+        "awayGoalError": 1,
+        "totalGoalError": 1,
+        "scoreDistance": 3
+      },
+      "statistics": {
+        "home": {
+          "possessionPct": 75.6,
+          "totalShots": 21,
+          "shotsOnTarget": 6,
+          "corners": 16,
+          "saves": 2,
+          "yellowCards": 2,
+          "redCards": 0
+        },
+        "away": {
+          "possessionPct": 24.4,
+          "totalShots": 7,
+          "shotsOnTarget": 3,
+          "corners": 6,
+          "saves": 6,
+          "yellowCards": 2,
+          "redCards": 0
+        }
+      },
+      "analysisReasons": [
+        "實際賽果的賽前機率只有 18%，屬於模型明顯低估的結果。",
+        "實際總進球比預估少 1 球，進攻轉化率低於模型假設。",
+        "德國只有 6 次射正，主隊進球產出低於預期。"
+      ],
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760489",
+        "fetchedAt": "2026-07-01T11:45:28.566Z"
+      },
+      "recordedAt": "2026-07-01T11:45:28.566Z"
+    },
+    {
+      "matchId": "ned-mar-760488",
+      "espnEventId": "760488",
+      "group": "淘汰賽",
+      "round": "32強淘汰賽",
+      "matchDateTw": "2026-06-30",
+      "kickoffTw": "06/30 09:00",
+      "homeTeam": "NED",
+      "awayTeam": "MAR",
+      "homeScore": 1,
+      "awayScore": 1,
+      "finalScore": "1-1",
+      "completedAt": "2026-06-30T01:00Z",
+      "predictionSnapshot": {
+        "predictedScore": "3-0",
+        "probabilities": {
+          "homeWin": 60,
+          "draw": 22,
+          "awayWin": 18,
+          "over": 56,
+          "bothTeamsToScore": 48
+        },
+        "confidence": "高",
+        "modelVersion": "Scout v0.1",
+        "modelUpdatedAt": "2026/06/23 20:00"
+      },
+      "evaluation": {
+        "grade": "miss",
+        "exactScore": false,
+        "resultCorrect": false,
+        "homeGoalError": 2,
+        "awayGoalError": 1,
+        "totalGoalError": 1,
+        "scoreDistance": 3
+      },
+      "statistics": {
+        "home": {
+          "possessionPct": 29.9,
+          "totalShots": 6,
+          "shotsOnTarget": 2,
+          "corners": 5,
+          "saves": 5,
+          "yellowCards": 0,
+          "redCards": 0
+        },
+        "away": {
+          "possessionPct": 70.1,
+          "totalShots": 11,
+          "shotsOnTarget": 5,
+          "corners": 8,
+          "saves": 1,
+          "yellowCards": 1,
+          "redCards": 0
+        }
+      },
+      "analysisReasons": [
+        "實際賽果的賽前機率只有 22%，屬於模型明顯低估的結果。",
+        "實際總進球比預估少 1 球，進攻轉化率低於模型假設。",
+        "荷蘭只有 2 次射正，主隊進球產出低於預期。"
+      ],
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760488",
+        "fetchedAt": "2026-07-01T11:45:28.763Z"
+      },
+      "recordedAt": "2026-07-01T11:45:28.763Z"
+    },
+    {
+      "matchId": "civ-nor-760490",
+      "espnEventId": "760490",
+      "group": "淘汰賽",
+      "round": "32強淘汰賽",
+      "matchDateTw": "2026-07-01",
+      "kickoffTw": "07/01 01:00",
+      "homeTeam": "CIV",
+      "awayTeam": "NOR",
+      "homeScore": 1,
+      "awayScore": 2,
+      "finalScore": "1-2",
+      "completedAt": "2026-06-30T17:00Z",
+      "predictionSnapshot": {
+        "predictedScore": "1-2",
+        "probabilities": {
+          "homeWin": 26,
+          "draw": 25,
+          "awayWin": 49,
+          "over": 52,
+          "bothTeamsToScore": 48
+        },
+        "confidence": "中高",
+        "modelVersion": "Scout v0.1",
+        "modelUpdatedAt": "2026/06/23 20:00"
+      },
+      "evaluation": {
+        "grade": "exact",
+        "exactScore": true,
+        "resultCorrect": true,
+        "homeGoalError": 0,
+        "awayGoalError": 0,
+        "totalGoalError": 0,
+        "scoreDistance": 0
+      },
+      "statistics": {
+        "home": {
+          "possessionPct": 47.1,
+          "totalShots": 14,
+          "shotsOnTarget": 5,
+          "corners": 14,
+          "saves": 1,
+          "yellowCards": 0,
+          "redCards": 0
+        },
+        "away": {
+          "possessionPct": 52.9,
+          "totalShots": 9,
+          "shotsOnTarget": 4,
+          "corners": 3,
+          "saves": 4,
+          "yellowCards": 1,
+          "redCards": 0
+        }
+      },
+      "analysisReasons": [
+        "模型精確命中比分，勝負方向與兩隊進球數都符合賽前估計。"
+      ],
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760490",
+        "fetchedAt": "2026-07-01T11:45:28.952Z"
+      },
+      "recordedAt": "2026-07-01T11:45:28.952Z"
+    },
+    {
+      "matchId": "fra-swe-760492",
+      "espnEventId": "760492",
+      "group": "淘汰賽",
+      "round": "32強淘汰賽",
+      "matchDateTw": "2026-07-01",
+      "kickoffTw": "07/01 05:00",
+      "homeTeam": "FRA",
+      "awayTeam": "SWE",
+      "homeScore": 3,
+      "awayScore": 0,
+      "finalScore": "3-0",
+      "completedAt": "2026-06-30T21:00Z",
+      "predictionSnapshot": {
+        "predictedScore": "3-0",
+        "probabilities": {
+          "homeWin": 56,
+          "draw": 23,
+          "awayWin": 21,
+          "over": 56,
+          "bothTeamsToScore": 48
+        },
+        "confidence": "高",
+        "modelVersion": "Scout v0.1",
+        "modelUpdatedAt": "2026/06/23 20:00"
+      },
+      "evaluation": {
+        "grade": "exact",
+        "exactScore": true,
+        "resultCorrect": true,
+        "homeGoalError": 0,
+        "awayGoalError": 0,
+        "totalGoalError": 0,
+        "scoreDistance": 0
+      },
+      "statistics": {
+        "home": {
+          "possessionPct": 61,
+          "totalShots": 25,
+          "shotsOnTarget": 12,
+          "corners": 9,
+          "saves": 3,
+          "yellowCards": 0,
+          "redCards": 0
+        },
+        "away": {
+          "possessionPct": 39,
+          "totalShots": 8,
+          "shotsOnTarget": 3,
+          "corners": 1,
+          "saves": 9,
+          "yellowCards": 0,
+          "redCards": 0
+        }
+      },
+      "analysisReasons": [
+        "模型精確命中比分，勝負方向與兩隊進球數都符合賽前估計。"
+      ],
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760492",
+        "fetchedAt": "2026-07-01T11:45:29.141Z"
+      },
+      "recordedAt": "2026-07-01T11:45:29.141Z"
+    },
+    {
+      "matchId": "mex-ecu-760491",
+      "espnEventId": "760491",
+      "group": "淘汰賽",
+      "round": "32強淘汰賽",
+      "matchDateTw": "2026-07-01",
+      "kickoffTw": "07/01 10:00",
+      "homeTeam": "MEX",
+      "awayTeam": "ECU",
+      "homeScore": 2,
+      "awayScore": 0,
+      "finalScore": "2-0",
+      "completedAt": "2026-07-01T02:00Z",
+      "predictionSnapshot": {
+        "predictedScore": "3-0",
+        "probabilities": {
+          "homeWin": 61,
+          "draw": 22,
+          "awayWin": 17,
+          "over": 55,
+          "bothTeamsToScore": 47
+        },
+        "confidence": "高",
+        "modelVersion": "Scout v0.1",
+        "modelUpdatedAt": "2026/06/23 20:00"
+      },
+      "evaluation": {
+        "grade": "result",
+        "exactScore": false,
+        "resultCorrect": true,
+        "homeGoalError": 1,
+        "awayGoalError": 0,
+        "totalGoalError": 1,
+        "scoreDistance": 1
+      },
+      "statistics": {
+        "home": {
+          "possessionPct": 42.8,
+          "totalShots": 15,
+          "shotsOnTarget": 3,
+          "corners": 3,
+          "saves": 1,
+          "yellowCards": 0,
+          "redCards": 0
+        },
+        "away": {
+          "possessionPct": 57.2,
+          "totalShots": 7,
+          "shotsOnTarget": 1,
+          "corners": 8,
+          "saves": 1,
+          "yellowCards": 3,
+          "redCards": 1
+        }
+      },
+      "analysisReasons": [
+        "勝負方向判斷正確，但兩隊實際進球分布與模型的中央預估不同。",
+        "實際總進球比預估少 1 球，進攻轉化率低於模型假設。",
+        "墨西哥只有 3 次射正，主隊進球產出低於預期。"
+      ],
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760491",
+        "fetchedAt": "2026-07-01T11:45:29.331Z"
+      },
+      "recordedAt": "2026-07-01T11:45:29.331Z"
     }
   ]
 }

@@ -1,0 +1,947 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-07-01T11:42:47.885Z",
+  "source": "ESPN FIFA World Cup scoreboard",
+  "records": [
+    {
+      "id": "por-uzb-760461",
+      "espnEventId": "760461",
+      "group": "小組賽",
+      "round": "小組賽",
+      "seasonSlug": "group-stage",
+      "matchDateTw": "2026-06-24",
+      "kickoffTw": "06/24 01:00",
+      "kickoffUtc": "2026-06-23T17:00Z",
+      "venue": "NRG Stadium",
+      "homeTeam": "POR",
+      "awayTeam": "UZB",
+      "status": "final",
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760461",
+        "fetchedAt": "2026-07-01T11:42:47.885Z"
+      },
+      "firstSeenAt": "2026-07-01T11:42:47.885Z"
+    },
+    {
+      "id": "eng-gha-760458",
+      "espnEventId": "760458",
+      "group": "小組賽",
+      "round": "小組賽",
+      "seasonSlug": "group-stage",
+      "matchDateTw": "2026-06-24",
+      "kickoffTw": "06/24 04:00",
+      "kickoffUtc": "2026-06-23T20:00Z",
+      "venue": "Gillette Stadium",
+      "homeTeam": "ENG",
+      "awayTeam": "GHA",
+      "status": "final",
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760458",
+        "fetchedAt": "2026-07-01T11:42:47.885Z"
+      },
+      "firstSeenAt": "2026-07-01T11:42:47.885Z"
+    },
+    {
+      "id": "pan-cro-760460",
+      "espnEventId": "760460",
+      "group": "小組賽",
+      "round": "小組賽",
+      "seasonSlug": "group-stage",
+      "matchDateTw": "2026-06-24",
+      "kickoffTw": "06/24 07:00",
+      "kickoffUtc": "2026-06-23T23:00Z",
+      "venue": "BMO Field",
+      "homeTeam": "PAN",
+      "awayTeam": "CRO",
+      "status": "final",
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760460",
+        "fetchedAt": "2026-07-01T11:42:47.885Z"
+      },
+      "firstSeenAt": "2026-07-01T11:42:47.885Z"
+    },
+    {
+      "id": "col-cod-760459",
+      "espnEventId": "760459",
+      "group": "小組賽",
+      "round": "小組賽",
+      "seasonSlug": "group-stage",
+      "matchDateTw": "2026-06-24",
+      "kickoffTw": "06/24 10:00",
+      "kickoffUtc": "2026-06-24T02:00Z",
+      "venue": "Estadio Akron",
+      "homeTeam": "COL",
+      "awayTeam": "COD",
+      "status": "final",
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760459",
+        "fetchedAt": "2026-07-01T11:42:47.885Z"
+      },
+      "firstSeenAt": "2026-07-01T11:42:47.885Z"
+    },
+    {
+      "id": "bih-qat-760462",
+      "espnEventId": "760462",
+      "group": "小組賽",
+      "round": "小組賽",
+      "seasonSlug": "group-stage",
+      "matchDateTw": "2026-06-25",
+      "kickoffTw": "06/25 03:00",
+      "kickoffUtc": "2026-06-24T19:00Z",
+      "venue": "Lumen Field",
+      "homeTeam": "BIH",
+      "awayTeam": "QAT",
+      "status": "final",
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760462",
+        "fetchedAt": "2026-07-01T11:42:47.885Z"
+      },
+      "firstSeenAt": "2026-07-01T11:42:47.885Z"
+    },
+    {
+      "id": "sui-can-760463",
+      "espnEventId": "760463",
+      "group": "小組賽",
+      "round": "小組賽",
+      "seasonSlug": "group-stage",
+      "matchDateTw": "2026-06-25",
+      "kickoffTw": "06/25 03:00",
+      "kickoffUtc": "2026-06-24T19:00Z",
+      "venue": "BC Place",
+      "homeTeam": "SUI",
+      "awayTeam": "CAN",
+      "status": "final",
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760463",
+        "fetchedAt": "2026-07-01T11:42:47.885Z"
+      },
+      "firstSeenAt": "2026-07-01T11:42:47.885Z"
+    },
+    {
+      "id": "mar-hai-760464",
+      "espnEventId": "760464",
+      "group": "小組賽",
+      "round": "小組賽",
+      "seasonSlug": "group-stage",
+      "matchDateTw": "2026-06-25",
+      "kickoffTw": "06/25 06:00",
+      "kickoffUtc": "2026-06-24T22:00Z",
+      "venue": "Mercedes-Benz Stadium",
+      "homeTeam": "MAR",
+      "awayTeam": "HAI",
+      "status": "final",
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760464",
+        "fetchedAt": "2026-07-01T11:42:47.885Z"
+      },
+      "firstSeenAt": "2026-07-01T11:42:47.885Z"
+    },
+    {
+      "id": "sco-bra-760465",
+      "espnEventId": "760465",
+      "group": "小組賽",
+      "round": "小組賽",
+      "seasonSlug": "group-stage",
+      "matchDateTw": "2026-06-25",
+      "kickoffTw": "06/25 06:00",
+      "kickoffUtc": "2026-06-24T22:00Z",
+      "venue": "Hard Rock Stadium",
+      "homeTeam": "SCO",
+      "awayTeam": "BRA",
+      "status": "final",
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760465",
+        "fetchedAt": "2026-07-01T11:42:47.885Z"
+      },
+      "firstSeenAt": "2026-07-01T11:42:47.885Z"
+    },
+    {
+      "id": "cze-mex-760467",
+      "espnEventId": "760467",
+      "group": "小組賽",
+      "round": "小組賽",
+      "seasonSlug": "group-stage",
+      "matchDateTw": "2026-06-25",
+      "kickoffTw": "06/25 09:00",
+      "kickoffUtc": "2026-06-25T01:00Z",
+      "venue": "Estadio Banorte",
+      "homeTeam": "CZE",
+      "awayTeam": "MEX",
+      "status": "final",
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760467",
+        "fetchedAt": "2026-07-01T11:42:47.885Z"
+      },
+      "firstSeenAt": "2026-07-01T11:42:47.885Z"
+    },
+    {
+      "id": "rsa-kor-760466",
+      "espnEventId": "760466",
+      "group": "小組賽",
+      "round": "小組賽",
+      "seasonSlug": "group-stage",
+      "matchDateTw": "2026-06-25",
+      "kickoffTw": "06/25 09:00",
+      "kickoffUtc": "2026-06-25T01:00Z",
+      "venue": "Estadio BBVA",
+      "homeTeam": "RSA",
+      "awayTeam": "KOR",
+      "status": "final",
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760466",
+        "fetchedAt": "2026-07-01T11:42:47.885Z"
+      },
+      "firstSeenAt": "2026-07-01T11:42:47.885Z"
+    },
+    {
+      "id": "cuw-civ-760473",
+      "espnEventId": "760473",
+      "group": "小組賽",
+      "round": "小組賽",
+      "seasonSlug": "group-stage",
+      "matchDateTw": "2026-06-26",
+      "kickoffTw": "06/26 04:00",
+      "kickoffUtc": "2026-06-25T20:00Z",
+      "venue": "Lincoln Financial Field",
+      "homeTeam": "CUW",
+      "awayTeam": "CIV",
+      "status": "final",
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760473",
+        "fetchedAt": "2026-07-01T11:42:47.885Z"
+      },
+      "firstSeenAt": "2026-07-01T11:42:47.885Z"
+    },
+    {
+      "id": "ecu-ger-760468",
+      "espnEventId": "760468",
+      "group": "小組賽",
+      "round": "小組賽",
+      "seasonSlug": "group-stage",
+      "matchDateTw": "2026-06-26",
+      "kickoffTw": "06/26 04:00",
+      "kickoffUtc": "2026-06-25T20:00Z",
+      "venue": "MetLife Stadium",
+      "homeTeam": "ECU",
+      "awayTeam": "GER",
+      "status": "final",
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760468",
+        "fetchedAt": "2026-07-01T11:42:47.885Z"
+      },
+      "firstSeenAt": "2026-07-01T11:42:47.885Z"
+    },
+    {
+      "id": "jpn-swe-760471",
+      "espnEventId": "760471",
+      "group": "小組賽",
+      "round": "小組賽",
+      "seasonSlug": "group-stage",
+      "matchDateTw": "2026-06-26",
+      "kickoffTw": "06/26 07:00",
+      "kickoffUtc": "2026-06-25T23:00Z",
+      "venue": "AT&T Stadium",
+      "homeTeam": "JPN",
+      "awayTeam": "SWE",
+      "status": "final",
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760471",
+        "fetchedAt": "2026-07-01T11:42:47.885Z"
+      },
+      "firstSeenAt": "2026-07-01T11:42:47.885Z"
+    },
+    {
+      "id": "tun-ned-760472",
+      "espnEventId": "760472",
+      "group": "小組賽",
+      "round": "小組賽",
+      "seasonSlug": "group-stage",
+      "matchDateTw": "2026-06-26",
+      "kickoffTw": "06/26 07:00",
+      "kickoffUtc": "2026-06-25T23:00Z",
+      "venue": "GEHA Field at Arrowhead Stadium",
+      "homeTeam": "TUN",
+      "awayTeam": "NED",
+      "status": "final",
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760472",
+        "fetchedAt": "2026-07-01T11:42:47.885Z"
+      },
+      "firstSeenAt": "2026-07-01T11:42:47.885Z"
+    },
+    {
+      "id": "par-aus-760469",
+      "espnEventId": "760469",
+      "group": "小組賽",
+      "round": "小組賽",
+      "seasonSlug": "group-stage",
+      "matchDateTw": "2026-06-26",
+      "kickoffTw": "06/26 10:00",
+      "kickoffUtc": "2026-06-26T02:00Z",
+      "venue": "Levi's Stadium",
+      "homeTeam": "PAR",
+      "awayTeam": "AUS",
+      "status": "final",
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760469",
+        "fetchedAt": "2026-07-01T11:42:47.885Z"
+      },
+      "firstSeenAt": "2026-07-01T11:42:47.885Z"
+    },
+    {
+      "id": "tur-usa-760470",
+      "espnEventId": "760470",
+      "group": "小組賽",
+      "round": "小組賽",
+      "seasonSlug": "group-stage",
+      "matchDateTw": "2026-06-26",
+      "kickoffTw": "06/26 10:00",
+      "kickoffUtc": "2026-06-26T02:00Z",
+      "venue": "SoFi Stadium",
+      "homeTeam": "TUR",
+      "awayTeam": "USA",
+      "status": "final",
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760470",
+        "fetchedAt": "2026-07-01T11:42:47.885Z"
+      },
+      "firstSeenAt": "2026-07-01T11:42:47.885Z"
+    },
+    {
+      "id": "nor-fra-760475",
+      "espnEventId": "760475",
+      "group": "小組賽",
+      "round": "小組賽",
+      "seasonSlug": "group-stage",
+      "matchDateTw": "2026-06-27",
+      "kickoffTw": "06/27 03:00",
+      "kickoffUtc": "2026-06-26T19:00Z",
+      "venue": "Gillette Stadium",
+      "homeTeam": "NOR",
+      "awayTeam": "FRA",
+      "status": "final",
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760475",
+        "fetchedAt": "2026-07-01T11:42:47.885Z"
+      },
+      "firstSeenAt": "2026-07-01T11:42:47.885Z"
+    },
+    {
+      "id": "sen-irq-760474",
+      "espnEventId": "760474",
+      "group": "小組賽",
+      "round": "小組賽",
+      "seasonSlug": "group-stage",
+      "matchDateTw": "2026-06-27",
+      "kickoffTw": "06/27 03:00",
+      "kickoffUtc": "2026-06-26T19:00Z",
+      "venue": "BMO Field",
+      "homeTeam": "SEN",
+      "awayTeam": "IRQ",
+      "status": "final",
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760474",
+        "fetchedAt": "2026-07-01T11:42:47.885Z"
+      },
+      "firstSeenAt": "2026-07-01T11:42:47.885Z"
+    },
+    {
+      "id": "cpv-ksa-760478",
+      "espnEventId": "760478",
+      "group": "小組賽",
+      "round": "小組賽",
+      "seasonSlug": "group-stage",
+      "matchDateTw": "2026-06-27",
+      "kickoffTw": "06/27 08:00",
+      "kickoffUtc": "2026-06-27T00:00Z",
+      "venue": "NRG Stadium",
+      "homeTeam": "CPV",
+      "awayTeam": "KSA",
+      "status": "final",
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760478",
+        "fetchedAt": "2026-07-01T11:42:47.885Z"
+      },
+      "firstSeenAt": "2026-07-01T11:42:47.885Z"
+    },
+    {
+      "id": "uru-esp-760479",
+      "espnEventId": "760479",
+      "group": "小組賽",
+      "round": "小組賽",
+      "seasonSlug": "group-stage",
+      "matchDateTw": "2026-06-27",
+      "kickoffTw": "06/27 08:00",
+      "kickoffUtc": "2026-06-27T00:00Z",
+      "venue": "Estadio Akron",
+      "homeTeam": "URU",
+      "awayTeam": "ESP",
+      "status": "final",
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760479",
+        "fetchedAt": "2026-07-01T11:42:47.885Z"
+      },
+      "firstSeenAt": "2026-07-01T11:42:47.885Z"
+    },
+    {
+      "id": "egy-irn-760476",
+      "espnEventId": "760476",
+      "group": "小組賽",
+      "round": "小組賽",
+      "seasonSlug": "group-stage",
+      "matchDateTw": "2026-06-27",
+      "kickoffTw": "06/27 11:00",
+      "kickoffUtc": "2026-06-27T03:00Z",
+      "venue": "Lumen Field",
+      "homeTeam": "EGY",
+      "awayTeam": "IRN",
+      "status": "final",
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760476",
+        "fetchedAt": "2026-07-01T11:42:47.885Z"
+      },
+      "firstSeenAt": "2026-07-01T11:42:47.885Z"
+    },
+    {
+      "id": "nzl-bel-760477",
+      "espnEventId": "760477",
+      "group": "小組賽",
+      "round": "小組賽",
+      "seasonSlug": "group-stage",
+      "matchDateTw": "2026-06-27",
+      "kickoffTw": "06/27 11:00",
+      "kickoffUtc": "2026-06-27T03:00Z",
+      "venue": "BC Place",
+      "homeTeam": "NZL",
+      "awayTeam": "BEL",
+      "status": "final",
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760477",
+        "fetchedAt": "2026-07-01T11:42:47.885Z"
+      },
+      "firstSeenAt": "2026-07-01T11:42:47.885Z"
+    },
+    {
+      "id": "cro-gha-760480",
+      "espnEventId": "760480",
+      "group": "小組賽",
+      "round": "小組賽",
+      "seasonSlug": "group-stage",
+      "matchDateTw": "2026-06-28",
+      "kickoffTw": "06/28 05:00",
+      "kickoffUtc": "2026-06-27T21:00Z",
+      "venue": "Lincoln Financial Field",
+      "homeTeam": "CRO",
+      "awayTeam": "GHA",
+      "status": "final",
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760480",
+        "fetchedAt": "2026-07-01T11:42:47.885Z"
+      },
+      "firstSeenAt": "2026-07-01T11:42:47.885Z"
+    },
+    {
+      "id": "pan-eng-760485",
+      "espnEventId": "760485",
+      "group": "小組賽",
+      "round": "小組賽",
+      "seasonSlug": "group-stage",
+      "matchDateTw": "2026-06-28",
+      "kickoffTw": "06/28 05:00",
+      "kickoffUtc": "2026-06-27T21:00Z",
+      "venue": "MetLife Stadium",
+      "homeTeam": "PAN",
+      "awayTeam": "ENG",
+      "status": "final",
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760485",
+        "fetchedAt": "2026-07-01T11:42:47.885Z"
+      },
+      "firstSeenAt": "2026-07-01T11:42:47.885Z"
+    },
+    {
+      "id": "cod-uzb-760482",
+      "espnEventId": "760482",
+      "group": "小組賽",
+      "round": "小組賽",
+      "seasonSlug": "group-stage",
+      "matchDateTw": "2026-06-28",
+      "kickoffTw": "06/28 07:30",
+      "kickoffUtc": "2026-06-27T23:30Z",
+      "venue": "Mercedes-Benz Stadium",
+      "homeTeam": "COD",
+      "awayTeam": "UZB",
+      "status": "final",
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760482",
+        "fetchedAt": "2026-07-01T11:42:47.885Z"
+      },
+      "firstSeenAt": "2026-07-01T11:42:47.885Z"
+    },
+    {
+      "id": "col-por-760481",
+      "espnEventId": "760481",
+      "group": "小組賽",
+      "round": "小組賽",
+      "seasonSlug": "group-stage",
+      "matchDateTw": "2026-06-28",
+      "kickoffTw": "06/28 07:30",
+      "kickoffUtc": "2026-06-27T23:30Z",
+      "venue": "Hard Rock Stadium",
+      "homeTeam": "COL",
+      "awayTeam": "POR",
+      "status": "final",
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760481",
+        "fetchedAt": "2026-07-01T11:42:47.885Z"
+      },
+      "firstSeenAt": "2026-07-01T11:42:47.885Z"
+    },
+    {
+      "id": "alg-aut-760484",
+      "espnEventId": "760484",
+      "group": "小組賽",
+      "round": "小組賽",
+      "seasonSlug": "group-stage",
+      "matchDateTw": "2026-06-28",
+      "kickoffTw": "06/28 10:00",
+      "kickoffUtc": "2026-06-28T02:00Z",
+      "venue": "GEHA Field at Arrowhead Stadium",
+      "homeTeam": "ALG",
+      "awayTeam": "AUT",
+      "status": "final",
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760484",
+        "fetchedAt": "2026-07-01T11:42:47.885Z"
+      },
+      "firstSeenAt": "2026-07-01T11:42:47.885Z"
+    },
+    {
+      "id": "jor-arg-760483",
+      "espnEventId": "760483",
+      "group": "小組賽",
+      "round": "小組賽",
+      "seasonSlug": "group-stage",
+      "matchDateTw": "2026-06-28",
+      "kickoffTw": "06/28 10:00",
+      "kickoffUtc": "2026-06-28T02:00Z",
+      "venue": "AT&T Stadium",
+      "homeTeam": "JOR",
+      "awayTeam": "ARG",
+      "status": "final",
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760483",
+        "fetchedAt": "2026-07-01T11:42:47.885Z"
+      },
+      "firstSeenAt": "2026-07-01T11:42:47.885Z"
+    },
+    {
+      "id": "rsa-can-760486",
+      "espnEventId": "760486",
+      "group": "淘汰賽",
+      "round": "32強淘汰賽",
+      "seasonSlug": "round-of-32",
+      "matchDateTw": "2026-06-29",
+      "kickoffTw": "06/29 03:00",
+      "kickoffUtc": "2026-06-28T19:00Z",
+      "venue": "SoFi Stadium",
+      "homeTeam": "RSA",
+      "awayTeam": "CAN",
+      "status": "final",
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760486",
+        "fetchedAt": "2026-07-01T11:42:47.885Z"
+      },
+      "firstSeenAt": "2026-07-01T11:42:47.885Z"
+    },
+    {
+      "id": "bra-jpn-760487",
+      "espnEventId": "760487",
+      "group": "淘汰賽",
+      "round": "32強淘汰賽",
+      "seasonSlug": "round-of-32",
+      "matchDateTw": "2026-06-30",
+      "kickoffTw": "06/30 01:00",
+      "kickoffUtc": "2026-06-29T17:00Z",
+      "venue": "NRG Stadium",
+      "homeTeam": "BRA",
+      "awayTeam": "JPN",
+      "status": "final",
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760487",
+        "fetchedAt": "2026-07-01T11:42:47.885Z"
+      },
+      "firstSeenAt": "2026-07-01T11:42:47.885Z"
+    },
+    {
+      "id": "ger-par-760489",
+      "espnEventId": "760489",
+      "group": "淘汰賽",
+      "round": "32強淘汰賽",
+      "seasonSlug": "round-of-32",
+      "matchDateTw": "2026-06-30",
+      "kickoffTw": "06/30 04:30",
+      "kickoffUtc": "2026-06-29T20:30Z",
+      "venue": "Gillette Stadium",
+      "homeTeam": "GER",
+      "awayTeam": "PAR",
+      "status": "final",
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760489",
+        "fetchedAt": "2026-07-01T11:42:47.885Z"
+      },
+      "firstSeenAt": "2026-07-01T11:42:47.885Z"
+    },
+    {
+      "id": "ned-mar-760488",
+      "espnEventId": "760488",
+      "group": "淘汰賽",
+      "round": "32強淘汰賽",
+      "seasonSlug": "round-of-32",
+      "matchDateTw": "2026-06-30",
+      "kickoffTw": "06/30 09:00",
+      "kickoffUtc": "2026-06-30T01:00Z",
+      "venue": "Estadio BBVA",
+      "homeTeam": "NED",
+      "awayTeam": "MAR",
+      "status": "final",
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760488",
+        "fetchedAt": "2026-07-01T11:42:47.885Z"
+      },
+      "firstSeenAt": "2026-07-01T11:42:47.885Z"
+    },
+    {
+      "id": "civ-nor-760490",
+      "espnEventId": "760490",
+      "group": "淘汰賽",
+      "round": "32強淘汰賽",
+      "seasonSlug": "round-of-32",
+      "matchDateTw": "2026-07-01",
+      "kickoffTw": "07/01 01:00",
+      "kickoffUtc": "2026-06-30T17:00Z",
+      "venue": "AT&T Stadium",
+      "homeTeam": "CIV",
+      "awayTeam": "NOR",
+      "status": "final",
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760490",
+        "fetchedAt": "2026-07-01T11:42:47.885Z"
+      },
+      "firstSeenAt": "2026-07-01T11:42:47.885Z"
+    },
+    {
+      "id": "fra-swe-760492",
+      "espnEventId": "760492",
+      "group": "淘汰賽",
+      "round": "32強淘汰賽",
+      "seasonSlug": "round-of-32",
+      "matchDateTw": "2026-07-01",
+      "kickoffTw": "07/01 05:00",
+      "kickoffUtc": "2026-06-30T21:00Z",
+      "venue": "MetLife Stadium",
+      "homeTeam": "FRA",
+      "awayTeam": "SWE",
+      "status": "final",
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760492",
+        "fetchedAt": "2026-07-01T11:42:47.885Z"
+      },
+      "firstSeenAt": "2026-07-01T11:42:47.885Z"
+    },
+    {
+      "id": "mex-ecu-760491",
+      "espnEventId": "760491",
+      "group": "淘汰賽",
+      "round": "32強淘汰賽",
+      "seasonSlug": "round-of-32",
+      "matchDateTw": "2026-07-01",
+      "kickoffTw": "07/01 10:00",
+      "kickoffUtc": "2026-07-01T02:00Z",
+      "venue": "Estadio Banorte",
+      "homeTeam": "MEX",
+      "awayTeam": "ECU",
+      "status": "final",
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760491",
+        "fetchedAt": "2026-07-01T11:42:47.885Z"
+      },
+      "firstSeenAt": "2026-07-01T11:42:47.885Z"
+    },
+    {
+      "id": "eng-cod-760495",
+      "espnEventId": "760495",
+      "group": "淘汰賽",
+      "round": "32強淘汰賽",
+      "seasonSlug": "round-of-32",
+      "matchDateTw": "2026-07-02",
+      "kickoffTw": "07/02 00:00",
+      "kickoffUtc": "2026-07-01T16:00Z",
+      "venue": "Mercedes-Benz Stadium",
+      "homeTeam": "ENG",
+      "awayTeam": "COD",
+      "status": "scheduled",
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760495",
+        "fetchedAt": "2026-07-01T11:42:47.885Z"
+      },
+      "firstSeenAt": "2026-07-01T11:42:47.885Z"
+    },
+    {
+      "id": "bel-sen-760493",
+      "espnEventId": "760493",
+      "group": "淘汰賽",
+      "round": "32強淘汰賽",
+      "seasonSlug": "round-of-32",
+      "matchDateTw": "2026-07-02",
+      "kickoffTw": "07/02 04:00",
+      "kickoffUtc": "2026-07-01T20:00Z",
+      "venue": "Lumen Field",
+      "homeTeam": "BEL",
+      "awayTeam": "SEN",
+      "status": "scheduled",
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760493",
+        "fetchedAt": "2026-07-01T11:42:47.885Z"
+      },
+      "firstSeenAt": "2026-07-01T11:42:47.885Z"
+    },
+    {
+      "id": "usa-bih-760494",
+      "espnEventId": "760494",
+      "group": "淘汰賽",
+      "round": "32強淘汰賽",
+      "seasonSlug": "round-of-32",
+      "matchDateTw": "2026-07-02",
+      "kickoffTw": "07/02 08:00",
+      "kickoffUtc": "2026-07-02T00:00Z",
+      "venue": "Levi's Stadium",
+      "homeTeam": "USA",
+      "awayTeam": "BIH",
+      "status": "scheduled",
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760494",
+        "fetchedAt": "2026-07-01T11:42:47.885Z"
+      },
+      "firstSeenAt": "2026-07-01T11:42:47.885Z"
+    },
+    {
+      "id": "esp-aut-760497",
+      "espnEventId": "760497",
+      "group": "淘汰賽",
+      "round": "32強淘汰賽",
+      "seasonSlug": "round-of-32",
+      "matchDateTw": "2026-07-03",
+      "kickoffTw": "07/03 03:00",
+      "kickoffUtc": "2026-07-02T19:00Z",
+      "venue": "SoFi Stadium",
+      "homeTeam": "ESP",
+      "awayTeam": "AUT",
+      "status": "scheduled",
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760497",
+        "fetchedAt": "2026-07-01T11:42:47.885Z"
+      },
+      "firstSeenAt": "2026-07-01T11:42:47.885Z"
+    },
+    {
+      "id": "por-cro-760496",
+      "espnEventId": "760496",
+      "group": "淘汰賽",
+      "round": "32強淘汰賽",
+      "seasonSlug": "round-of-32",
+      "matchDateTw": "2026-07-03",
+      "kickoffTw": "07/03 07:00",
+      "kickoffUtc": "2026-07-02T23:00Z",
+      "venue": "BMO Field",
+      "homeTeam": "POR",
+      "awayTeam": "CRO",
+      "status": "scheduled",
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760496",
+        "fetchedAt": "2026-07-01T11:42:47.885Z"
+      },
+      "firstSeenAt": "2026-07-01T11:42:47.885Z"
+    },
+    {
+      "id": "sui-alg-760498",
+      "espnEventId": "760498",
+      "group": "淘汰賽",
+      "round": "32強淘汰賽",
+      "seasonSlug": "round-of-32",
+      "matchDateTw": "2026-07-03",
+      "kickoffTw": "07/03 11:00",
+      "kickoffUtc": "2026-07-03T03:00Z",
+      "venue": "BC Place",
+      "homeTeam": "SUI",
+      "awayTeam": "ALG",
+      "status": "scheduled",
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760498",
+        "fetchedAt": "2026-07-01T11:42:47.885Z"
+      },
+      "firstSeenAt": "2026-07-01T11:42:47.885Z"
+    },
+    {
+      "id": "aus-egy-760499",
+      "espnEventId": "760499",
+      "group": "淘汰賽",
+      "round": "32強淘汰賽",
+      "seasonSlug": "round-of-32",
+      "matchDateTw": "2026-07-04",
+      "kickoffTw": "07/04 02:00",
+      "kickoffUtc": "2026-07-03T18:00Z",
+      "venue": "AT&T Stadium",
+      "homeTeam": "AUS",
+      "awayTeam": "EGY",
+      "status": "scheduled",
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760499",
+        "fetchedAt": "2026-07-01T11:42:47.885Z"
+      },
+      "firstSeenAt": "2026-07-01T11:42:47.885Z"
+    },
+    {
+      "id": "arg-cpv-760500",
+      "espnEventId": "760500",
+      "group": "淘汰賽",
+      "round": "32強淘汰賽",
+      "seasonSlug": "round-of-32",
+      "matchDateTw": "2026-07-04",
+      "kickoffTw": "07/04 06:00",
+      "kickoffUtc": "2026-07-03T22:00Z",
+      "venue": "Hard Rock Stadium",
+      "homeTeam": "ARG",
+      "awayTeam": "CPV",
+      "status": "scheduled",
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760500",
+        "fetchedAt": "2026-07-01T11:42:47.885Z"
+      },
+      "firstSeenAt": "2026-07-01T11:42:47.885Z"
+    },
+    {
+      "id": "col-gha-760501",
+      "espnEventId": "760501",
+      "group": "淘汰賽",
+      "round": "32強淘汰賽",
+      "seasonSlug": "round-of-32",
+      "matchDateTw": "2026-07-04",
+      "kickoffTw": "07/04 09:30",
+      "kickoffUtc": "2026-07-04T01:30Z",
+      "venue": "GEHA Field at Arrowhead Stadium",
+      "homeTeam": "COL",
+      "awayTeam": "GHA",
+      "status": "scheduled",
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760501",
+        "fetchedAt": "2026-07-01T11:42:47.885Z"
+      },
+      "firstSeenAt": "2026-07-01T11:42:47.885Z"
+    },
+    {
+      "id": "can-mar-760502",
+      "espnEventId": "760502",
+      "group": "淘汰賽",
+      "round": "16強淘汰賽",
+      "seasonSlug": "round-of-16",
+      "matchDateTw": "2026-07-05",
+      "kickoffTw": "07/05 01:00",
+      "kickoffUtc": "2026-07-04T17:00Z",
+      "venue": "NRG Stadium",
+      "homeTeam": "CAN",
+      "awayTeam": "MAR",
+      "status": "scheduled",
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760502",
+        "fetchedAt": "2026-07-01T11:42:47.885Z"
+      },
+      "firstSeenAt": "2026-07-01T11:42:47.885Z"
+    },
+    {
+      "id": "par-fra-760503",
+      "espnEventId": "760503",
+      "group": "淘汰賽",
+      "round": "16強淘汰賽",
+      "seasonSlug": "round-of-16",
+      "matchDateTw": "2026-07-05",
+      "kickoffTw": "07/05 05:00",
+      "kickoffUtc": "2026-07-04T21:00Z",
+      "venue": "Lincoln Financial Field",
+      "homeTeam": "PAR",
+      "awayTeam": "FRA",
+      "status": "scheduled",
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760503",
+        "fetchedAt": "2026-07-01T11:42:47.885Z"
+      },
+      "firstSeenAt": "2026-07-01T11:42:47.885Z"
+    },
+    {
+      "id": "bra-nor-760504",
+      "espnEventId": "760504",
+      "group": "淘汰賽",
+      "round": "16強淘汰賽",
+      "seasonSlug": "round-of-16",
+      "matchDateTw": "2026-07-06",
+      "kickoffTw": "07/06 04:00",
+      "kickoffUtc": "2026-07-05T20:00Z",
+      "venue": "MetLife Stadium",
+      "homeTeam": "BRA",
+      "awayTeam": "NOR",
+      "status": "scheduled",
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760504",
+        "fetchedAt": "2026-07-01T11:42:47.885Z"
+      },
+      "firstSeenAt": "2026-07-01T11:42:47.885Z"
+    }
+  ]
+}

@@ -1,4 +1,5 @@
 import matchHistoryData from "../data/match-history.json";
+import matchScheduleData from "../data/match-schedule.json";
 import type {
   EditorialNote,
   GroupStanding,
@@ -385,7 +386,193 @@ function makeFinalGroupMatch(seed: FinalGroupMatchSeed): Match {
 }
 
 const taiwanTimeZone = "Asia/Taipei";
-const matchdayRolloverOffsetHours = 6;
+const matchdayRolloverOffsetHours = 9;
+
+interface ImportedScheduleRecord {
+  id: string;
+  espnEventId: string;
+  group: string;
+  round: string;
+  seasonSlug?: string;
+  matchDateTw: string;
+  kickoffTw: string;
+  kickoffUtc: string;
+  venue: string;
+  homeTeam: TeamCode;
+  awayTeam: TeamCode;
+  status: Match["status"];
+  source?: {
+    name: string;
+    eventUrl: string;
+    fetchedAt: string;
+  };
+}
+
+const importedSchedule = matchScheduleData as {
+  updatedAt?: string | null;
+  records?: ImportedScheduleRecord[];
+};
+
+const teamPowerBoost: Record<string, number> = {
+  ARG: 15,
+  BRA: 14,
+  FRA: 13,
+  ESP: 12,
+  ENG: 11,
+  GER: 11,
+  POR: 10,
+  NED: 9,
+  BEL: 8,
+  MEX: 8,
+  USA: 7,
+  URU: 7,
+  COL: 7,
+  CRO: 6,
+  SUI: 6,
+  JPN: 5,
+  MAR: 5,
+  SEN: 4,
+  SWE: 4,
+  NOR: 4,
+  AUT: 3,
+  CAN: 3,
+  CIV: 3,
+  GHA: 2,
+  ECU: 2,
+  AUS: 2
+};
+
+const confederationPower: Record<string, number> = {
+  CONMEBOL: 70,
+  UEFA: 69,
+  CONCACAF: 63,
+  CAF: 62,
+  AFC: 60,
+  OFC: 54
+};
+
+function teamStandingPower(code: TeamCode) {
+  const team = getTeam(code);
+  const standing = groups.flatMap((group) => group.rows).find((rowItem) => rowItem.teamCode === code);
+  const base = confederationPower[team.confederation] ?? 60;
+  const formBoost = standing
+    ? standing.points * 1.6 + (standing.goalsFor - standing.goalsAgainst) * 0.9 + (standing.status === "已晉級" ? 4 : 0)
+    : 0;
+
+  return base + (teamPowerBoost[code] ?? 0) + formBoost;
+}
+
+function probabilitiesFromPower(homeTeam: TeamCode, awayTeam: TeamCode): MatchProbability {
+  const gap = teamStandingPower(homeTeam) + 2 - teamStandingPower(awayTeam);
+  const draw = Math.round(clamp(18, 32, 29 - Math.abs(gap) * 0.45));
+  let homeWin = Math.round(clamp(7, 86, 50 + gap * 1.35 - draw / 2));
+  let awayWin = 100 - draw - homeWin;
+
+  if (awayWin < 7) {
+    awayWin = 7;
+    homeWin = 100 - draw - awayWin;
+  }
+  if (homeWin < 7) {
+    homeWin = 7;
+    awayWin = 100 - draw - homeWin;
+  }
+
+  const combinedPower = teamStandingPower(homeTeam) + teamStandingPower(awayTeam);
+  const over = Math.round(clamp(38, 64, 45 + (combinedPower - 130) / 4 + Math.abs(gap) / 6));
+  const bothTeamsToScore = Math.round(clamp(34, 60, 48 - Math.abs(gap) / 5 + (over - 48) / 3));
+
+  return { homeWin, draw, awayWin, over, bothTeamsToScore };
+}
+
+function predictedScoreFromModel(probabilities: MatchProbability) {
+  const edge = probabilities.homeWin - probabilities.awayWin;
+
+  if (edge >= 28) return probabilities.over >= 55 ? "3-0" : "2-0";
+  if (edge >= 12) return probabilities.over >= 52 ? "2-1" : "1-0";
+  if (edge <= -28) return probabilities.over >= 55 ? "0-3" : "0-2";
+  if (edge <= -12) return probabilities.over >= 52 ? "1-2" : "0-1";
+  return probabilities.over >= 56 ? "2-2" : "1-1";
+}
+
+function oddsFromProbability(probability: number) {
+  return Number(clamp(1.12, 16, 94 / Math.max(probability, 1)).toFixed(2));
+}
+
+function formatTaiwanTimestamp(isoDate?: string | null) {
+  if (!isoDate) return demoOdds.updatedAt;
+
+  return new Intl.DateTimeFormat("zh-TW", {
+    timeZone: taiwanTimeZone,
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false
+  }).format(new Date(isoDate));
+}
+
+function makeImportedScheduleMatch(record: ImportedScheduleRecord): Match {
+  const home = getTeam(record.homeTeam);
+  const away = getTeam(record.awayTeam);
+  const probabilities = probabilitiesFromPower(record.homeTeam, record.awayTeam);
+  const predictedScore = predictedScoreFromModel(probabilities);
+  const edge = probabilities.homeWin - probabilities.awayWin;
+  const favorite = edge >= 8 ? home.nameZh : edge <= -8 ? away.nameZh : "兩邊";
+  const isKnockout = record.group === "淘汰賽" || record.round.includes("強") || record.round.includes("冠軍");
+  const hasAsiaTeam = home.confederation === "AFC" || away.confederation === "AFC";
+  const filterTags: Match["filterTags"] = ["high"];
+
+  if (!isKnockout) filterTags.push("group");
+  if (hasAsiaTeam) filterTags.push("asia");
+  if (probabilities.over >= 50) filterTags.push("goals");
+
+  return {
+    id: record.id,
+    group: record.group,
+    round: record.round,
+    matchDateTw: record.matchDateTw,
+    kickoffTw: record.kickoffTw,
+    venue: record.venue,
+    homeTeam: record.homeTeam,
+    awayTeam: record.awayTeam,
+    status: record.status,
+    attentionTags: [
+      isKnockout ? "淘汰賽" : "小組關鍵",
+      "高關注",
+      ...(hasAsiaTeam ? ["亞洲焦點"] : probabilities.over >= 50 ? ["進球期待"] : [])
+    ],
+    filterTags,
+    odds: {
+      ...demoOdds,
+      homeWinOdds: oddsFromProbability(probabilities.homeWin),
+      drawOdds: oddsFromProbability(probabilities.draw),
+      awayWinOdds: oddsFromProbability(probabilities.awayWin),
+      updatedAt: formatTaiwanTimestamp(record.source?.fetchedAt || importedSchedule.updatedAt),
+      sourceNote: "由 ESPN 最新賽程帶入，倍率為模型依勝率換算的盤口參考。"
+    },
+    prediction: makePrediction(
+      predictedScore,
+      Math.abs(edge) >= 28 ? "高" : Math.abs(edge) >= 12 ? "中高" : "中等",
+      probabilities
+    ),
+    summary: `${record.round}：${home.nameZh}對${away.nameZh}，模型目前估 ${predictedScore}，盤面重點在${favorite}能不能先掌握節奏。`,
+    plainLanguageAnalysis: [
+      isKnockout
+        ? `淘汰賽先看前 30 分鐘誰能把節奏拉到自己舒服的區間；若久攻不下，和局與延長賽風險會明顯升高。`
+        : `這場仍要連同同組積分與淨勝球一起看，比分如果早早打開，後段進攻風險會跟著變大。`
+    ],
+    keyFactors: isKnockout
+      ? ["淘汰賽先失球後的風險管理", "定位球與轉換進攻效率", "正規時間尾段體能落差"]
+      : ["同組積分與淨勝球壓力", "先進球一方的比賽控制", "下半場換人後的攻守平衡"],
+    historyNote: `${record.round}會列入模型戰績追蹤，完賽後自動比對預估比分、實際比分與主要落差原因。`,
+    qualificationImpact: {
+      homeWin: isKnockout ? `${home.nameZh}晉級下一輪。` : `${home.nameZh}贏球可提高晉級或排名優勢。`,
+      draw: isKnockout ? "正規時間平手時，仍需看延長賽或 PK；模型比分先以正規時間估計。" : "平手後仍需比較同組賽果、積分與淨勝球。",
+      awayWin: isKnockout ? `${away.nameZh}晉級下一輪。` : `${away.nameZh}贏球可提高晉級或排名優勢。`
+    }
+  };
+}
 
 function getTaiwanDateKey(date = new Date()) {
   const adjustedDate = new Date(date.getTime() + matchdayRolloverOffsetHours * 60 * 60 * 1000);
@@ -855,8 +1042,20 @@ const scheduledMatches: Match[] = [
 
 export const matchHistory = matchHistoryData.records as MatchResult[];
 const resultsByMatchId = new Map(matchHistory.map((result) => [result.matchId, result]));
+const seededMatchIds = new Set(scheduledMatches.map((match) => match.id));
+const seededMatchKeys = new Set(scheduledMatches.map((match) => `${match.matchDateTw}-${match.homeTeam}-${match.awayTeam}`));
+const importedScheduleMatches = (importedSchedule.records || [])
+  .filter((record) => !seededMatchIds.has(record.id))
+  .filter((record) => !seededMatchKeys.has(`${record.matchDateTw}-${record.homeTeam}-${record.awayTeam}`))
+  .map(makeImportedScheduleMatch);
+const allScheduledMatches = [...scheduledMatches, ...importedScheduleMatches].sort(
+  (first, second) =>
+    first.matchDateTw.localeCompare(second.matchDateTw) ||
+    first.kickoffTw.localeCompare(second.kickoffTw) ||
+    first.id.localeCompare(second.id)
+);
 
-export const matches: Match[] = scheduledMatches.map((match) => {
+export const matches: Match[] = allScheduledMatches.map((match) => {
   const result = resultsByMatchId.get(match.id);
   return result ? { ...match, status: "final", result } : match;
 });

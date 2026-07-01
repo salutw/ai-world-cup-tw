@@ -26,15 +26,17 @@ npm run build
 
 ## GitHub Pages 部署
 
-`.github/workflows/deploy-pages.yml` 會在推送到 `main` 後部署，也會每兩小時檢查一次完場賽事並重建。建置時會把 `NEXT_PUBLIC_BOARD_DATE_TW` 設為台灣賽事日；晚上 18:00 後會切到隔天賽事日，首頁「今日焦點賽事」會依 `lib/data.ts` 裡每場賽事的 `matchDateTw` 自動篩選。
+`.github/workflows/deploy-pages.yml` 會在推送到 `main` 後部署，也會在台灣時間每天下午 15:00 自動更新賽程、完場結果並重建。建置時會把 `NEXT_PUBLIC_BOARD_DATE_TW` 設為台灣賽事日；下午 15:00 後會切到隔夜/下一比賽日，首頁「今日焦點賽事」會依每場賽事的 `matchDateTw` 自動篩選。
 
 ## 賽後自動更新
 
 GitHub Actions 會自動：
 
 - 更新實際比分與完場統計
+- 從 ESPN 賽程補入已確定的 32 強、16 強與後續賽事
 - 比較模型預估比分與實際比分
 - 產生白話落差原因
+- 寫入 `data/match-schedule.json`
 - 寫入 `data/match-history.json`
 - 同步到 `data/world-cup-history.sqlite`
 - 重新部署 GitHub Pages

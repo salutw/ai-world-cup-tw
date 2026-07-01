@@ -7,7 +7,8 @@ on:
       - main
   workflow_dispatch:
   schedule:
-    - cron: "20 */2 * * *"
+    # 15:00 Taiwan time, daily. GitHub cron uses UTC.
+    - cron: "0 7 * * *"
 
 permissions:
   contents: write
@@ -43,7 +44,10 @@ jobs:
 
       - name: Resolve Taiwan date
         id: taiwan-date
-        run: echo "date=$(TZ=Asia/Taipei date -d '+6 hours' +%F)" >> "$GITHUB_OUTPUT"
+        run: echo "date=$(TZ=Asia/Taipei date -d '+9 hours' +%F)" >> "$GITHUB_OUTPUT"
+
+      - name: Update match schedule
+        run: npm run update:schedule
 
       - name: Build match catalog
         run: npm run build:github
@@ -62,14 +66,14 @@ jobs:
             python scripts/build-history-db.py
           fi
 
-      - name: Commit new match history
+      - name: Commit data updates
         shell: bash
         run: |
           if ! git diff --quiet -- data; then
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add data/match-history.json data/world-cup-history.sqlite
-            git commit -m "Update completed match history"
+            git add data/match-schedule.json data/match-history.json data/world-cup-history.sqlite
+            git commit -m "Update match schedule and history"
             git push
           fi
 
