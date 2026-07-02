@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-01T11:45:29.337Z",
+  "updatedAt": "2026-07-02T09:50:10.742Z",
   "source": "ESPN FIFA World Cup scoreboard and summary",
   "records": [
     {
@@ -2334,6 +2334,207 @@
         "fetchedAt": "2026-07-01T11:45:29.331Z"
       },
       "recordedAt": "2026-07-01T11:45:29.331Z"
+    },
+    {
+      "matchId": "eng-cod-760495",
+      "espnEventId": "760495",
+      "group": "淘汰賽",
+      "round": "32強淘汰賽",
+      "matchDateTw": "2026-07-02",
+      "kickoffTw": "07/02 00:00",
+      "homeTeam": "ENG",
+      "awayTeam": "COD",
+      "homeScore": 2,
+      "awayScore": 1,
+      "finalScore": "2-1",
+      "completedAt": "2026-07-01T16:00Z",
+      "predictionSnapshot": {
+        "predictedScore": "2-0",
+        "probabilities": {
+          "homeWin": 75,
+          "draw": 18,
+          "awayWin": 7,
+          "over": 54,
+          "bothTeamsToScore": 45
+        },
+        "confidence": "高",
+        "modelVersion": "Scout v0.1",
+        "modelUpdatedAt": "2026/06/23 20:00"
+      },
+      "evaluation": {
+        "grade": "result",
+        "exactScore": false,
+        "resultCorrect": true,
+        "homeGoalError": 0,
+        "awayGoalError": 1,
+        "totalGoalError": 1,
+        "scoreDistance": 1
+      },
+      "statistics": {
+        "home": {
+          "possessionPct": 59.7,
+          "totalShots": 16,
+          "shotsOnTarget": 7,
+          "corners": 5,
+          "saves": 1,
+          "yellowCards": 1,
+          "redCards": 0
+        },
+        "away": {
+          "possessionPct": 40.3,
+          "totalShots": 7,
+          "shotsOnTarget": 2,
+          "corners": 3,
+          "saves": 5,
+          "yellowCards": 1,
+          "redCards": 0
+        }
+      },
+      "analysisReasons": [
+        "勝負方向判斷正確，但兩隊實際進球分布與模型的中央預估不同。",
+        "實際總進球比預估多 1 球，比賽節奏或把握機會效率高於模型假設。",
+        "剛果民主共和國完成 2 次射正並攻入 1 球，客隊火力高於預期。"
+      ],
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760495",
+        "fetchedAt": "2026-07-02T09:50:10.706Z"
+      },
+      "recordedAt": "2026-07-02T09:50:10.706Z"
+    },
+    {
+      "matchId": "bel-sen-760493",
+      "espnEventId": "760493",
+      "group": "淘汰賽",
+      "round": "32強淘汰賽",
+      "matchDateTw": "2026-07-02",
+      "kickoffTw": "07/02 04:00",
+      "homeTeam": "BEL",
+      "awayTeam": "SEN",
+      "homeScore": 3,
+      "awayScore": 2,
+      "finalScore": "3-2",
+      "completedAt": "2026-07-01T20:00Z",
+      "predictionSnapshot": {
+        "predictedScore": "2-0",
+        "probabilities": {
+          "homeWin": 64,
+          "draw": 21,
+          "awayWin": 15,
+          "over": 52,
+          "bothTeamsToScore": 46
+        },
+        "confidence": "高",
+        "modelVersion": "Scout v0.1",
+        "modelUpdatedAt": "2026/06/23 20:00"
+      },
+      "evaluation": {
+        "grade": "result",
+        "exactScore": false,
+        "resultCorrect": true,
+        "homeGoalError": 1,
+        "awayGoalError": 2,
+        "totalGoalError": 3,
+        "scoreDistance": 3
+      },
+      "statistics": {
+        "home": {
+          "possessionPct": 52.3,
+          "totalShots": 19,
+          "shotsOnTarget": 5,
+          "corners": 4,
+          "saves": 3,
+          "yellowCards": 1,
+          "redCards": 0
+        },
+        "away": {
+          "possessionPct": 47.7,
+          "totalShots": 19,
+          "shotsOnTarget": 5,
+          "corners": 2,
+          "saves": 3,
+          "yellowCards": 1,
+          "redCards": 0
+        }
+      },
+      "analysisReasons": [
+        "勝負方向判斷正確，但兩隊實際進球分布與模型的中央預估不同。",
+        "實際總進球比預估多 3 球，比賽節奏或把握機會效率高於模型假設。",
+        "塞內加爾完成 5 次射正並攻入 2 球，客隊火力高於預期。"
+      ],
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760493",
+        "fetchedAt": "2026-07-02T09:50:10.722Z"
+      },
+      "recordedAt": "2026-07-02T09:50:10.722Z"
+    },
+    {
+      "matchId": "usa-bih-760494",
+      "espnEventId": "760494",
+      "group": "淘汰賽",
+      "round": "32強淘汰賽",
+      "matchDateTw": "2026-07-02",
+      "kickoffTw": "07/02 08:00",
+      "homeTeam": "USA",
+      "awayTeam": "BIH",
+      "homeScore": 2,
+      "awayScore": 0,
+      "finalScore": "2-0",
+      "completedAt": "2026-07-02T00:00Z",
+      "predictionSnapshot": {
+        "predictedScore": "3-0",
+        "probabilities": {
+          "homeWin": 70,
+          "draw": 19,
+          "awayWin": 11,
+          "over": 55,
+          "bothTeamsToScore": 46
+        },
+        "confidence": "高",
+        "modelVersion": "Scout v0.1",
+        "modelUpdatedAt": "2026/06/23 20:00"
+      },
+      "evaluation": {
+        "grade": "result",
+        "exactScore": false,
+        "resultCorrect": true,
+        "homeGoalError": 1,
+        "awayGoalError": 0,
+        "totalGoalError": 1,
+        "scoreDistance": 1
+      },
+      "statistics": {
+        "home": {
+          "possessionPct": 48.4,
+          "totalShots": 8,
+          "shotsOnTarget": 2,
+          "corners": 4,
+          "saves": 3,
+          "yellowCards": 0,
+          "redCards": 1
+        },
+        "away": {
+          "possessionPct": 51.6,
+          "totalShots": 10,
+          "shotsOnTarget": 3,
+          "corners": 3,
+          "saves": 0,
+          "yellowCards": 1,
+          "redCards": 0
+        }
+      },
+      "analysisReasons": [
+        "勝負方向判斷正確，但兩隊實際進球分布與模型的中央預估不同。",
+        "實際總進球比預估少 1 球，進攻轉化率低於模型假設。",
+        "美國只有 2 次射正，主隊進球產出低於預期。"
+      ],
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760494",
+        "fetchedAt": "2026-07-02T09:50:10.735Z"
+      },
+      "recordedAt": "2026-07-02T09:50:10.735Z"
     }
   ]
 }

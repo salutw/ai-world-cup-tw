@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-01T11:42:47.885Z",
+  "updatedAt": "2026-07-02T09:50:02.122Z",
   "source": "ESPN FIFA World Cup scoreboard",
   "records": [
     {
@@ -715,11 +715,11 @@
       "venue": "Mercedes-Benz Stadium",
       "homeTeam": "ENG",
       "awayTeam": "COD",
-      "status": "scheduled",
+      "status": "final",
       "source": {
         "name": "ESPN",
         "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760495",
-        "fetchedAt": "2026-07-01T11:42:47.885Z"
+        "fetchedAt": "2026-07-02T09:50:02.122Z"
       },
       "firstSeenAt": "2026-07-01T11:42:47.885Z"
     },
@@ -735,11 +735,11 @@
       "venue": "Lumen Field",
       "homeTeam": "BEL",
       "awayTeam": "SEN",
-      "status": "scheduled",
+      "status": "final",
       "source": {
         "name": "ESPN",
         "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760493",
-        "fetchedAt": "2026-07-01T11:42:47.885Z"
+        "fetchedAt": "2026-07-02T09:50:02.122Z"
       },
       "firstSeenAt": "2026-07-01T11:42:47.885Z"
     },
@@ -755,11 +755,11 @@
       "venue": "Levi's Stadium",
       "homeTeam": "USA",
       "awayTeam": "BIH",
-      "status": "scheduled",
+      "status": "final",
       "source": {
         "name": "ESPN",
         "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760494",
-        "fetchedAt": "2026-07-01T11:42:47.885Z"
+        "fetchedAt": "2026-07-02T09:50:02.122Z"
       },
       "firstSeenAt": "2026-07-01T11:42:47.885Z"
     },
@@ -942,6 +942,46 @@
         "fetchedAt": "2026-07-01T11:42:47.885Z"
       },
       "firstSeenAt": "2026-07-01T11:42:47.885Z"
+    },
+    {
+      "id": "mex-eng-760505",
+      "espnEventId": "760505",
+      "group": "淘汰賽",
+      "round": "16強淘汰賽",
+      "seasonSlug": "round-of-16",
+      "matchDateTw": "2026-07-06",
+      "kickoffTw": "07/06 08:00",
+      "kickoffUtc": "2026-07-06T00:00Z",
+      "venue": "Estadio Banorte",
+      "homeTeam": "MEX",
+      "awayTeam": "ENG",
+      "status": "scheduled",
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760505",
+        "fetchedAt": "2026-07-02T09:50:02.122Z"
+      },
+      "firstSeenAt": "2026-07-02T09:50:02.122Z"
+    },
+    {
+      "id": "usa-bel-760507",
+      "espnEventId": "760507",
+      "group": "淘汰賽",
+      "round": "16強淘汰賽",
+      "seasonSlug": "round-of-16",
+      "matchDateTw": "2026-07-07",
+      "kickoffTw": "07/07 08:00",
+      "kickoffUtc": "2026-07-07T00:00Z",
+      "venue": "Lumen Field",
+      "homeTeam": "USA",
+      "awayTeam": "BEL",
+      "status": "scheduled",
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760507",
+        "fetchedAt": "2026-07-02T09:50:02.122Z"
+      },
+      "firstSeenAt": "2026-07-02T09:50:02.122Z"
     }
   ]
 }
