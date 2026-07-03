@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-02T09:50:02.122Z",
+  "updatedAt": "2026-07-03T09:47:58.466Z",
   "source": "ESPN FIFA World Cup scoreboard",
   "records": [
     {
@@ -775,11 +775,11 @@
       "venue": "SoFi Stadium",
       "homeTeam": "ESP",
       "awayTeam": "AUT",
-      "status": "scheduled",
+      "status": "final",
       "source": {
         "name": "ESPN",
         "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760497",
-        "fetchedAt": "2026-07-01T11:42:47.885Z"
+        "fetchedAt": "2026-07-03T09:47:58.466Z"
       },
       "firstSeenAt": "2026-07-01T11:42:47.885Z"
     },
@@ -795,11 +795,11 @@
       "venue": "BMO Field",
       "homeTeam": "POR",
       "awayTeam": "CRO",
-      "status": "scheduled",
+      "status": "final",
       "source": {
         "name": "ESPN",
         "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760496",
-        "fetchedAt": "2026-07-01T11:42:47.885Z"
+        "fetchedAt": "2026-07-03T09:47:58.466Z"
       },
       "firstSeenAt": "2026-07-01T11:42:47.885Z"
     },
@@ -815,11 +815,11 @@
       "venue": "BC Place",
       "homeTeam": "SUI",
       "awayTeam": "ALG",
-      "status": "scheduled",
+      "status": "final",
       "source": {
         "name": "ESPN",
         "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760498",
-        "fetchedAt": "2026-07-01T11:42:47.885Z"
+        "fetchedAt": "2026-07-03T09:47:58.466Z"
       },
       "firstSeenAt": "2026-07-01T11:42:47.885Z"
     },
@@ -962,6 +962,26 @@
         "fetchedAt": "2026-07-02T09:50:02.122Z"
       },
       "firstSeenAt": "2026-07-02T09:50:02.122Z"
+    },
+    {
+      "id": "por-esp-760506",
+      "espnEventId": "760506",
+      "group": "淘汰賽",
+      "round": "16強淘汰賽",
+      "seasonSlug": "round-of-16",
+      "matchDateTw": "2026-07-07",
+      "kickoffTw": "07/07 03:00",
+      "kickoffUtc": "2026-07-06T19:00Z",
+      "venue": "AT&T Stadium",
+      "homeTeam": "POR",
+      "awayTeam": "ESP",
+      "status": "scheduled",
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760506",
+        "fetchedAt": "2026-07-03T09:47:58.466Z"
+      },
+      "firstSeenAt": "2026-07-03T09:47:58.466Z"
     },
     {
       "id": "usa-bel-760507",
