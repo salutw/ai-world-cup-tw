@@ -386,7 +386,7 @@ function makeFinalGroupMatch(seed: FinalGroupMatchSeed): Match {
 }
 
 const taiwanTimeZone = "Asia/Taipei";
-const matchdayRolloverOffsetHours = 9;
+const matchdayRolloverOffsetHours = 10;
 
 interface ImportedScheduleRecord {
   id: string;

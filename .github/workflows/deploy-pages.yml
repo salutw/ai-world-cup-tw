@@ -7,8 +7,8 @@ on:
       - main
   workflow_dispatch:
   schedule:
-    # 15:00 Taiwan time, daily. GitHub cron uses UTC.
-    - cron: "0 7 * * *"
+    # 14:00 Taiwan time, daily. GitHub cron uses UTC.
+    - cron: "0 6 * * *"
 
 permissions:
   contents: write
@@ -21,6 +21,9 @@ concurrency:
 
 jobs:
   build:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -44,7 +47,7 @@ jobs:
 
       - name: Resolve Taiwan date
         id: taiwan-date
-        run: echo "date=$(TZ=Asia/Taipei date -d '+9 hours' +%F)" >> "$GITHUB_OUTPUT"
+        run: echo "date=$(TZ=Asia/Taipei date -d '+10 hours' +%F)" >> "$GITHUB_OUTPUT"
 
       - name: Update match schedule
         run: npm run update:schedule
@@ -66,17 +69,6 @@ jobs:
             python scripts/build-history-db.py
           fi
 
-      - name: Commit data updates
-        shell: bash
-        run: |
-          if ! git diff --quiet -- data; then
-            git config user.name "github-actions[bot]"
-            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add data/match-schedule.json data/match-history.json data/world-cup-history.sqlite
-            git commit -m "Update match schedule and history"
-            git push
-          fi
-
       - name: Build static site
         run: npm run build:github
         env:
@@ -89,13 +81,17 @@ jobs:
         with:
           path: ./out
 
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+      - name: Commit data updates
+        shell: bash
+        run: |
+          if ! git diff --quiet -- data; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add data/match-schedule.json data/match-history.json data/world-cup-history.sqlite
+            git commit -m "Update match schedule and history"
+            git push
+          fi
