@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-03T09:48:07.697Z",
+  "updatedAt": "2026-07-04T08:28:31.360Z",
   "source": "ESPN FIFA World Cup scoreboard and summary",
   "records": [
     {
@@ -2731,6 +2731,205 @@
         "fetchedAt": "2026-07-03T09:48:07.689Z"
       },
       "recordedAt": "2026-07-03T09:48:07.689Z"
+    },
+    {
+      "matchId": "aus-egy-760499",
+      "espnEventId": "760499",
+      "group": "淘汰賽",
+      "round": "32強淘汰賽",
+      "matchDateTw": "2026-07-04",
+      "kickoffTw": "07/04 02:00",
+      "homeTeam": "AUS",
+      "awayTeam": "EGY",
+      "homeScore": 1,
+      "awayScore": 1,
+      "finalScore": "1-1",
+      "completedAt": "2026-07-03T18:00Z",
+      "predictionSnapshot": {
+        "predictedScore": "1-1",
+        "probabilities": {
+          "homeWin": 34,
+          "draw": 28,
+          "awayWin": 38,
+          "over": 47,
+          "bothTeamsToScore": 47
+        },
+        "confidence": "中等",
+        "modelVersion": "Scout v0.1",
+        "modelUpdatedAt": "2026/06/23 20:00"
+      },
+      "evaluation": {
+        "grade": "exact",
+        "exactScore": true,
+        "resultCorrect": true,
+        "homeGoalError": 0,
+        "awayGoalError": 0,
+        "totalGoalError": 0,
+        "scoreDistance": 0
+      },
+      "statistics": {
+        "home": {
+          "possessionPct": 41.7,
+          "totalShots": 16,
+          "shotsOnTarget": 1,
+          "corners": 4,
+          "saves": 3,
+          "yellowCards": 0,
+          "redCards": 0
+        },
+        "away": {
+          "possessionPct": 58.3,
+          "totalShots": 14,
+          "shotsOnTarget": 3,
+          "corners": 7,
+          "saves": 1,
+          "yellowCards": 2,
+          "redCards": 0
+        }
+      },
+      "analysisReasons": [
+        "模型精確命中比分，勝負方向與兩隊進球數都符合賽前估計。"
+      ],
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760499",
+        "fetchedAt": "2026-07-04T08:28:31.315Z"
+      },
+      "recordedAt": "2026-07-04T08:28:31.315Z"
+    },
+    {
+      "matchId": "arg-cpv-760500",
+      "espnEventId": "760500",
+      "group": "淘汰賽",
+      "round": "32強淘汰賽",
+      "matchDateTw": "2026-07-04",
+      "kickoffTw": "07/04 06:00",
+      "homeTeam": "ARG",
+      "awayTeam": "CPV",
+      "homeScore": 3,
+      "awayScore": 2,
+      "finalScore": "3-2",
+      "completedAt": "2026-07-03T22:00Z",
+      "predictionSnapshot": {
+        "predictedScore": "3-0",
+        "probabilities": {
+          "homeWin": 75,
+          "draw": 18,
+          "awayWin": 7,
+          "over": 57,
+          "bothTeamsToScore": 45
+        },
+        "confidence": "高",
+        "modelVersion": "Scout v0.1",
+        "modelUpdatedAt": "2026/06/23 20:00"
+      },
+      "evaluation": {
+        "grade": "result",
+        "exactScore": false,
+        "resultCorrect": true,
+        "homeGoalError": 0,
+        "awayGoalError": 2,
+        "totalGoalError": 2,
+        "scoreDistance": 2
+      },
+      "statistics": {
+        "home": {
+          "possessionPct": 63.6,
+          "totalShots": 22,
+          "shotsOnTarget": 10,
+          "corners": 8,
+          "saves": 3,
+          "yellowCards": 1,
+          "redCards": 0
+        },
+        "away": {
+          "possessionPct": 36.4,
+          "totalShots": 16,
+          "shotsOnTarget": 5,
+          "corners": 8,
+          "saves": 8,
+          "yellowCards": 1,
+          "redCards": 0
+        }
+      },
+      "analysisReasons": [
+        "勝負方向判斷正確，但兩隊實際進球分布與模型的中央預估不同。",
+        "實際總進球比預估多 2 球，比賽節奏或把握機會效率高於模型假設。",
+        "維德角完成 5 次射正並攻入 2 球，客隊火力高於預期。"
+      ],
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760500",
+        "fetchedAt": "2026-07-04T08:28:31.334Z"
+      },
+      "recordedAt": "2026-07-04T08:28:31.334Z"
+    },
+    {
+      "matchId": "col-gha-760501",
+      "espnEventId": "760501",
+      "group": "淘汰賽",
+      "round": "32強淘汰賽",
+      "matchDateTw": "2026-07-04",
+      "kickoffTw": "07/04 09:30",
+      "homeTeam": "COL",
+      "awayTeam": "GHA",
+      "homeScore": 1,
+      "awayScore": 0,
+      "finalScore": "1-0",
+      "completedAt": "2026-07-04T01:30Z",
+      "predictionSnapshot": {
+        "predictedScore": "2-0",
+        "probabilities": {
+          "homeWin": 60,
+          "draw": 22,
+          "awayWin": 18,
+          "over": 53,
+          "bothTeamsToScore": 46
+        },
+        "confidence": "高",
+        "modelVersion": "Scout v0.1",
+        "modelUpdatedAt": "2026/06/23 20:00"
+      },
+      "evaluation": {
+        "grade": "result",
+        "exactScore": false,
+        "resultCorrect": true,
+        "homeGoalError": 1,
+        "awayGoalError": 0,
+        "totalGoalError": 1,
+        "scoreDistance": 1
+      },
+      "statistics": {
+        "home": {
+          "possessionPct": 60.7,
+          "totalShots": 20,
+          "shotsOnTarget": 8,
+          "corners": 3,
+          "saves": 0,
+          "yellowCards": 2,
+          "redCards": 0
+        },
+        "away": {
+          "possessionPct": 39.3,
+          "totalShots": 8,
+          "shotsOnTarget": 0,
+          "corners": 2,
+          "saves": 7,
+          "yellowCards": 3,
+          "redCards": 0
+        }
+      },
+      "analysisReasons": [
+        "勝負方向判斷正確，但兩隊實際進球分布與模型的中央預估不同。",
+        "實際總進球比預估少 1 球，進攻轉化率低於模型假設。",
+        "哥倫比亞只有 8 次射正，主隊進球產出低於預期。"
+      ],
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760501",
+        "fetchedAt": "2026-07-04T08:28:31.352Z"
+      },
+      "recordedAt": "2026-07-04T08:28:31.352Z"
     }
   ]
 }

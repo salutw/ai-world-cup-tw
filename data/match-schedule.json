@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-03T09:47:58.466Z",
+  "updatedAt": "2026-07-04T08:28:21.938Z",
   "source": "ESPN FIFA World Cup scoreboard",
   "records": [
     {
@@ -835,11 +835,11 @@
       "venue": "AT&T Stadium",
       "homeTeam": "AUS",
       "awayTeam": "EGY",
-      "status": "scheduled",
+      "status": "final",
       "source": {
         "name": "ESPN",
         "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760499",
-        "fetchedAt": "2026-07-01T11:42:47.885Z"
+        "fetchedAt": "2026-07-04T08:28:21.938Z"
       },
       "firstSeenAt": "2026-07-01T11:42:47.885Z"
     },
@@ -855,11 +855,11 @@
       "venue": "Hard Rock Stadium",
       "homeTeam": "ARG",
       "awayTeam": "CPV",
-      "status": "scheduled",
+      "status": "final",
       "source": {
         "name": "ESPN",
         "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760500",
-        "fetchedAt": "2026-07-01T11:42:47.885Z"
+        "fetchedAt": "2026-07-04T08:28:21.938Z"
       },
       "firstSeenAt": "2026-07-01T11:42:47.885Z"
     },
@@ -875,11 +875,11 @@
       "venue": "GEHA Field at Arrowhead Stadium",
       "homeTeam": "COL",
       "awayTeam": "GHA",
-      "status": "scheduled",
+      "status": "final",
       "source": {
         "name": "ESPN",
         "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760501",
-        "fetchedAt": "2026-07-01T11:42:47.885Z"
+        "fetchedAt": "2026-07-04T08:28:21.938Z"
       },
       "firstSeenAt": "2026-07-01T11:42:47.885Z"
     },
@@ -1002,6 +1002,46 @@
         "fetchedAt": "2026-07-02T09:50:02.122Z"
       },
       "firstSeenAt": "2026-07-02T09:50:02.122Z"
+    },
+    {
+      "id": "arg-egy-760509",
+      "espnEventId": "760509",
+      "group": "淘汰賽",
+      "round": "16強淘汰賽",
+      "seasonSlug": "round-of-16",
+      "matchDateTw": "2026-07-08",
+      "kickoffTw": "07/08 00:00",
+      "kickoffUtc": "2026-07-07T16:00Z",
+      "venue": "Mercedes-Benz Stadium",
+      "homeTeam": "ARG",
+      "awayTeam": "EGY",
+      "status": "scheduled",
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760509",
+        "fetchedAt": "2026-07-04T08:28:21.938Z"
+      },
+      "firstSeenAt": "2026-07-04T08:28:21.938Z"
+    },
+    {
+      "id": "sui-col-760508",
+      "espnEventId": "760508",
+      "group": "淘汰賽",
+      "round": "16強淘汰賽",
+      "seasonSlug": "round-of-16",
+      "matchDateTw": "2026-07-08",
+      "kickoffTw": "07/08 04:00",
+      "kickoffUtc": "2026-07-07T20:00Z",
+      "venue": "BC Place",
+      "homeTeam": "SUI",
+      "awayTeam": "COL",
+      "status": "scheduled",
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760508",
+        "fetchedAt": "2026-07-04T08:28:21.938Z"
+      },
+      "firstSeenAt": "2026-07-04T08:28:21.938Z"
     }
   ]
 }
