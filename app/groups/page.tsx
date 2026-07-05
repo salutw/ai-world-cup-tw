@@ -15,7 +15,7 @@ export default function GroupsPage() {
       <div className="page-heading">
         <span className="eyebrow">Group Tracker</span>
         <h1>小組晉級</h1>
-        <p>已補上 2026 世界盃 12 組、48 隊的分組與積分資料。狀態依目前積分榜呈現，第三名排序依積分、淨勝球與進球數排列。</p>
+        <p>小組積分會依完賽紀錄自動重算，狀態同步標示是否已晉級淘汰賽；第三名排序依積分、淨勝球與進球數排列。</p>
       </div>
 
       <div className="group-grid">

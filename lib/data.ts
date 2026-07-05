@@ -12,6 +12,8 @@ import type {
   TeamCode
 } from "./types";
 
+export const matchHistory = matchHistoryData.records as MatchResult[];
+
 const confederationLabel: Record<string, string> = {
   AFC: "亞洲足聯",
   CAF: "非洲足聯",
@@ -87,7 +89,7 @@ function makeTeam([code, nameZh, nameEn, confederation, colors]: (typeof teamDef
   };
 }
 
-export const teams: Record<TeamCode, Team> = Object.fromEntries(teamDefinitions.map((definition) => [definition[0], makeTeam(definition)]));
+const baseTeams: Record<TeamCode, Team> = Object.fromEntries(teamDefinitions.map((definition) => [definition[0], makeTeam(definition)]));
 
 function row(
   teamCode: TeamCode,
@@ -104,7 +106,7 @@ function row(
   return { teamCode, played, wins, draws, losses, goalsFor, goalsAgainst, points, qualificationProbability, status };
 }
 
-export const groups: GroupStanding[] = [
+const seedGroups: GroupStanding[] = [
   {
     name: "A 組",
     note: "墨西哥兩戰全勝已晉級；韓國暫居第二，捷克與南非仍看最後一輪。",
@@ -238,6 +240,221 @@ export const groups: GroupStanding[] = [
     ]
   }
 ];
+
+type TeamResultCode = Team["recentForm"][number];
+
+interface TeamTournamentStats {
+  played: number;
+  wins: number;
+  draws: number;
+  losses: number;
+  goalsFor: number;
+  goalsAgainst: number;
+  recentForm: Team["recentForm"];
+}
+
+function standingSort(first: StandingRow, second: StandingRow) {
+  const firstDifference = first.goalsFor - first.goalsAgainst;
+  const secondDifference = second.goalsFor - second.goalsAgainst;
+
+  return (
+    second.points - first.points ||
+    secondDifference - firstDifference ||
+    second.goalsFor - first.goalsFor ||
+    first.teamCode.localeCompare(second.teamCode)
+  );
+}
+
+function matchResultFor(goalsFor: number, goalsAgainst: number): TeamResultCode {
+  if (goalsFor > goalsAgainst) return "W";
+  if (goalsFor < goalsAgainst) return "L";
+  return "D";
+}
+
+function buildKnockoutTeamSet() {
+  const scheduleRecords = (matchScheduleData as { records?: Array<{ group: string; round: string; homeTeam: TeamCode; awayTeam: TeamCode }> }).records || [];
+  const qualifiedTeams = new Set<TeamCode>();
+
+  for (const record of [...scheduleRecords, ...matchHistory]) {
+    const isKnockout = record.group === "淘汰賽" || record.round.includes("強") || record.round.includes("冠軍") || record.round.includes("季軍");
+    if (!isKnockout) continue;
+    qualifiedTeams.add(record.homeTeam);
+    qualifiedTeams.add(record.awayTeam);
+  }
+
+  return qualifiedTeams;
+}
+
+function applyGroupResult(rowsByTeam: Map<TeamCode, StandingRow>, result: MatchResult) {
+  const home = rowsByTeam.get(result.homeTeam);
+  const away = rowsByTeam.get(result.awayTeam);
+  if (!home || !away) return;
+
+  home.played += 1;
+  away.played += 1;
+  home.goalsFor += result.homeScore;
+  home.goalsAgainst += result.awayScore;
+  away.goalsFor += result.awayScore;
+  away.goalsAgainst += result.homeScore;
+
+  if (result.homeScore > result.awayScore) {
+    home.wins += 1;
+    home.points += 3;
+    away.losses += 1;
+  } else if (result.homeScore < result.awayScore) {
+    away.wins += 1;
+    away.points += 3;
+    home.losses += 1;
+  } else {
+    home.draws += 1;
+    away.draws += 1;
+    home.points += 1;
+    away.points += 1;
+  }
+}
+
+function groupNote(rows: StandingRow[]) {
+  const leader = baseTeams[rows[0]?.teamCode];
+  const qualified = rows.filter((rowItem) => rowItem.status === "晉級淘汰賽").map((rowItem) => baseTeams[rowItem.teamCode]?.nameZh);
+  const qualifiedText = qualified.length > 0 ? `${qualified.join("、")}已進入淘汰賽` : "尚待後續賽果確認晉級隊伍";
+
+  return `${leader?.nameZh ?? "小組第一"}以 ${rows[0]?.points ?? 0} 分居首；${qualifiedText}。`;
+}
+
+function buildGroupsFromResults(): GroupStanding[] {
+  const qualifiedTeams = buildKnockoutTeamSet();
+  const groupResults = matchHistory.filter((result) => seedGroups.some((group) => group.name === result.group));
+  const latestGroupDate = groupResults.at(-1)?.matchDateTw || matchHistoryData.updatedAt?.slice(0, 10) || "待更新";
+
+  return seedGroups.map((group) => {
+    const rowsByTeam = new Map<TeamCode, StandingRow>(
+      group.rows.map((seedRow) => [
+        seedRow.teamCode,
+        {
+          ...seedRow
+        }
+      ])
+    );
+
+    for (const result of groupResults.filter((item) => item.group === group.name)) {
+      applyGroupResult(rowsByTeam, result);
+    }
+
+    const rows = Array.from(rowsByTeam.values()).sort(standingSort).map((rowItem) => {
+      const qualified = qualifiedTeams.has(rowItem.teamCode);
+
+      return {
+        ...rowItem,
+        status: qualified ? "晉級淘汰賽" : "已淘汰",
+        qualificationProbability: qualified ? 100 : 0
+      };
+    });
+
+    return {
+      ...group,
+      note: groupNote(rows),
+      sourceUpdatedAt: latestGroupDate,
+      rows
+    };
+  });
+}
+
+function emptyTeamStats(): TeamTournamentStats {
+  return {
+    played: 0,
+    wins: 0,
+    draws: 0,
+    losses: 0,
+    goalsFor: 0,
+    goalsAgainst: 0,
+    recentForm: []
+  };
+}
+
+function updateTeamStats(stats: TeamTournamentStats, goalsFor: number, goalsAgainst: number) {
+  stats.played += 1;
+  stats.goalsFor += goalsFor;
+  stats.goalsAgainst += goalsAgainst;
+  stats.recentForm.push(matchResultFor(goalsFor, goalsAgainst));
+
+  if (goalsFor > goalsAgainst) stats.wins += 1;
+  else if (goalsFor < goalsAgainst) stats.losses += 1;
+  else stats.draws += 1;
+}
+
+function buildTeamStats() {
+  const statsByTeam = new Map<TeamCode, TeamTournamentStats>();
+
+  for (const result of [...matchHistory].sort((first, second) => first.matchDateTw.localeCompare(second.matchDateTw) || first.kickoffTw.localeCompare(second.kickoffTw))) {
+    const homeStats = statsByTeam.get(result.homeTeam) || emptyTeamStats();
+    const awayStats = statsByTeam.get(result.awayTeam) || emptyTeamStats();
+    updateTeamStats(homeStats, result.homeScore, result.awayScore);
+    updateTeamStats(awayStats, result.awayScore, result.homeScore);
+    statsByTeam.set(result.homeTeam, homeStats);
+    statsByTeam.set(result.awayTeam, awayStats);
+  }
+
+  return statsByTeam;
+}
+
+export const groups: GroupStanding[] = buildGroupsFromResults();
+const teamStatsByCode = buildTeamStats();
+
+function buildTeamTournamentStatuses() {
+  const scheduleRecords = (matchScheduleData as { records?: Array<{ group: string; round: string; homeTeam: TeamCode; awayTeam: TeamCode; status: Match["status"] }> }).records || [];
+  const activeKnockoutTeams = new Set<TeamCode>();
+  const knockoutPlayedTeams = new Set<TeamCode>();
+  const groupStatusByTeam = new Map(groups.flatMap((group) => group.rows.map((rowItem) => [rowItem.teamCode, rowItem.status] as const)));
+
+  for (const record of scheduleRecords) {
+    const isKnockout = record.group === "淘汰賽" || record.round.includes("強") || record.round.includes("冠軍") || record.round.includes("季軍");
+    if (!isKnockout || record.status === "final") continue;
+    activeKnockoutTeams.add(record.homeTeam);
+    activeKnockoutTeams.add(record.awayTeam);
+  }
+
+  for (const result of matchHistory) {
+    const isKnockout = result.group === "淘汰賽" || result.round.includes("強") || result.round.includes("冠軍") || result.round.includes("季軍");
+    if (!isKnockout) continue;
+    knockoutPlayedTeams.add(result.homeTeam);
+    knockoutPlayedTeams.add(result.awayTeam);
+  }
+
+  return new Map(
+    Object.keys(baseTeams).map((teamCode) => {
+      if (activeKnockoutTeams.has(teamCode)) return [teamCode, "仍在淘汰賽"] as const;
+      if (knockoutPlayedTeams.has(teamCode)) return [teamCode, "淘汰賽止步"] as const;
+      if (groupStatusByTeam.get(teamCode) === "晉級淘汰賽") return [teamCode, "晉級淘汰賽"] as const;
+      return [teamCode, "小組淘汰"] as const;
+    })
+  );
+}
+
+const teamTournamentStatusByCode = buildTeamTournamentStatuses();
+
+export const teams: Record<TeamCode, Team> = Object.fromEntries(
+  Object.values(baseTeams).map((team) => {
+    const stats = teamStatsByCode.get(team.code);
+    const tournamentStatus = teamTournamentStatusByCode.get(team.code) ?? "待更新";
+    const goalDifference = stats ? stats.goalsFor - stats.goalsAgainst : 0;
+    const recordSummary = stats?.played
+      ? `本屆已賽 ${stats.played} 場，${stats.wins} 勝 ${stats.draws} 和 ${stats.losses} 敗，進 ${stats.goalsFor} 球、失 ${stats.goalsAgainst} 球，淨勝 ${goalDifference >= 0 ? `+${goalDifference}` : goalDifference}。`
+      : "本屆賽事資料持續更新中。";
+
+    return [
+      team.code,
+      {
+        ...team,
+        recentForm: stats?.recentForm.slice(-5) ?? [],
+        summary: `${team.nameZh} 是 ${confederationLabel[team.confederation]} 代表隊。${recordSummary}目前狀態：${tournamentStatus}。`
+      }
+    ];
+  })
+);
+
+export function getTeamTournamentStatus(code: TeamCode) {
+  return teamTournamentStatusByCode.get(code) ?? "待更新";
+}
 
 const demoOdds = {
   homeWinOdds: 1.9,
@@ -1040,7 +1257,6 @@ const scheduledMatches: Match[] = [
   })
 ];
 
-export const matchHistory = matchHistoryData.records as MatchResult[];
 const resultsByMatchId = new Map(matchHistory.map((result) => [result.matchId, result]));
 const seededMatchIds = new Set(scheduledMatches.map((match) => match.id));
 const seededMatchKeys = new Set(scheduledMatches.map((match) => `${match.matchDateTw}-${match.homeTeam}-${match.awayTeam}`));

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import type { CSSProperties } from "react";
-import { groups, teams } from "@/lib/data";
+import { getTeamTournamentStatus, groups, teams } from "@/lib/data";
 import { resultLabel } from "@/lib/format";
 
 export const metadata: Metadata = {
@@ -13,7 +13,7 @@ function getGroupName(teamCode: string) {
 }
 
 function getTeamStatus(teamCode: string) {
-  return groups.flatMap((group) => group.rows).find((row) => row.teamCode === teamCode)?.status ?? "待更新";
+  return getTeamTournamentStatus(teamCode);
 }
 
 export default function TeamsPage() {
@@ -22,7 +22,7 @@ export default function TeamsPage() {
       <div className="page-heading">
         <span className="eyebrow">Team Profiles</span>
         <h1>球隊資料</h1>
-        <p>已補上 2026 世界盃 48 支參賽隊伍。FIFA 排名與 Elo 會等後續接官方排名/模型資料後再填入。</p>
+        <p>近期戰績、進失球與目前狀態會依完賽紀錄自動更新；FIFA 排名與 Elo 會等後續接官方排名/模型資料後再填入。</p>
       </div>
 
       <div className="team-grid">
