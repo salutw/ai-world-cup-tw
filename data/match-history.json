@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-04T08:28:31.360Z",
+  "updatedAt": "2026-07-05T08:44:50.145Z",
   "source": "ESPN FIFA World Cup scoreboard and summary",
   "records": [
     {
@@ -2930,6 +2930,140 @@
         "fetchedAt": "2026-07-04T08:28:31.352Z"
       },
       "recordedAt": "2026-07-04T08:28:31.352Z"
+    },
+    {
+      "matchId": "can-mar-760502",
+      "espnEventId": "760502",
+      "group": "淘汰賽",
+      "round": "16強淘汰賽",
+      "matchDateTw": "2026-07-05",
+      "kickoffTw": "07/05 01:00",
+      "homeTeam": "CAN",
+      "awayTeam": "MAR",
+      "homeScore": 0,
+      "awayScore": 3,
+      "finalScore": "0-3",
+      "completedAt": "2026-07-04T17:00Z",
+      "predictionSnapshot": {
+        "predictedScore": "1-0",
+        "probabilities": {
+          "homeWin": 44,
+          "draw": 27,
+          "awayWin": 29,
+          "over": 51,
+          "bothTeamsToScore": 48
+        },
+        "confidence": "中高",
+        "modelVersion": "Scout v0.1",
+        "modelUpdatedAt": "2026/06/23 20:00"
+      },
+      "evaluation": {
+        "grade": "miss",
+        "exactScore": false,
+        "resultCorrect": false,
+        "homeGoalError": 1,
+        "awayGoalError": 3,
+        "totalGoalError": 2,
+        "scoreDistance": 4
+      },
+      "statistics": {
+        "home": {
+          "possessionPct": 44.7,
+          "totalShots": 10,
+          "shotsOnTarget": 3,
+          "corners": 11,
+          "saves": 1,
+          "yellowCards": 4,
+          "redCards": 0
+        },
+        "away": {
+          "possessionPct": 55.3,
+          "totalShots": 5,
+          "shotsOnTarget": 4,
+          "corners": 1,
+          "saves": 3,
+          "yellowCards": 4,
+          "redCards": 0
+        }
+      },
+      "analysisReasons": [
+        "實際賽果的賽前機率為 29%，模型有保留可能性，但中央比分選錯方向。",
+        "實際總進球比預估多 2 球，比賽節奏或把握機會效率高於模型假設。",
+        "摩洛哥完成 4 次射正並攻入 3 球，客隊火力高於預期。"
+      ],
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760502",
+        "fetchedAt": "2026-07-05T08:44:50.117Z"
+      },
+      "recordedAt": "2026-07-05T08:44:50.117Z"
+    },
+    {
+      "matchId": "par-fra-760503",
+      "espnEventId": "760503",
+      "group": "淘汰賽",
+      "round": "16強淘汰賽",
+      "matchDateTw": "2026-07-05",
+      "kickoffTw": "07/05 05:00",
+      "homeTeam": "PAR",
+      "awayTeam": "FRA",
+      "homeScore": 0,
+      "awayScore": 1,
+      "finalScore": "0-1",
+      "completedAt": "2026-07-04T21:00Z",
+      "predictionSnapshot": {
+        "predictedScore": "0-3",
+        "probabilities": {
+          "homeWin": 20,
+          "draw": 23,
+          "awayWin": 57,
+          "over": 55,
+          "bothTeamsToScore": 48
+        },
+        "confidence": "高",
+        "modelVersion": "Scout v0.1",
+        "modelUpdatedAt": "2026/06/23 20:00"
+      },
+      "evaluation": {
+        "grade": "result",
+        "exactScore": false,
+        "resultCorrect": true,
+        "homeGoalError": 0,
+        "awayGoalError": 2,
+        "totalGoalError": 2,
+        "scoreDistance": 2
+      },
+      "statistics": {
+        "home": {
+          "possessionPct": 24.1,
+          "totalShots": 5,
+          "shotsOnTarget": 1,
+          "corners": 2,
+          "saves": 4,
+          "yellowCards": 0,
+          "redCards": 0
+        },
+        "away": {
+          "possessionPct": 75.9,
+          "totalShots": 15,
+          "shotsOnTarget": 5,
+          "corners": 12,
+          "saves": 1,
+          "yellowCards": 3,
+          "redCards": 0
+        }
+      },
+      "analysisReasons": [
+        "勝負方向判斷正確，但兩隊實際進球分布與模型的中央預估不同。",
+        "實際總進球比預估少 2 球，進攻轉化率低於模型假設。",
+        "法國只有 5 次射正，客隊進球產出低於預期。"
+      ],
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760503",
+        "fetchedAt": "2026-07-05T08:44:50.138Z"
+      },
+      "recordedAt": "2026-07-05T08:44:50.138Z"
     }
   ]
 }

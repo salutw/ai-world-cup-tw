@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-04T08:28:21.938Z",
+  "updatedAt": "2026-07-05T08:44:41.027Z",
   "source": "ESPN FIFA World Cup scoreboard",
   "records": [
     {
@@ -895,11 +895,11 @@
       "venue": "NRG Stadium",
       "homeTeam": "CAN",
       "awayTeam": "MAR",
-      "status": "scheduled",
+      "status": "final",
       "source": {
         "name": "ESPN",
         "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760502",
-        "fetchedAt": "2026-07-01T11:42:47.885Z"
+        "fetchedAt": "2026-07-05T08:44:41.027Z"
       },
       "firstSeenAt": "2026-07-01T11:42:47.885Z"
     },
@@ -915,11 +915,11 @@
       "venue": "Lincoln Financial Field",
       "homeTeam": "PAR",
       "awayTeam": "FRA",
-      "status": "scheduled",
+      "status": "final",
       "source": {
         "name": "ESPN",
         "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760503",
-        "fetchedAt": "2026-07-01T11:42:47.885Z"
+        "fetchedAt": "2026-07-05T08:44:41.027Z"
       },
       "firstSeenAt": "2026-07-01T11:42:47.885Z"
     },
@@ -1042,6 +1042,26 @@
         "fetchedAt": "2026-07-04T08:28:21.938Z"
       },
       "firstSeenAt": "2026-07-04T08:28:21.938Z"
+    },
+    {
+      "id": "fra-mar-760510",
+      "espnEventId": "760510",
+      "group": "淘汰賽",
+      "round": "8強淘汰賽",
+      "seasonSlug": "quarterfinals",
+      "matchDateTw": "2026-07-10",
+      "kickoffTw": "07/10 04:00",
+      "kickoffUtc": "2026-07-09T20:00Z",
+      "venue": "Gillette Stadium",
+      "homeTeam": "FRA",
+      "awayTeam": "MAR",
+      "status": "scheduled",
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760510",
+        "fetchedAt": "2026-07-05T08:44:41.027Z"
+      },
+      "firstSeenAt": "2026-07-05T08:44:41.027Z"
     }
   ]
 }
