@@ -332,13 +332,16 @@ function buildKnockoutTeamSet() {
   const qualifiedTeams = new Set<TeamCode>();
 
   for (const record of [...scheduleRecords, ...matchHistory]) {
-    const isKnockout = record.group === "淘汰賽" || record.round.includes("強") || record.round.includes("冠軍") || record.round.includes("季軍");
-    if (!isKnockout) continue;
+    if (!isKnockoutRecord(record)) continue;
     qualifiedTeams.add(record.homeTeam);
     qualifiedTeams.add(record.awayTeam);
   }
 
   return qualifiedTeams;
+}
+
+function isKnockoutRecord(record: { group: string; round: string }) {
+  return record.group === "淘汰賽" || record.round.includes("強") || record.round.includes("冠軍") || record.round.includes("季軍");
 }
 
 function applyGroupResult(rowsByTeam: Map<TeamCode, StandingRow>, result: MatchResult) {
@@ -456,30 +459,81 @@ function buildTeamStats() {
 export const groups: GroupStanding[] = buildGroupsFromResults();
 const teamStatsByCode = buildTeamStats();
 
+const knockoutRoundOrder = ["32強淘汰賽", "16強淘汰賽", "8強淘汰賽", "4強準決賽", "季軍戰", "冠軍賽"] as const;
+
+function knockoutRoundIndex(round: string) {
+  const index = knockoutRoundOrder.findIndex((roundName) => round.includes(roundName) || roundName.includes(round));
+  return index === -1 ? Number.MAX_SAFE_INTEGER : index;
+}
+
+function getFutureKnockoutTeams(round: string) {
+  const roundIndex = knockoutRoundIndex(round);
+  const scheduleRecords = (matchScheduleData as { records?: Array<{ group: string; round: string; homeTeam: TeamCode; awayTeam: TeamCode }> }).records || [];
+  const futureTeams = new Set<TeamCode>();
+
+  for (const record of [...scheduleRecords, ...matchHistory]) {
+    if (!isKnockoutRecord(record) || knockoutRoundIndex(record.round) <= roundIndex) continue;
+    futureTeams.add(record.homeTeam);
+    futureTeams.add(record.awayTeam);
+  }
+
+  return futureTeams;
+}
+
+function getKnockoutWinner(result: MatchResult) {
+  if (result.homeScore > result.awayScore) return result.homeTeam;
+  if (result.awayScore > result.homeScore) return result.awayTeam;
+
+  const futureTeams = getFutureKnockoutTeams(result.round);
+  const homeAdvanced = futureTeams.has(result.homeTeam);
+  const awayAdvanced = futureTeams.has(result.awayTeam);
+
+  if (homeAdvanced && !awayAdvanced) return result.homeTeam;
+  if (awayAdvanced && !homeAdvanced) return result.awayTeam;
+  return null;
+}
+
+function buildKnockoutEliminations() {
+  const eliminations = new Map<TeamCode, string>();
+
+  for (const result of matchHistory) {
+    if (!isKnockoutRecord(result)) continue;
+
+    const winner = getKnockoutWinner(result);
+    if (!winner) continue;
+    const loser = winner === result.homeTeam ? result.awayTeam : result.homeTeam;
+    eliminations.set(loser, result.round);
+  }
+
+  return eliminations;
+}
+
 function buildTeamTournamentStatuses() {
   const scheduleRecords = (matchScheduleData as { records?: Array<{ group: string; round: string; homeTeam: TeamCode; awayTeam: TeamCode; status: Match["status"] }> }).records || [];
-  const activeKnockoutTeams = new Set<TeamCode>();
-  const knockoutPlayedTeams = new Set<TeamCode>();
+  const activeKnockoutTeams = new Map<TeamCode, string>();
+  const knockoutEliminations = buildKnockoutEliminations();
+  const knockoutWinners = new Set<TeamCode>();
   const groupStatusByTeam = new Map(groups.flatMap((group) => group.rows.map((rowItem) => [rowItem.teamCode, rowItem.status] as const)));
 
   for (const record of scheduleRecords) {
-    const isKnockout = record.group === "淘汰賽" || record.round.includes("強") || record.round.includes("冠軍") || record.round.includes("季軍");
-    if (!isKnockout || record.status === "final") continue;
-    activeKnockoutTeams.add(record.homeTeam);
-    activeKnockoutTeams.add(record.awayTeam);
+    if (!isKnockoutRecord(record) || record.status === "final") continue;
+    activeKnockoutTeams.set(record.homeTeam, record.round);
+    activeKnockoutTeams.set(record.awayTeam, record.round);
   }
 
   for (const result of matchHistory) {
-    const isKnockout = result.group === "淘汰賽" || result.round.includes("強") || result.round.includes("冠軍") || result.round.includes("季軍");
-    if (!isKnockout) continue;
-    knockoutPlayedTeams.add(result.homeTeam);
-    knockoutPlayedTeams.add(result.awayTeam);
+    if (!isKnockoutRecord(result)) continue;
+    const winner = getKnockoutWinner(result);
+    if (winner) knockoutWinners.add(winner);
   }
 
   return new Map(
     Object.keys(baseTeams).map((teamCode) => {
-      if (activeKnockoutTeams.has(teamCode)) return [teamCode, "仍在淘汰賽"] as const;
-      if (knockoutPlayedTeams.has(teamCode)) return [teamCode, "淘汰賽止步"] as const;
+      const activeRound = activeKnockoutTeams.get(teamCode);
+      if (activeRound) return [teamCode, `仍在${activeRound.replace("淘汰賽", "")}`] as const;
+      const eliminatedRound = knockoutEliminations.get(teamCode);
+      if (eliminatedRound) return [teamCode, `${eliminatedRound.replace("淘汰賽", "")}止步`] as const;
+      if (knockoutWinners.has(teamCode)) return [teamCode, "晉級待賽"] as const;
       if (groupStatusByTeam.get(teamCode) === "晉級淘汰賽") return [teamCode, "晉級淘汰賽"] as const;
       return [teamCode, "小組淘汰"] as const;
     })
@@ -792,7 +846,7 @@ function makeImportedScheduleMatch(record: ImportedScheduleRecord): Match {
   const predictedScore = predictedScoreFromModel(probabilities);
   const edge = probabilities.homeWin - probabilities.awayWin;
   const favorite = edge >= 8 ? home.nameZh : edge <= -8 ? away.nameZh : "兩邊";
-  const isKnockout = record.group === "淘汰賽" || record.round.includes("強") || record.round.includes("冠軍");
+  const isKnockout = isKnockoutRecord(record);
   const hasAsiaTeam = home.confederation === "AFC" || away.confederation === "AFC";
   const filterTags: Match["filterTags"] = ["high"];
 
@@ -1332,16 +1386,119 @@ export const matches: Match[] = allScheduledMatches.map((match) => {
   return result ? { ...match, status: "final", result } : match;
 });
 
+const knockoutRoundExpectedMatches: Record<(typeof knockoutRoundOrder)[number], number> = {
+  "32強淘汰賽": 16,
+  "16強淘汰賽": 8,
+  "8強淘汰賽": 4,
+  "4強準決賽": 2,
+  "季軍戰": 1,
+  "冠軍賽": 1
+};
+
+export interface KnockoutMatchView {
+  id: string;
+  round: string;
+  matchDateTw: string;
+  kickoffTw: string;
+  venue: string;
+  homeTeam: TeamCode;
+  awayTeam: TeamCode;
+  status: Match["status"];
+  predictedScore: string;
+  finalScore: string | null;
+  homeScore: number | null;
+  awayScore: number | null;
+  winnerTeam: TeamCode | null;
+  winnerNote: string;
+}
+
+export interface KnockoutRoundView {
+  name: (typeof knockoutRoundOrder)[number];
+  status: "已完成" | "進行中" | "待開賽" | "待定";
+  expectedMatches: number;
+  completedMatches: number;
+  matches: KnockoutMatchView[];
+}
+
+function knockoutWinnerNote(match: Match, winnerTeam: TeamCode | null) {
+  if (!match.result) return "模型預估";
+  if (!winnerTeam) return "晉級待確認";
+  if (match.round === "冠軍賽") return "冠軍";
+  if (match.round === "季軍戰") return "季軍";
+  if (match.result.homeScore === match.result.awayScore) return "PK / 加時晉級";
+  return "晉級";
+}
+
+function makeKnockoutMatchView(match: Match): KnockoutMatchView {
+  const winnerTeam = match.result ? getKnockoutWinner(match.result) : null;
+
+  return {
+    id: match.id,
+    round: match.round,
+    matchDateTw: match.matchDateTw,
+    kickoffTw: match.kickoffTw,
+    venue: match.venue,
+    homeTeam: match.homeTeam,
+    awayTeam: match.awayTeam,
+    status: match.status,
+    predictedScore: match.prediction.predictedScore,
+    finalScore: match.result?.finalScore ?? null,
+    homeScore: match.result?.homeScore ?? null,
+    awayScore: match.result?.awayScore ?? null,
+    winnerTeam,
+    winnerNote: knockoutWinnerNote(match, winnerTeam)
+  };
+}
+
+function knockoutRoundStatus(matchesInRound: KnockoutMatchView[]): KnockoutRoundView["status"] {
+  if (matchesInRound.length === 0) return "待定";
+  const completedMatches = matchesInRound.filter((match) => match.status === "final").length;
+  if (completedMatches === matchesInRound.length) return "已完成";
+  if (completedMatches > 0) return "進行中";
+  return "待開賽";
+}
+
+export function getKnockoutOverview() {
+  const rounds: KnockoutRoundView[] = knockoutRoundOrder.map((roundName) => {
+    const matchesInRound = matches
+      .filter((match) => isKnockoutRecord(match) && match.round === roundName)
+      .sort((first, second) => first.matchDateTw.localeCompare(second.matchDateTw) || first.kickoffTw.localeCompare(second.kickoffTw) || first.id.localeCompare(second.id))
+      .map(makeKnockoutMatchView);
+
+    return {
+      name: roundName,
+      status: knockoutRoundStatus(matchesInRound),
+      expectedMatches: knockoutRoundExpectedMatches[roundName],
+      completedMatches: matchesInRound.filter((match) => match.status === "final").length,
+      matches: matchesInRound
+    };
+  });
+
+  const currentRound = rounds.find((round) => round.status === "進行中") || rounds.find((round) => round.status === "待開賽") || rounds.find((round) => round.status === "待定") || rounds.at(-1);
+  const completedRound = [...rounds].reverse().find((round) => round.matches.length > 0 && round.completedMatches === round.matches.length);
+  const completedMatches = rounds.reduce((total, round) => total + round.completedMatches, 0);
+  const knownMatches = rounds.reduce((total, round) => total + round.matches.length, 0);
+
+  return {
+    rounds,
+    currentRound,
+    completedRound,
+    completedMatches,
+    knownMatches,
+    totalExpectedMatches: Object.values(knockoutRoundExpectedMatches).reduce((total, count) => total + count, 0)
+  };
+}
+
 export const editorialNotes: EditorialNote[] = [
-  { title: "48 隊賽制第三名變得很重要", text: "12 組前二名加 8 支最佳第三名晉級，所以 3 分與淨勝球會直接影響淘汰賽席位。" },
-  { title: "目前已有球隊提前晉級", text: "墨西哥、美國、德國已在各自小組取得晉級主導權，部分第四名球隊已被淘汰。" },
-  { title: "資料更新時間要分組看", text: "各組賽程不同，目前來源中的 A-H 多已踢到第二輪，I-L 則仍有 6/22、6/23 賽事等待更新。" }
+  { title: "淘汰賽會保留賽前快照", text: "每場完賽後會把預估比分、實際比分與落差原因存入歷史資料，後續回合仍可回看模型判斷。" },
+  { title: "平手完賽要看晉級隊", text: "淘汰賽若正規時間平手，頁面會保留完場比分，並依後續賽程標示 PK 或加時後晉級的一方。" },
+  { title: "後段賽程逐輪補齊", text: "8 強、4 強、季軍戰與冠軍賽會隨官方賽程更新逐步出現，不會再用小組賽第三名觀察呈現。" }
 ];
 
 export const heatItems: EditorialNote[] = [
-  { title: "A 組：墨西哥已晉級", text: "韓國暫居第二，捷克與南非最後一輪仍有追分與第三名比較機會。" },
-  { title: "C 組：蘇格蘭 3 分很關鍵", text: "巴西、摩洛哥同積 4 分，蘇格蘭目前在最佳第三名排序中很有競爭力。" },
-  { title: "F 組：日本與荷蘭同積 4 分", text: "最後一輪日本對瑞典會直接影響前二與第三名排序。" }
+  { title: "32強：完整落幕", text: "16 場 32 強淘汰賽已完成，勝隊已進入 16 強路線，平手場次會依晉級隊標示結果。" },
+  { title: "16強：目前進行中", text: "加拿大、巴拉圭已止步，後續 16 強賽事會決定 8 強完整對戰組合。" },
+  { title: "8強：首組對戰成形", text: "法國與摩洛哥已率先進入 8 強對戰，其他席位會隨 16 強結果自動補上。" }
 ];
 
 export function getTeam(code: TeamCode) {

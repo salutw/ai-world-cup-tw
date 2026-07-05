@@ -949,6 +949,201 @@ h3 {
   text-align: right;
 }
 
+.stage-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 0 0 28px;
+}
+
+.stage-summary-grid > div {
+  min-height: 104px;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #fff;
+  box-shadow: 0 10px 24px rgba(18, 31, 39, 0.06);
+}
+
+.stage-summary-grid span,
+.stage-summary-grid small {
+  display: block;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.stage-summary-grid strong {
+  display: block;
+  margin: 4px 0 2px;
+  font-size: 26px;
+}
+
+.knockout-section {
+  margin-bottom: 36px;
+}
+
+.knockout-board {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  align-items: start;
+}
+
+.knockout-round {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #fff;
+  box-shadow: 0 10px 24px rgba(18, 31, 39, 0.06);
+}
+
+.knockout-round__head {
+  display: flex;
+  min-height: 96px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px;
+  border-top: 4px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.knockout-round.is-complete .knockout-round__head {
+  border-top-color: var(--green);
+}
+
+.knockout-round.is-live .knockout-round__head {
+  border-top-color: var(--gold);
+}
+
+.knockout-round.is-upcoming .knockout-round__head {
+  border-top-color: var(--blue);
+}
+
+.knockout-round h3 {
+  margin: 2px 0 0;
+  font-size: 22px;
+}
+
+.knockout-round__head > strong {
+  display: inline-grid;
+  min-width: 56px;
+  min-height: 36px;
+  place-items: center;
+  border-radius: 999px;
+  background: var(--soft);
+  font-size: 13px;
+}
+
+.knockout-match-list {
+  display: grid;
+  gap: 10px;
+  padding: 12px;
+  background: #fbfcfd;
+}
+
+.knockout-match {
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #fff;
+}
+
+.knockout-match__meta,
+.knockout-match__footer,
+.knockout-team {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.knockout-match__meta {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.knockout-match__meta strong {
+  color: var(--ink);
+}
+
+.knockout-team-list {
+  display: grid;
+  gap: 8px;
+  margin: 10px 0;
+}
+
+.knockout-team {
+  min-height: 42px;
+  padding: 8px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #fbfcfd;
+}
+
+.knockout-team .team-badge {
+  flex: 1 1 auto;
+}
+
+.knockout-team.is-winner {
+  border-color: rgba(10, 124, 97, 0.34);
+  background: #edf8f3;
+}
+
+.knockout-team > span:not(.team-badge) {
+  flex: 0 0 auto;
+  padding: 3px 7px;
+  border-radius: 999px;
+  background: rgba(10, 124, 97, 0.1);
+  color: var(--green-dark);
+  font-size: 11px;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.knockout-team > strong {
+  flex: 0 0 auto;
+  min-width: 24px;
+  text-align: right;
+  font-size: 20px;
+}
+
+.knockout-match__footer {
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.knockout-match__footer .secondary-action {
+  min-height: 34px;
+  padding: 0 12px;
+}
+
+.knockout-empty {
+  display: grid;
+  min-height: 126px;
+  align-content: center;
+  gap: 4px;
+  padding: 16px;
+  border: 1px dashed var(--line);
+  border-radius: var(--radius);
+  background: #fff;
+}
+
+.knockout-empty span {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.group-finals-section {
+  margin-top: 34px;
+}
+
 .group-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1225,6 +1420,10 @@ h3 {
   .team-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
+  .knockout-board {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 860px) {
@@ -1257,7 +1456,9 @@ h3 {
   }
 
   .status-strip,
+  .stage-summary-grid,
   .group-grid,
+  .knockout-board,
   .third-list,
   .scoreline-list--expanded,
   .history-metrics {

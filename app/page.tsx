@@ -63,8 +63,8 @@ export default function HomePage() {
           <section className="content-panel" aria-labelledby="advance-title">
             <div className="section-toolbar compact">
               <div>
-                <span className="eyebrow">Qualification Heat</span>
-                <h2 id="advance-title">小組晉級熱區</h2>
+                <span className="eyebrow">Knockout Heat</span>
+                <h2 id="advance-title">淘汰賽戰況</h2>
               </div>
             </div>
             <div className="stack-list">
