@@ -839,13 +839,266 @@ function formatTaiwanTimestamp(isoDate?: string | null) {
   }).format(new Date(isoDate));
 }
 
+function parseScoreline(scoreline: string) {
+  const [homeScore, awayScore] = scoreline.split("-").map((value) => Number.parseInt(value, 10));
+  if (Number.isNaN(homeScore) || Number.isNaN(awayScore)) return null;
+  return { homeScore, awayScore, totalGoals: homeScore + awayScore };
+}
+
+function signedNumber(value: number) {
+  return value > 0 ? `+${value}` : `${value}`;
+}
+
+function getStandingContext(teamCode: TeamCode) {
+  for (const group of groups) {
+    const rowItem = group.rows.find((row) => row.teamCode === teamCode);
+    if (rowItem) return { groupName: group.name, row: rowItem };
+  }
+  return null;
+}
+
+function teamTournamentRecordText(teamCode: TeamCode) {
+  const stats = teamStatsByCode.get(teamCode);
+  if (stats && stats.played > 0) {
+    return `${stats.played}戰${stats.wins}勝${stats.draws}和${stats.losses}敗，進${stats.goalsFor}球、失${stats.goalsAgainst}球`;
+  }
+
+  const standing = getStandingContext(teamCode);
+  if (standing) {
+    const goalDifference = standing.row.goalsFor - standing.row.goalsAgainst;
+    return `${standing.groupName}${standing.row.points}分，淨勝${signedNumber(goalDifference)}`;
+  }
+
+  return "本屆完整戰績待補";
+}
+
+function teamProfileText(team: Team) {
+  const fifaRank = team.fifaRank == null ? "FIFA排名待補" : `FIFA第${team.fifaRank}`;
+  const elo = team.eloRating == null ? "Elo待補" : `Elo ${team.eloRating}`;
+  return `${fifaRank}、${elo}，世界盃最佳${team.worldCupBestResult}`;
+}
+
+function getNextKnockoutRoundName(round: string): string {
+  const index = knockoutRoundIndex(round);
+  if (index === Number.MAX_SAFE_INTEGER) return "下一輪";
+  return knockoutRoundOrder[index + 1] ?? "最後名次戰";
+}
+
+function matchupFavoriteText(home: Team, away: Team, edge: number) {
+  if (edge >= 18) return `${home.nameZh}是明顯熱門`;
+  if (edge >= 8) return `${home.nameZh}小幅占優`;
+  if (edge <= -18) return `${away.nameZh}是明顯熱門`;
+  if (edge <= -8) return `${away.nameZh}小幅占優`;
+  return "盤面接近五五波";
+}
+
+function modelRiskText(probabilities: MatchProbability) {
+  const highest = Math.max(probabilities.homeWin, probabilities.draw, probabilities.awayWin);
+  const secondHighest = [probabilities.homeWin, probabilities.draw, probabilities.awayWin].sort((first, second) => second - first)[1];
+  const gap = highest - secondHighest;
+
+  if (gap <= 8) return "三項勝平負差距很小，不適合只看熱門隊名下注。";
+  if (probabilities.draw >= 28) return `和局機率有${probabilities.draw}%，正規時間平手需要被當成主要劇本處理。`;
+  if (probabilities.over >= 56) return `大球機率${probabilities.over}%，比起只猜勝負，更要注意兩隊是否會互相拉高節奏。`;
+  return `模型最看重勝率差，但第二高劇本仍有${secondHighest}%，盤口過熱時要保留反向風險。`;
+}
+
+function buildScheduledPlainLanguage(record: ImportedScheduleRecord, probabilities: MatchProbability, predictedScore: string) {
+  const home = getTeam(record.homeTeam);
+  const away = getTeam(record.awayTeam);
+  const edge = probabilities.homeWin - probabilities.awayWin;
+  const isKnockout = isKnockoutRecord(record);
+  const scoreline = parseScoreline(predictedScore);
+  const favoriteText = matchupFavoriteText(home, away, edge);
+  const nextRound = getNextKnockoutRoundName(record.round);
+  const tempoText =
+    probabilities.over >= 55
+      ? "節奏偏開放，進球上限比一般淘汰賽更高"
+      : probabilities.over <= 44
+        ? "節奏偏保守，單一失誤或定位球可能決定比賽"
+        : "節奏不算極端，重點會回到誰先進球";
+
+  return [
+    `${home.nameZh}本屆目前${teamTournamentRecordText(record.homeTeam)}；${away.nameZh}本屆目前${teamTournamentRecordText(record.awayTeam)}。模型估 ${predictedScore}${scoreline ? `、總進球約${scoreline.totalGoals}球` : ""}，${favoriteText}。`,
+    isKnockout
+      ? `${record.round}輸球就出局，主勝${probabilities.homeWin}%、和局${probabilities.draw}%、客勝${probabilities.awayWin}%。台灣球迷看盤時，正規時間和局不是附帶選項；若打平，仍會進延長賽或PK，但勝平負盤會先按90分鐘結算。${nextRound !== "最後名次戰" ? `勝隊將往${nextRound}前進。` : ""}`
+      : `${record.group}的積分與淨勝球會放大比賽後段風險。${tempoText}；若落後方提前壓上，大小球與雙方進球盤會比賽前模型更敏感。`
+  ];
+}
+
+function buildScheduledKeyFactors(record: ImportedScheduleRecord, probabilities: MatchProbability) {
+  const home = getTeam(record.homeTeam);
+  const away = getTeam(record.awayTeam);
+  const homeStats = teamStatsByCode.get(record.homeTeam);
+  const awayStats = teamStatsByCode.get(record.awayTeam);
+  const homeGoalDifference = (homeStats?.goalsFor ?? 0) - (homeStats?.goalsAgainst ?? 0);
+  const awayGoalDifference = (awayStats?.goalsFor ?? 0) - (awayStats?.goalsAgainst ?? 0);
+  const isKnockout = isKnockoutRecord(record);
+  const factors = [
+    `實力底盤：${home.nameZh}${teamProfileText(home)}；${away.nameZh}${teamProfileText(away)}。`,
+    `本屆攻守差：${home.nameZh}淨勝${signedNumber(homeGoalDifference)}，${away.nameZh}淨勝${signedNumber(awayGoalDifference)}，這會影響模型對先進球方的容錯。`,
+    `盤口風險：主勝${probabilities.homeWin}%、和局${probabilities.draw}%、客勝${probabilities.awayWin}%；${modelRiskText(probabilities)}`
+  ];
+
+  if (isKnockout) {
+    factors.push(`淘汰賽重點：若正規時間進入最後30分鐘仍平手，換人保守度、定位球防守與PK心理會比一般小組賽更重要。`);
+  } else {
+    factors.push(`小組賽重點：若同組另一場比分改變，領先隊可能轉向控風險，落後隊則會提高壓迫與射門量。`);
+  }
+
+  if (probabilities.over >= 55 || probabilities.bothTeamsToScore >= 55) {
+    factors.push(`進球盤提示：大球${probabilities.over}%、雙方進球${probabilities.bothTeamsToScore}%，若早早出現第一球，後續比分容易被拉開。`);
+  } else {
+    factors.push(`進球盤提示：大球${probabilities.over}%、雙方進球${probabilities.bothTeamsToScore}%，模型目前不鼓勵單純追高比分。`);
+  }
+
+  return factors;
+}
+
+function buildScheduledHistoryNote(record: ImportedScheduleRecord) {
+  const home = getTeam(record.homeTeam);
+  const away = getTeam(record.awayTeam);
+  return `${home.nameZh}${teamProfileText(home)}；${away.nameZh}${teamProfileText(away)}。本頁把歷史底色、本屆攻守數據與最新賽程一起放進模型，不再只用固定模板。`;
+}
+
+function buildScheduledQualificationImpact(record: ImportedScheduleRecord, probabilities: MatchProbability): Match["qualificationImpact"] {
+  const home = getTeam(record.homeTeam);
+  const away = getTeam(record.awayTeam);
+  const isKnockout = isKnockoutRecord(record);
+
+  if (isKnockout) {
+    const nextRound = getNextKnockoutRoundName(record.round);
+    return {
+      homeWin: `${home.nameZh}若在正規時間贏球，直接取得${nextRound}席位；若只是小勝，下一輪仍要注意體能消耗與防線壓力。`,
+      draw: `正規時間平手機率${probabilities.draw}%。這不是「兩隊都安全」，而是代表延長賽或PK風險升高；勝平負盤會先按90分鐘結果看。`,
+      awayWin: `${away.nameZh}若在正規時間贏球，會帶著淘汰熱門或客勝劇本進入${nextRound}；後續盤口可能快速修正。`
+    };
+  }
+
+  const homeStanding = getStandingContext(record.homeTeam);
+  const awayStanding = getStandingContext(record.awayTeam);
+  const homePoints = homeStanding?.row.points ?? 0;
+  const awayPoints = awayStanding?.row.points ?? 0;
+
+  return {
+    homeWin: `${home.nameZh}若贏球，積分會從${homePoints}分往上推，前二或最佳第三名比較都更有利。`,
+    draw: `平手會讓兩隊都少拿2分，接下來要看同組另一場與淨勝球；模型給和局${probabilities.draw}%，不能忽略。`,
+    awayWin: `${away.nameZh}若贏球，積分會從${awayPoints}分往上推，也可能直接改變同組排序與淘汰賽籤位。`
+  };
+}
+
+function resultTeamLine(result: MatchResult) {
+  const home = getTeam(result.homeTeam);
+  const away = getTeam(result.awayTeam);
+  return `${home.nameZh}射門${result.statistics.home.totalShots ?? "-"}次、射正${result.statistics.home.shotsOnTarget ?? "-"}次、控球${result.statistics.home.possessionPct ?? "-"}%；${away.nameZh}射門${result.statistics.away.totalShots ?? "-"}次、射正${result.statistics.away.shotsOnTarget ?? "-"}次、控球${result.statistics.away.possessionPct ?? "-"}%。`;
+}
+
+function evaluationText(result: MatchResult) {
+  if (result.evaluation.exactScore) return "比分完全命中";
+  if (result.evaluation.resultCorrect) return "勝負方向有抓到，但比分差距需要修正";
+  return "勝負方向失準，這場會提高模型對相同型態比賽的警戒";
+}
+
+function buildPostmatchSummary(match: Match, result: MatchResult) {
+  const home = getTeam(match.homeTeam);
+  const away = getTeam(match.awayTeam);
+  const winner = isKnockoutRecord(match) ? getKnockoutWinner(result) : result.homeScore === result.awayScore ? null : result.homeScore > result.awayScore ? result.homeTeam : result.awayTeam;
+  const winnerText = winner ? `${getTeam(winner).nameZh}${isKnockoutRecord(match) ? "晉級" : "拿下3分"}` : "雙方打平";
+
+  return `${match.round}完賽：${home.nameZh} ${result.finalScore} ${away.nameZh}，${winnerText}。模型賽前估 ${result.predictionSnapshot.predictedScore}，${evaluationText(result)}。`;
+}
+
+function buildPostmatchPlainLanguage(match: Match, result: MatchResult) {
+  const home = getTeam(match.homeTeam);
+  const away = getTeam(match.awayTeam);
+  const winner = isKnockoutRecord(match) ? getKnockoutWinner(result) : result.homeScore === result.awayScore ? null : result.homeScore > result.awayScore ? result.homeTeam : result.awayTeam;
+  const loser = winner === result.homeTeam ? result.awayTeam : winner === result.awayTeam ? result.homeTeam : null;
+  const shotLine = resultTeamLine(result);
+  const modelLine = `賽前模型估 ${result.predictionSnapshot.predictedScore}，實際 ${result.finalScore}，總落差${result.evaluation.scoreDistance}球。${evaluationText(result)}。`;
+  const knockoutLine =
+    isKnockoutRecord(match) && winner && loser
+      ? `${getTeam(winner).nameZh}晉級，${getTeam(loser).nameZh}止步；後續要看勝隊能否把這場暴露出的射門效率、體能消耗或防守問題帶到下一輪。`
+      : `${home.nameZh}與${away.nameZh}這場結果會回寫到模型戰績，後續同型態盤口會調整權重。`;
+
+  return [modelLine, `${shotLine} ${knockoutLine}`];
+}
+
+function buildPostmatchKeyFactors(match: Match, result: MatchResult) {
+  const home = getTeam(match.homeTeam);
+  const away = getTeam(match.awayTeam);
+  const homeShotsOnTarget = result.statistics.home.shotsOnTarget ?? 0;
+  const awayShotsOnTarget = result.statistics.away.shotsOnTarget ?? 0;
+  const homeShots = result.statistics.home.totalShots ?? 0;
+  const awayShots = result.statistics.away.totalShots ?? 0;
+  const homePossession = result.statistics.home.possessionPct ?? 0;
+  const awayPossession = result.statistics.away.possessionPct ?? 0;
+  const shotLeader = homeShotsOnTarget === awayShotsOnTarget ? "雙方射正差距不大" : homeShotsOnTarget > awayShotsOnTarget ? `${home.nameZh}射正多${homeShotsOnTarget - awayShotsOnTarget}次` : `${away.nameZh}射正多${awayShotsOnTarget - homeShotsOnTarget}次`;
+  const possessionLeader = homePossession === awayPossession ? "控球接近平均" : homePossession > awayPossession ? `${home.nameZh}控球高出${(homePossession - awayPossession).toFixed(1)}個百分點` : `${away.nameZh}控球高出${(awayPossession - homePossession).toFixed(1)}個百分點`;
+  const factors = [
+    `射門品質：${home.nameZh}${homeShots}射${homeShotsOnTarget}正，${away.nameZh}${awayShots}射${awayShotsOnTarget}正；${shotLeader}。`,
+    `比賽控制：${possessionLeader}，但控球是否能轉成射正，比單純持球時間更值得追蹤。`,
+    `模型修正：預估${result.predictionSnapshot.predictedScore}、實際${result.finalScore}，主隊進球誤差${result.evaluation.homeGoalError}、客隊進球誤差${result.evaluation.awayGoalError}。`
+  ];
+
+  if (result.homeScore === result.awayScore && isKnockoutRecord(match)) {
+    factors.push("淘汰賽平手提醒：正規時間模型不能只看晉級隊，延長賽與PK需要另列風險。");
+  } else if (isKnockoutRecord(match)) {
+    const winner = getKnockoutWinner(result);
+    if (winner) factors.push(`晉級訊號：${getTeam(winner).nameZh}已進入${getNextKnockoutRoundName(match.round)}，下一場盤口要重新估體能與對手強度。`);
+  } else {
+    factors.push("小組賽訊號：這場比分已回寫積分與淨勝球，會影響後續最佳第三名或淘汰賽籤位判斷。");
+  }
+
+  return factors;
+}
+
+function buildPostmatchHistoryNote(match: Match, result: MatchResult) {
+  const home = getTeam(match.homeTeam);
+  const away = getTeam(match.awayTeam);
+  return `${home.nameZh}本屆累積${teamTournamentRecordText(match.homeTeam)}；${away.nameZh}本屆累積${teamTournamentRecordText(match.awayTeam)}。這場由${result.source.name}賽後數據回寫，會成為後續模型校正與歷史參考資料。`;
+}
+
+function buildPostmatchImpact(match: Match, result: MatchResult): Match["qualificationImpact"] {
+  const home = getTeam(match.homeTeam);
+  const away = getTeam(match.awayTeam);
+  const winner = isKnockoutRecord(match) ? getKnockoutWinner(result) : result.homeScore === result.awayScore ? null : result.homeScore > result.awayScore ? result.homeTeam : result.awayTeam;
+  const loser = winner === result.homeTeam ? result.awayTeam : winner === result.awayTeam ? result.homeTeam : null;
+  const nextRound = getNextKnockoutRoundName(match.round);
+
+  if (isKnockoutRecord(match)) {
+    return {
+      homeWin: winner ? `${getTeam(winner).nameZh}晉級${nextRound}；${loser ? `${getTeam(loser).nameZh}止步${match.round}` : "另一隊止步"}。` : `${home.nameZh}與${away.nameZh}正規時間打平，晉級隊伍需依延長賽或PK資料確認。`,
+      draw: `模型賽前估${result.predictionSnapshot.predictedScore}，實際${result.finalScore}，落差${result.evaluation.scoreDistance}球；${evaluationText(result)}。`,
+      awayWin: `${result.analysisReasons[0] ?? "後續模型會把射門品質、控球轉換率與淘汰賽風險一起回寫。"}`
+    };
+  }
+
+  return {
+    homeWin: `${home.nameZh}與${away.nameZh}已完賽，實際比分${result.finalScore}會更新小組積分與淨勝球。`,
+    draw: `模型賽前估${result.predictionSnapshot.predictedScore}，實際${result.finalScore}，落差${result.evaluation.scoreDistance}球；${evaluationText(result)}。`,
+    awayWin: `${result.analysisReasons[0] ?? "這場結果會回寫到後續晉級機率與模型戰績。"}`
+  };
+}
+
+function applyResultAnalysis(match: Match, result: MatchResult): Match {
+  return {
+    ...match,
+    status: "final",
+    result,
+    summary: buildPostmatchSummary(match, result),
+    plainLanguageAnalysis: buildPostmatchPlainLanguage(match, result),
+    keyFactors: buildPostmatchKeyFactors(match, result),
+    historyNote: buildPostmatchHistoryNote(match, result),
+    qualificationImpact: buildPostmatchImpact(match, result)
+  };
+}
+
 function makeImportedScheduleMatch(record: ImportedScheduleRecord): Match {
   const home = getTeam(record.homeTeam);
   const away = getTeam(record.awayTeam);
   const probabilities = probabilitiesFromPower(record.homeTeam, record.awayTeam);
   const predictedScore = predictedScoreFromModel(probabilities);
   const edge = probabilities.homeWin - probabilities.awayWin;
-  const favorite = edge >= 8 ? home.nameZh : edge <= -8 ? away.nameZh : "兩邊";
   const isKnockout = isKnockoutRecord(record);
   const hasAsiaTeam = home.confederation === "AFC" || away.confederation === "AFC";
   const filterTags: Match["filterTags"] = ["high"];
@@ -883,21 +1136,11 @@ function makeImportedScheduleMatch(record: ImportedScheduleRecord): Match {
       Math.abs(edge) >= 28 ? "高" : Math.abs(edge) >= 12 ? "中高" : "中等",
       probabilities
     ),
-    summary: `${record.round}：${home.nameZh}對${away.nameZh}，模型目前估 ${predictedScore}，盤面重點在${favorite}能不能先掌握節奏。`,
-    plainLanguageAnalysis: [
-      isKnockout
-        ? `淘汰賽先看前 30 分鐘誰能把節奏拉到自己舒服的區間；若久攻不下，和局與延長賽風險會明顯升高。`
-        : `這場仍要連同同組積分與淨勝球一起看，比分如果早早打開，後段進攻風險會跟著變大。`
-    ],
-    keyFactors: isKnockout
-      ? ["淘汰賽先失球後的風險管理", "定位球與轉換進攻效率", "正規時間尾段體能落差"]
-      : ["同組積分與淨勝球壓力", "先進球一方的比賽控制", "下半場換人後的攻守平衡"],
-    historyNote: `${record.round}會列入模型戰績追蹤，完賽後自動比對預估比分、實際比分與主要落差原因。`,
-    qualificationImpact: {
-      homeWin: isKnockout ? `${home.nameZh}晉級下一輪。` : `${home.nameZh}贏球可提高晉級或排名優勢。`,
-      draw: isKnockout ? "正規時間平手時，仍需看延長賽或 PK；模型比分先以正規時間估計。" : "平手後仍需比較同組賽果、積分與淨勝球。",
-      awayWin: isKnockout ? `${away.nameZh}晉級下一輪。` : `${away.nameZh}贏球可提高晉級或排名優勢。`
-    }
+    summary: `${record.round}：${home.nameZh}對${away.nameZh}，模型目前估 ${predictedScore}，盤面判斷為${matchupFavoriteText(home, away, edge)}，重點不是只看隊名，而是勝率差、和局風險與本屆攻守狀態。`,
+    plainLanguageAnalysis: buildScheduledPlainLanguage(record, probabilities, predictedScore),
+    keyFactors: buildScheduledKeyFactors(record, probabilities),
+    historyNote: buildScheduledHistoryNote(record),
+    qualificationImpact: buildScheduledQualificationImpact(record, probabilities)
   };
 }
 
@@ -1383,7 +1626,7 @@ const allScheduledMatches = [...scheduledMatches, ...importedScheduleMatches].so
 
 export const matches: Match[] = allScheduledMatches.map((match) => {
   const result = resultsByMatchId.get(match.id);
-  return result ? { ...match, status: "final", result } : match;
+  return result ? applyResultAnalysis(match, result) : match;
 });
 
 const knockoutRoundExpectedMatches: Record<(typeof knockoutRoundOrder)[number], number> = {

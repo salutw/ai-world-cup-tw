@@ -7,6 +7,7 @@ import { TeamBadge } from "@/components/TeamBadge";
 import { getMatch, getTeam, matches, scorelineGoalLimit } from "@/lib/data";
 import { scoreWithSpaces } from "@/lib/format";
 import { evaluationLabel } from "@/lib/history";
+import type { Match, Team } from "@/lib/types";
 
 interface MatchPageProps {
   params: Promise<{ id: string }>;
@@ -23,6 +24,22 @@ function getScorelineBarValue(probability: number) {
 
 function formatStat(value: number | null, suffix = "") {
   return value == null ? "-" : `${value}${suffix}`;
+}
+
+function getImpactRows(match: Match, home: Team, away: Team) {
+  if (match.result) {
+    return [
+      { label: "晉級結果", value: match.qualificationImpact.homeWin },
+      { label: "模型落差", value: match.qualificationImpact.draw },
+      { label: "後續觀察", value: match.qualificationImpact.awayWin }
+    ];
+  }
+
+  return [
+    { label: `${home.nameZh}贏球`, value: match.qualificationImpact.homeWin },
+    { label: "雙方平手", value: match.qualificationImpact.draw },
+    { label: `${away.nameZh}贏球`, value: match.qualificationImpact.awayWin }
+  ];
 }
 
 export function generateStaticParams() {
@@ -50,6 +67,7 @@ export default async function MatchPage({ params }: MatchPageProps) {
   const home = getTeam(match.homeTeam);
   const away = getTeam(match.awayTeam);
   const result = match.result;
+  const impactRows = getImpactRows(match, home, away);
 
   return (
     <main className="page-shell">
@@ -228,19 +246,13 @@ export default async function MatchPage({ params }: MatchPageProps) {
           </section>
 
           <section className="detail-panel detail-panel--wide">
-            <h2>晉級影響</h2>
-            <div className="impact-row">
-              <span>{home.nameZh}贏球</span>
-              <strong>{match.qualificationImpact.homeWin}</strong>
-            </div>
-            <div className="impact-row">
-              <span>雙方平手</span>
-              <strong>{match.qualificationImpact.draw}</strong>
-            </div>
-            <div className="impact-row">
-              <span>{away.nameZh}贏球</span>
-              <strong>{match.qualificationImpact.awayWin}</strong>
-            </div>
+            <h2>{result ? "賽後晉級影響" : "晉級影響"}</h2>
+            {impactRows.map((row) => (
+              <div className="impact-row" key={row.label}>
+                <span>{row.label}</span>
+                <strong>{row.value}</strong>
+              </div>
+            ))}
           </section>
         </div>
       </article>
