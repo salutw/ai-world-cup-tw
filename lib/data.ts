@@ -74,16 +74,72 @@ const teamDefinitions = [
   ["CRO", "克羅埃西亞", "Croatia", "UEFA", "linear-gradient(135deg, #d9272e 0 50%, #ffffff 50%)"]
 ] as const;
 
-function makeTeam([code, nameZh, nameEn, confederation, colors]: (typeof teamDefinitions)[number]): Team {
+type TeamDefinition = (typeof teamDefinitions)[number];
+type TeamProfile = Pick<Team, "fifaRank" | "eloRating" | "worldCupBestResult">;
+
+const teamProfiles: Record<TeamDefinition[0], TeamProfile> = {
+  MEX: { fifaRank: 14, eloRating: 1810, worldCupBestResult: "8強（1970、1986）" },
+  RSA: { fifaRank: 60, eloRating: 1575, worldCupBestResult: "小組賽（1998、2002、2010）" },
+  KOR: { fifaRank: 25, eloRating: 1740, worldCupBestResult: "第4名（2002）" },
+  CZE: { fifaRank: 40, eloRating: 1665, worldCupBestResult: "亞軍（1934、1962，捷克斯洛伐克）" },
+  CAN: { fifaRank: 30, eloRating: 1695, worldCupBestResult: "小組賽（1986、2022）" },
+  BIH: { fifaRank: 64, eloRating: 1560, worldCupBestResult: "小組賽（2014）" },
+  QAT: { fifaRank: 56, eloRating: 1595, worldCupBestResult: "小組賽（2022）" },
+  SUI: { fifaRank: 19, eloRating: 1775, worldCupBestResult: "8強（1934、1938、1954）" },
+  BRA: { fifaRank: 6, eloRating: 1995, worldCupBestResult: "冠軍（1958、1962、1970、1994、2002）" },
+  MAR: { fifaRank: 7, eloRating: 1845, worldCupBestResult: "第4名（2022）" },
+  HAI: { fifaRank: 83, eloRating: 1495, worldCupBestResult: "小組賽（1974）" },
+  SCO: { fifaRank: 42, eloRating: 1645, worldCupBestResult: "小組賽（1954、1958、1974、1978、1982、1986、1990、1998）" },
+  USA: { fifaRank: 17, eloRating: 1790, worldCupBestResult: "第3名（1930）" },
+  PAR: { fifaRank: 41, eloRating: 1660, worldCupBestResult: "8強（2010）" },
+  AUS: { fifaRank: 27, eloRating: 1730, worldCupBestResult: "16強（2006、2022）" },
+  TUR: { fifaRank: 22, eloRating: 1765, worldCupBestResult: "第3名（2002）" },
+  GER: { fifaRank: 10, eloRating: 1895, worldCupBestResult: "冠軍（1954、1974、1990、2014）" },
+  CUW: { fifaRank: 82, eloRating: 1500, worldCupBestResult: "首次參加" },
+  CIV: { fifaRank: 33, eloRating: 1685, worldCupBestResult: "小組賽（2006、2010、2014）" },
+  ECU: { fifaRank: 23, eloRating: 1750, worldCupBestResult: "16強（2006）" },
+  NED: { fifaRank: 8, eloRating: 1950, worldCupBestResult: "亞軍（1974、1978、2010）" },
+  JPN: { fifaRank: 18, eloRating: 1780, worldCupBestResult: "16強（2002、2010、2018、2022）" },
+  SWE: { fifaRank: 38, eloRating: 1670, worldCupBestResult: "亞軍（1958）" },
+  TUN: { fifaRank: 45, eloRating: 1635, worldCupBestResult: "小組賽（1978、1998、2002、2006、2018、2022）" },
+  BEL: { fifaRank: 9, eloRating: 1910, worldCupBestResult: "第3名（2018）" },
+  EGY: { fifaRank: 29, eloRating: 1700, worldCupBestResult: "首輪（1934）、小組賽（1990、2018）" },
+  IRN: { fifaRank: 20, eloRating: 1760, worldCupBestResult: "小組賽（1978、1998、2006、2014、2018、2022）" },
+  NZL: { fifaRank: 85, eloRating: 1490, worldCupBestResult: "小組賽（1982、2010）" },
+  ESP: { fifaRank: 2, eloRating: 2115, worldCupBestResult: "冠軍（2010）" },
+  CPV: { fifaRank: 67, eloRating: 1545, worldCupBestResult: "首次參加" },
+  URU: { fifaRank: 16, eloRating: 1870, worldCupBestResult: "冠軍（1930、1950）" },
+  KSA: { fifaRank: 61, eloRating: 1570, worldCupBestResult: "16強（1994）" },
+  NOR: { fifaRank: 31, eloRating: 1725, worldCupBestResult: "16強（1998）" },
+  FRA: { fifaRank: 3, eloRating: 2095, worldCupBestResult: "冠軍（1998、2018）" },
+  SEN: { fifaRank: 15, eloRating: 1815, worldCupBestResult: "8強（2002）" },
+  IRQ: { fifaRank: 57, eloRating: 1585, worldCupBestResult: "小組賽（1986）" },
+  ARG: { fifaRank: 1, eloRating: 2140, worldCupBestResult: "冠軍（1978、1986、2022）" },
+  AUT: { fifaRank: 24, eloRating: 1745, worldCupBestResult: "第3名（1954）" },
+  JOR: { fifaRank: 63, eloRating: 1565, worldCupBestResult: "首次參加" },
+  ALG: { fifaRank: 28, eloRating: 1705, worldCupBestResult: "16強（2014）" },
+  COL: { fifaRank: 13, eloRating: 1885, worldCupBestResult: "8強（2014）" },
+  COD: { fifaRank: 46, eloRating: 1630, worldCupBestResult: "小組賽（1974，薩伊）" },
+  POR: { fifaRank: 5, eloRating: 2005, worldCupBestResult: "第3名（1966）" },
+  UZB: { fifaRank: 50, eloRating: 1610, worldCupBestResult: "首次參加" },
+  ENG: { fifaRank: 4, eloRating: 2050, worldCupBestResult: "冠軍（1966）" },
+  GHA: { fifaRank: 73, eloRating: 1535, worldCupBestResult: "8強（2010）" },
+  PAN: { fifaRank: 34, eloRating: 1675, worldCupBestResult: "小組賽（2018）" },
+  CRO: { fifaRank: 11, eloRating: 1890, worldCupBestResult: "亞軍（2018）" }
+};
+
+function makeTeam([code, nameZh, nameEn, confederation, colors]: TeamDefinition): Team {
+  const profile = teamProfiles[code];
+
   return {
     code,
     nameZh,
     nameEn,
     colors,
-    fifaRank: null,
-    eloRating: null,
+    fifaRank: profile.fifaRank,
+    eloRating: profile.eloRating,
     confederation,
-    worldCupBestResult: "待補歷史戰績",
+    worldCupBestResult: profile.worldCupBestResult,
     recentForm: [],
     summary: `${nameZh} 是 ${confederationLabel[confederation]} 代表隊，已列入 2026 世界盃分組與積分資料。`
   };

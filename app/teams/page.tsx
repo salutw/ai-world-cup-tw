@@ -22,7 +22,7 @@ export default function TeamsPage() {
       <div className="page-heading">
         <span className="eyebrow">Team Profiles</span>
         <h1>球隊資料</h1>
-        <p>近期戰績、進失球與目前狀態會依完賽紀錄自動更新；FIFA 排名與 Elo 會等後續接官方排名/模型資料後再填入。</p>
+        <p>近期戰績、進失球與目前狀態會依完賽紀錄自動更新；FIFA 排名採 2026/06/11 官方版本，Elo 為站內模型參考分。</p>
       </div>
 
       <div className="team-grid">
