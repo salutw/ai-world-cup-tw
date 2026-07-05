@@ -579,8 +579,10 @@ const demoOdds = {
 
 export const scorelineGoalLimit = 6;
 
-const predictionModelVersion = "Scout v0.1";
-const predictionUpdatedAt = "2026/06/23 20:00";
+const legacyPredictionModelVersion = "Scout v0.1";
+const legacyPredictionUpdatedAt = "2026/06/23 20:00";
+const weightedPredictionModelVersion = "Scout v0.2";
+const weightedPredictionUpdatedAt = "2026/07/05 20:45";
 
 function clamp(minimum: number, maximum: number, value: number) {
   return Math.min(maximum, Math.max(minimum, value));
@@ -638,18 +640,49 @@ function buildScorelineDistribution(
     .map(({ score, probability }) => ({ score, probability }));
 }
 
+function buildUpsetScoreline(probabilities: MatchProbability, scorelines: ScorelineProbability[]): Match["prediction"]["upsetScoreline"] {
+  const edge = probabilities.homeWin - probabilities.awayWin;
+  const underdog = edge >= 0 ? "away" : "home";
+  const underdogWinProbability = underdog === "home" ? probabilities.homeWin : probabilities.awayWin;
+  const favoriteWinProbability = underdog === "home" ? probabilities.awayWin : probabilities.homeWin;
+  const upsetScoreline = scorelines.find((scoreline) => {
+    const [homeGoals, awayGoals] = parseScore(scoreline.score);
+    return underdog === "home" ? homeGoals > awayGoals : awayGoals > homeGoals;
+  });
+
+  if (!upsetScoreline) return null;
+
+  const label = favoriteWinProbability - underdogWinProbability >= 18 ? "爆冷門比分" : "反向劇本比分";
+  const note =
+    favoriteWinProbability - underdogWinProbability >= 18
+      ? "這不是主模型最可能結果，而是弱勢方若成功打出反擊、定位球或門將高檔表現時，最接近的冷門比分。"
+      : "雙方勝率差距不大，這個比分比較像反向劇本，不一定算真正大冷門。";
+
+  return {
+    ...upsetScoreline,
+    underdog,
+    underdogWinProbability,
+    label,
+    note
+  };
+}
+
 function makePrediction(
   predictedScore: string,
   confidence: Match["prediction"]["confidence"],
-  probabilities: MatchProbability
+  probabilities: MatchProbability,
+  options: { modelVersion?: string; modelUpdatedAt?: string; includeUpsetScoreline?: boolean } = {}
 ): Match["prediction"] {
+  const topScorelines = buildScorelineDistribution(predictedScore, probabilities);
+
   return {
     predictedScore,
     confidence,
     probabilities,
-    topScorelines: buildScorelineDistribution(predictedScore, probabilities),
-    modelVersion: predictionModelVersion,
-    modelUpdatedAt: predictionUpdatedAt
+    topScorelines,
+    upsetScoreline: options.includeUpsetScoreline ? buildUpsetScoreline(probabilities, topScorelines) : null,
+    modelVersion: options.modelVersion ?? legacyPredictionModelVersion,
+    modelUpdatedAt: options.modelUpdatedAt ?? legacyPredictionUpdatedAt
   };
 }
 
@@ -789,7 +822,7 @@ function teamStandingPower(code: TeamCode) {
   return base + (teamPowerBoost[code] ?? 0) + formBoost;
 }
 
-function probabilitiesFromPower(homeTeam: TeamCode, awayTeam: TeamCode): MatchProbability {
+function probabilitiesFromLegacyPower(homeTeam: TeamCode, awayTeam: TeamCode): MatchProbability {
   const gap = teamStandingPower(homeTeam) + 2 - teamStandingPower(awayTeam);
   const draw = Math.round(clamp(18, 32, 29 - Math.abs(gap) * 0.45));
   let homeWin = Math.round(clamp(7, 86, 50 + gap * 1.35 - draw / 2));
@@ -809,6 +842,137 @@ function probabilitiesFromPower(homeTeam: TeamCode, awayTeam: TeamCode): MatchPr
   const bothTeamsToScore = Math.round(clamp(34, 60, 48 - Math.abs(gap) / 5 + (over - 48) / 3));
 
   return { homeWin, draw, awayWin, over, bothTeamsToScore };
+}
+
+function teamTournamentScore(code: TeamCode) {
+  const stats = teamStatsByCode.get(code);
+
+  if (stats && stats.played > 0) {
+    const points = stats.wins * 3 + stats.draws;
+    const pointsRate = points / (stats.played * 3);
+    const goalDifferencePerMatch = (stats.goalsFor - stats.goalsAgainst) / stats.played;
+    const goalsForPerMatch = stats.goalsFor / stats.played;
+    const goalsAgainstPerMatch = stats.goalsAgainst / stats.played;
+
+    return clamp(22, 92, 34 + pointsRate * 38 + goalDifferencePerMatch * 8 + goalsForPerMatch * 3 - goalsAgainstPerMatch * 2);
+  }
+
+  const standing = getStandingContext(code);
+  if (!standing) return 50;
+
+  const rowItem = standing.row;
+  const pointsRate = rowItem.played > 0 ? rowItem.points / (rowItem.played * 3) : 0.35;
+  const goalDifferencePerMatch = rowItem.played > 0 ? (rowItem.goalsFor - rowItem.goalsAgainst) / rowItem.played : 0;
+
+  return clamp(22, 92, 34 + pointsRate * 38 + goalDifferencePerMatch * 8);
+}
+
+function teamProfileScore(code: TeamCode) {
+  const team = getTeam(code);
+  const eloScore = team.eloRating == null ? 50 : clamp(20, 98, ((team.eloRating - 1450) / 700) * 100);
+  const fifaScore = team.fifaRank == null ? 50 : clamp(20, 98, 100 - (team.fifaRank - 1) * 0.95);
+
+  return eloScore * 0.68 + fifaScore * 0.32;
+}
+
+function teamRecentScore(code: TeamCode) {
+  const stats = teamStatsByCode.get(code);
+  if (!stats || stats.recentForm.length === 0) return teamTournamentScore(code);
+
+  const recent = stats.recentForm.slice(-4);
+  const formScore =
+    recent.reduce((total, result) => {
+      if (result === "W") return total + 100;
+      if (result === "D") return total + 55;
+      return total + 25;
+    }, 0) / recent.length;
+  const goalTrend = stats.played > 0 ? ((stats.goalsFor - stats.goalsAgainst) / stats.played) * 5 : 0;
+
+  return clamp(22, 94, formScore + goalTrend);
+}
+
+function teamWorldCupHistoryScore(code: TeamCode) {
+  const bestResult = getTeam(code).worldCupBestResult;
+
+  if (bestResult.includes("冠軍")) return 98;
+  if (bestResult.includes("亞軍")) return 88;
+  if (bestResult.includes("第3名")) return 82;
+  if (bestResult.includes("第4名")) return 78;
+  if (bestResult.includes("8強")) return 68;
+  if (bestResult.includes("16強")) return 58;
+  if (bestResult.includes("首次參加")) return 36;
+  return 44;
+}
+
+function teamSpecialFactorScore(code: TeamCode) {
+  const team = getTeam(code);
+  const hostBoost = code === "MEX" || code === "USA" || code === "CAN" ? 7 : 0;
+  const confederationScore = confederationPower[team.confederation] ?? 60;
+
+  return clamp(30, 88, confederationScore + (teamPowerBoost[code] ?? 0) * 0.7 + hostBoost);
+}
+
+function teamWeightedPower(code: TeamCode) {
+  return (
+    teamTournamentScore(code) * 0.4 +
+    teamProfileScore(code) * 0.25 +
+    teamRecentScore(code) * 0.2 +
+    teamWorldCupHistoryScore(code) * 0.1 +
+    teamSpecialFactorScore(code) * 0.05
+  );
+}
+
+function teamGoalProfile(code: TeamCode) {
+  const stats = teamStatsByCode.get(code);
+
+  if (stats && stats.played > 0) {
+    return {
+      attack: stats.goalsFor / stats.played,
+      defenseLeak: stats.goalsAgainst / stats.played
+    };
+  }
+
+  const standing = getStandingContext(code);
+  if (standing && standing.row.played > 0) {
+    return {
+      attack: standing.row.goalsFor / standing.row.played,
+      defenseLeak: standing.row.goalsAgainst / standing.row.played
+    };
+  }
+
+  return { attack: 1.2, defenseLeak: 1.2 };
+}
+
+function probabilitiesFromWeightedPower(homeTeam: TeamCode, awayTeam: TeamCode): MatchProbability {
+  const homePower = teamWeightedPower(homeTeam);
+  const awayPower = teamWeightedPower(awayTeam);
+  const gap = homePower + 1.5 - awayPower;
+  const draw = Math.round(clamp(16, 31, 28 - Math.abs(gap) * 0.52));
+  let homeWin = Math.round(clamp(7, 86, 50 + gap * 1.12 - draw / 2));
+  let awayWin = 100 - draw - homeWin;
+
+  if (awayWin < 7) {
+    awayWin = 7;
+    homeWin = 100 - draw - awayWin;
+  }
+  if (homeWin < 7) {
+    homeWin = 7;
+    awayWin = 100 - draw - homeWin;
+  }
+
+  const homeGoalProfile = teamGoalProfile(homeTeam);
+  const awayGoalProfile = teamGoalProfile(awayTeam);
+  const expectedHomeGoals = (homeGoalProfile.attack + awayGoalProfile.defenseLeak) / 2;
+  const expectedAwayGoals = (awayGoalProfile.attack + homeGoalProfile.defenseLeak) / 2;
+  const combinedExpectedGoals = expectedHomeGoals + expectedAwayGoals;
+  const over = Math.round(clamp(36, 68, 42 + (combinedExpectedGoals - 2.25) * 8 + Math.abs(gap) / 8));
+  const bothTeamsToScore = Math.round(clamp(32, 62, 42 + Math.min(expectedHomeGoals, expectedAwayGoals) * 7 + (over - 48) / 3 - Math.abs(gap) / 7));
+
+  return { homeWin, draw, awayWin, over, bothTeamsToScore };
+}
+
+function probabilitiesFromPower(homeTeam: TeamCode, awayTeam: TeamCode, includeHistoricalWeights = false): MatchProbability {
+  return includeHistoricalWeights ? probabilitiesFromWeightedPower(homeTeam, awayTeam) : probabilitiesFromLegacyPower(homeTeam, awayTeam);
 }
 
 function predictedScoreFromModel(probabilities: MatchProbability) {
@@ -903,6 +1067,8 @@ function modelRiskText(probabilities: MatchProbability) {
   return `模型最看重勝率差，但第二高劇本仍有${secondHighest}%，盤口過熱時要保留反向風險。`;
 }
 
+const weightedModelFactorText = "新版模型權重：本屆攻守40%、FIFA/Elo25%、近期狀態20%、世界盃歷史10%、主場/洲別等特殊因素5%。";
+
 function buildScheduledPlainLanguage(record: ImportedScheduleRecord, probabilities: MatchProbability, predictedScore: string) {
   const home = getTeam(record.homeTeam);
   const away = getTeam(record.awayTeam);
@@ -935,6 +1101,7 @@ function buildScheduledKeyFactors(record: ImportedScheduleRecord, probabilities:
   const awayGoalDifference = (awayStats?.goalsFor ?? 0) - (awayStats?.goalsAgainst ?? 0);
   const isKnockout = isKnockoutRecord(record);
   const factors = [
+    weightedModelFactorText,
     `實力底盤：${home.nameZh}${teamProfileText(home)}；${away.nameZh}${teamProfileText(away)}。`,
     `本屆攻守差：${home.nameZh}淨勝${signedNumber(homeGoalDifference)}，${away.nameZh}淨勝${signedNumber(awayGoalDifference)}，這會影響模型對先進球方的容錯。`,
     `盤口風險：主勝${probabilities.homeWin}%、和局${probabilities.draw}%、客勝${probabilities.awayWin}%；${modelRiskText(probabilities)}`
@@ -1096,7 +1263,8 @@ function applyResultAnalysis(match: Match, result: MatchResult): Match {
 function makeImportedScheduleMatch(record: ImportedScheduleRecord): Match {
   const home = getTeam(record.homeTeam);
   const away = getTeam(record.awayTeam);
-  const probabilities = probabilitiesFromPower(record.homeTeam, record.awayTeam);
+  const useWeightedModel = record.status !== "final";
+  const probabilities = probabilitiesFromPower(record.homeTeam, record.awayTeam, useWeightedModel);
   const predictedScore = predictedScoreFromModel(probabilities);
   const edge = probabilities.homeWin - probabilities.awayWin;
   const isKnockout = isKnockoutRecord(record);
@@ -1134,7 +1302,12 @@ function makeImportedScheduleMatch(record: ImportedScheduleRecord): Match {
     prediction: makePrediction(
       predictedScore,
       Math.abs(edge) >= 28 ? "高" : Math.abs(edge) >= 12 ? "中高" : "中等",
-      probabilities
+      probabilities,
+      {
+        includeUpsetScoreline: useWeightedModel,
+        modelVersion: useWeightedModel ? weightedPredictionModelVersion : legacyPredictionModelVersion,
+        modelUpdatedAt: useWeightedModel ? weightedPredictionUpdatedAt : legacyPredictionUpdatedAt
+      }
     ),
     summary: `${record.round}：${home.nameZh}對${away.nameZh}，模型目前估 ${predictedScore}，盤面判斷為${matchupFavoriteText(home, away, edge)}，重點不是只看隊名，而是勝率差、和局風險與本屆攻守狀態。`,
     plainLanguageAnalysis: buildScheduledPlainLanguage(record, probabilities, predictedScore),

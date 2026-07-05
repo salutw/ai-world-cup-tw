@@ -68,6 +68,8 @@ export default async function MatchPage({ params }: MatchPageProps) {
   const away = getTeam(match.awayTeam);
   const result = match.result;
   const impactRows = getImpactRows(match, home, away);
+  const upsetScoreline = match.prediction.upsetScoreline;
+  const upsetTeam = upsetScoreline?.underdog === "home" ? home : away;
 
   return (
     <main className="page-shell">
@@ -218,6 +220,27 @@ export default async function MatchPage({ params }: MatchPageProps) {
               ))}
             </div>
           </section>
+
+          {!result && upsetScoreline ? (
+            <section className="detail-panel upset-panel">
+              <h2>{upsetScoreline.label}</h2>
+              <div className="upset-callout">
+                <div>
+                  <span>{upsetTeam.nameZh}冷門劇本</span>
+                  <strong>{scoreWithSpaces(upsetScoreline.score)}</strong>
+                </div>
+                <div>
+                  <span>模型機率</span>
+                  <strong>{formatScorelineProbability(upsetScoreline.probability)}</strong>
+                </div>
+                <div>
+                  <span>{upsetTeam.nameZh}勝率</span>
+                  <strong>{upsetScoreline.underdogWinProbability}%</strong>
+                </div>
+              </div>
+              <p className="muted-copy">{upsetScoreline.note}</p>
+            </section>
+          ) : null}
 
           <section className="detail-panel">
             <h2>關鍵因素</h2>

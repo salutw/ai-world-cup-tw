@@ -41,11 +41,19 @@ export interface ScorelineProbability {
   probability: number;
 }
 
+export interface UpsetPrediction extends ScorelineProbability {
+  underdog: "home" | "away";
+  underdogWinProbability: number;
+  label: string;
+  note: string;
+}
+
 export interface Prediction {
   predictedScore: string;
   confidence: ConfidenceLevel;
   probabilities: MatchProbability;
   topScorelines: ScorelineProbability[];
+  upsetScoreline?: UpsetPrediction | null;
   modelVersion: string;
   modelUpdatedAt: string;
 }
