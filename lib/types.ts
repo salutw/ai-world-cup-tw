@@ -163,6 +163,19 @@ export interface EditorialNote {
   text: string;
 }
 
+export interface StarFocusItem {
+  id: string;
+  headline: string;
+  playerNames: string[];
+  teamCodes: TeamCode[];
+  publishedAt: string;
+  sourceLabel: string;
+  sourceUrl: string;
+  angle: string;
+  modelHint: string;
+  tags: string[];
+}
+
 export interface OddsAdminDraft {
   matchId: string;
   homeWinOdds: number;

@@ -7,6 +7,7 @@ import type {
   MatchProbability,
   MatchResult,
   ScorelineProbability,
+  StarFocusItem,
   StandingRow,
   Team,
   TeamCode
@@ -1915,6 +1916,131 @@ export const heatItems: EditorialNote[] = [
   { title: "32強：完整落幕", text: "16 場 32 強淘汰賽已完成，勝隊已進入 16 強路線，平手場次會依晉級隊標示結果。" },
   { title: "16強：目前進行中", text: "加拿大、巴拉圭已止步，後續 16 強賽事會決定 8 強完整對戰組合。" },
   { title: "8強：首組對戰成形", text: "法國與摩洛哥已率先進入 8 強對戰，其他席位會隨 16 強結果自動補上。" }
+];
+
+const teamStarSourceUrl = "https://xn--fifa-tc5fq65k1ju.tw/news/world-cup-teams-n-stars/";
+
+export const starFocusItems: StarFocusItem[] = [
+  {
+    id: "ronaldo-portugal-final-dance",
+    headline: "葡萄牙：C 羅最後一舞的戰術取捨",
+    playerNames: ["Cristiano Ronaldo"],
+    teamCodes: ["POR"],
+    publishedAt: "2026-01-22",
+    sourceLabel: "fifa世界杯.tw 球隊與球星",
+    sourceUrl: teamStarSourceUrl,
+    angle: "焦點在 41 歲 C 羅是否先發、禁區終結與壓迫強度如何平衡，葡萄牙不能只靠情懷排陣。",
+    modelHint: "葡萄牙若早早領先，C 羅的禁區威脅會提高大比分機率；若久攻不下，反而要提高和局與低比分權重。",
+    tags: ["老將角色", "禁區終結", "葡萄牙"]
+  },
+  {
+    id: "son-korea-la-story",
+    headline: "韓國：孫興慜的主場感與轉換速度",
+    playerNames: ["Son Heung-min"],
+    teamCodes: ["KOR"],
+    publishedAt: "2026-01-19",
+    sourceLabel: "fifa世界杯.tw 球隊與球星",
+    sourceUrl: teamStarSourceUrl,
+    angle: "孫興慜轉戰洛杉磯後，世界盃在北美進行讓韓國多了熟悉環境的敘事，但真正關鍵仍是反擊第一腳品質。",
+    modelHint: "韓國面對控球強隊時，不能只看控球率；孫興慜能否把少量轉換變成射正，會直接影響爆冷比分。",
+    tags: ["亞洲焦點", "反擊", "韓國"]
+  },
+  {
+    id: "messi-argentina-miami",
+    headline: "阿根廷：梅西在邁阿密主場圈的最後探戈",
+    playerNames: ["Lionel Messi"],
+    teamCodes: ["ARG"],
+    publishedAt: "2026-01-09",
+    sourceLabel: "fifa世界杯.tw 球隊與球星",
+    sourceUrl: teamStarSourceUrl,
+    angle: "梅西的體能管理、定位球與最後一傳仍是阿根廷解鎖低位防守的關鍵。",
+    modelHint: "阿根廷若遇到防守密集隊，模型需要提高定位球與 1 球小勝劇本，不宜只看牌面壓成大勝。",
+    tags: ["衛冕", "定位球", "阿根廷"]
+  },
+  {
+    id: "bellingham-england-pressure",
+    headline: "英格蘭：貝林漢姆能否扛住淘汰賽壓力",
+    playerNames: ["Jude Bellingham"],
+    teamCodes: ["ENG"],
+    publishedAt: "2026-01-07",
+    sourceLabel: "fifa世界杯.tw 球隊與球星",
+    sourceUrl: teamStarSourceUrl,
+    angle: "英格蘭的上限取決於貝林漢姆在前腰與中場之間的串聯，以及強強對話時的禁區前決策。",
+    modelHint: "英格蘭對實力接近的對手時，要把和局與 1 球差放大，避免被明星陣容誤導成穩膽。",
+    tags: ["中場核心", "淘汰賽壓力", "英格蘭"]
+  },
+  {
+    id: "vinicius-brazil-wide-threat",
+    headline: "巴西：維尼修斯決定邊路爆點上限",
+    playerNames: ["Vinicius Jr."],
+    teamCodes: ["BRA"],
+    publishedAt: "2026-01-06",
+    sourceLabel: "fifa世界杯.tw 球隊與球星",
+    sourceUrl: teamStarSourceUrl,
+    angle: "維尼修斯是巴西撕開防線的第一爆點，個人突破能否轉成高品質射門是奪冠盤的重要變數。",
+    modelHint: "巴西若邊路對位明顯占優，大球與讓分盤可加權；若對手能限制維尼修斯，比分會更接近。",
+    tags: ["邊路爆點", "巴西", "大球觀察"]
+  },
+  {
+    id: "yamal-spain-next-core",
+    headline: "西班牙：亞馬爾讓傳控多了直線爆發",
+    playerNames: ["Lamine Yamal"],
+    teamCodes: ["ESP"],
+    publishedAt: "2026-01-05",
+    sourceLabel: "fifa世界杯.tw 球隊與球星",
+    sourceUrl: teamStarSourceUrl,
+    angle: "亞馬爾讓西班牙不只靠傳控消耗，也能在右路直接製造一對一與內切威脅。",
+    modelHint: "西班牙遇到低位防守時，亞馬爾狀態會影響破門時間；早進球會讓總進球盤快速升溫。",
+    tags: ["新星", "傳控升級", "西班牙"]
+  },
+  {
+    id: "mbappe-france-third-star",
+    headline: "法國：姆巴佩仍是冠軍盤的速度核心",
+    playerNames: ["Kylian Mbappe"],
+    teamCodes: ["FRA"],
+    publishedAt: "2025-12-26",
+    sourceLabel: "fifa世界杯.tw 球隊與球星",
+    sourceUrl: teamStarSourceUrl,
+    angle: "姆巴佩的縱深速度與大賽終結力，讓法國在拉鋸戰中一直保有一擊致命能力。",
+    modelHint: "法國即使控球不壓倒對手，也不能低估反擊進球；爆冷模型要特別看對手是否能限制身後空間。",
+    tags: ["速度核心", "金靴熱門", "法國"]
+  },
+  {
+    id: "japan-blue-samurai-depth",
+    headline: "日本：歐洲化陣容挑戰 8 強門檻",
+    playerNames: ["日本歐洲旅外核心"],
+    teamCodes: ["JPN"],
+    publishedAt: "2025-12-26",
+    sourceLabel: "fifa世界杯.tw 球隊與球星",
+    sourceUrl: teamStarSourceUrl,
+    angle: "日本的優勢不只是一兩名球星，而是旅外球員深度、邊路節奏與團隊壓迫同步性。",
+    modelHint: "日本面對傳統強隊時，模型不能只看歷史名氣；若射正效率維持，1 球差與爆冷比分要提高權重。",
+    tags: ["亞洲焦點", "旅外深度", "日本"]
+  },
+  {
+    id: "haaland-norway-first-world-cup",
+    headline: "挪威：哈蘭德首屆世界盃的冷門變數",
+    playerNames: ["Erling Haaland", "Martin Odegaard"],
+    teamCodes: ["NOR"],
+    publishedAt: "2025-12-18",
+    sourceLabel: "fifa世界杯.tw 球隊與球星",
+    sourceUrl: teamStarSourceUrl,
+    angle: "哈蘭德與厄德高的連線讓挪威即使整體控球不占優，也能靠少數機會打出高威脅。",
+    modelHint: "挪威對熱門隊時，爆冷比分應優先看 0-1、1-2 這類低控球高效率劇本。",
+    tags: ["爆冷門", "中鋒效率", "挪威"]
+  },
+  {
+    id: "global-stars-generation-shift",
+    headline: "世代交替：梅西、C 羅、哈蘭德同場敘事",
+    playerNames: ["Lionel Messi", "Cristiano Ronaldo", "Erling Haaland"],
+    teamCodes: ["ARG", "POR", "NOR"],
+    publishedAt: "2025-11-08",
+    sourceLabel: "fifa世界杯.tw 球隊與球星",
+    sourceUrl: teamStarSourceUrl,
+    angle: "本屆焦點橫跨傳奇謝幕與新世代登場，球迷情緒很強，但預測仍要回到角色、體能與球隊支援度。",
+    modelHint: "人氣球星會推高市場熱度，盤口判斷需額外檢查是否過熱，尤其是高齡球星連戰體能。",
+    tags: ["世代交替", "市場熱度", "球星盤"]
+  }
 ];
 
 export function getTeam(code: TeamCode) {

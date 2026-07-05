@@ -391,6 +391,83 @@ h3 {
   gap: 16px;
 }
 
+.star-focus-section {
+  margin-bottom: 28px;
+}
+
+.star-focus-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.star-focus-card {
+  display: grid;
+  align-content: start;
+  gap: 12px;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #fff;
+  box-shadow: 0 10px 24px rgba(18, 31, 39, 0.06);
+}
+
+.star-focus-card__top,
+.star-focus-card__teams {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.star-focus-card__top h3 {
+  margin: 2px 0 0;
+  font-size: 22px;
+  line-height: 1.25;
+}
+
+.star-focus-card__top a {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--green-dark);
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.star-focus-card__teams {
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.star-focus-card p {
+  margin-bottom: 0;
+  color: var(--muted);
+}
+
+.star-focus-card__hint {
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #fbfcfd;
+}
+
+.star-focus-card__hint span {
+  display: block;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.star-focus-card__hint strong {
+  display: block;
+  margin-top: 4px;
+}
+
 .match-card,
 .content-panel,
 .group-panel,
@@ -1492,6 +1569,7 @@ h3 {
   .stage-summary-grid,
   .group-grid,
   .knockout-board,
+  .star-focus-grid,
   .third-list,
   .upset-callout,
   .scoreline-list--expanded,

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import type { CSSProperties } from "react";
-import { getTeamTournamentStatus, groups, teams } from "@/lib/data";
+import { TeamBadge } from "@/components/TeamBadge";
+import { getTeamTournamentStatus, groups, starFocusItems, teams } from "@/lib/data";
 import { resultLabel } from "@/lib/format";
 
 export const metadata: Metadata = {
@@ -24,6 +25,49 @@ export default function TeamsPage() {
         <h1>球隊資料</h1>
         <p>近期戰績、進失球與目前狀態會依完賽紀錄自動更新；FIFA 排名採 2026/06/11 官方版本，Elo 為站內模型參考分。</p>
       </div>
+
+      <section className="star-focus-section" aria-labelledby="star-focus-title">
+        <div className="section-toolbar compact">
+          <div>
+            <span className="eyebrow">Stars Watch</span>
+            <h2 id="star-focus-title">球星焦點雷達</h2>
+          </div>
+          <p className="muted-copy">整理自外部球隊與球星專題，轉成站內可用的模型提示與看盤提醒。</p>
+        </div>
+
+        <div className="star-focus-grid">
+          {starFocusItems.map((item) => (
+            <article className="star-focus-card" key={item.id}>
+              <div className="star-focus-card__top">
+                <div>
+                  <span className="eyebrow">{item.publishedAt}</span>
+                  <h3>{item.headline}</h3>
+                </div>
+                <a href={item.sourceUrl} target="_blank" rel="noreferrer">
+                  來源
+                </a>
+              </div>
+              <div className="star-focus-card__teams">
+                {item.teamCodes.map((teamCode) => (
+                  <TeamBadge code={teamCode} compact key={`${item.id}-${teamCode}`} />
+                ))}
+              </div>
+              <p>{item.angle}</p>
+              <div className="star-focus-card__hint">
+                <span>模型提示</span>
+                <strong>{item.modelHint}</strong>
+              </div>
+              <div className="tag-row">
+                {item.tags.map((tag) => (
+                  <span className="tag" key={`${item.id}-${tag}`}>
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
 
       <div className="team-grid">
         {Object.values(teams).map((team) => (
