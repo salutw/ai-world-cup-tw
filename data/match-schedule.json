@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-05T08:44:41.027Z",
+  "updatedAt": "2026-07-06T10:03:15.133Z",
   "source": "ESPN FIFA World Cup scoreboard",
   "records": [
     {
@@ -935,11 +935,11 @@
       "venue": "MetLife Stadium",
       "homeTeam": "BRA",
       "awayTeam": "NOR",
-      "status": "scheduled",
+      "status": "final",
       "source": {
         "name": "ESPN",
         "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760504",
-        "fetchedAt": "2026-07-01T11:42:47.885Z"
+        "fetchedAt": "2026-07-06T10:03:15.133Z"
       },
       "firstSeenAt": "2026-07-01T11:42:47.885Z"
     },
@@ -950,16 +950,16 @@
       "round": "16強淘汰賽",
       "seasonSlug": "round-of-16",
       "matchDateTw": "2026-07-06",
-      "kickoffTw": "07/06 08:00",
-      "kickoffUtc": "2026-07-06T00:00Z",
+      "kickoffTw": "07/06 09:00",
+      "kickoffUtc": "2026-07-06T01:00Z",
       "venue": "Estadio Banorte",
       "homeTeam": "MEX",
       "awayTeam": "ENG",
-      "status": "scheduled",
+      "status": "final",
       "source": {
         "name": "ESPN",
         "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760505",
-        "fetchedAt": "2026-07-02T09:50:02.122Z"
+        "fetchedAt": "2026-07-06T10:03:15.133Z"
       },
       "firstSeenAt": "2026-07-02T09:50:02.122Z"
     },
@@ -1062,6 +1062,26 @@
         "fetchedAt": "2026-07-05T08:44:41.027Z"
       },
       "firstSeenAt": "2026-07-05T08:44:41.027Z"
+    },
+    {
+      "id": "nor-eng-760512",
+      "espnEventId": "760512",
+      "group": "淘汰賽",
+      "round": "8強淘汰賽",
+      "seasonSlug": "quarterfinals",
+      "matchDateTw": "2026-07-12",
+      "kickoffTw": "07/12 05:00",
+      "kickoffUtc": "2026-07-11T21:00Z",
+      "venue": "Hard Rock Stadium",
+      "homeTeam": "NOR",
+      "awayTeam": "ENG",
+      "status": "scheduled",
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760512",
+        "fetchedAt": "2026-07-06T10:03:15.133Z"
+      },
+      "firstSeenAt": "2026-07-06T10:03:15.133Z"
     }
   ]
 }
