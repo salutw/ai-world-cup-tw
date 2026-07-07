@@ -9,6 +9,8 @@ on:
   schedule:
     # 14:00 Taiwan time, daily. GitHub cron uses UTC.
     - cron: "0 6 * * *"
+    # 15:00 Taiwan time backup run, in case GitHub delays or skips the first cron.
+    - cron: "0 7 * * *"
 
 permissions:
   contents: write
@@ -47,7 +49,12 @@ jobs:
 
       - name: Resolve Taiwan date
         id: taiwan-date
-        run: echo "date=$(TZ=Asia/Taipei date -d '+10 hours' +%F)" >> "$GITHUB_OUTPUT"
+        shell: bash
+        run: |
+          today="$(TZ=Asia/Taipei date +%F)"
+          board_date="$(TZ=Asia/Taipei date -d '+10 hours' +%F)"
+          echo "today=$today" >> "$GITHUB_OUTPUT"
+          echo "board_date=$board_date" >> "$GITHUB_OUTPUT"
 
       - name: Update match schedule
         run: npm run update:schedule
@@ -56,8 +63,8 @@ jobs:
         run: npm run build:github
         env:
           DEPLOY_TARGET: github-pages
-          NEXT_PUBLIC_BOARD_DATE_TW: ${{ steps.taiwan-date.outputs.date }}
-          NEXT_PUBLIC_TODAY_TW: ${{ steps.taiwan-date.outputs.date }}
+          NEXT_PUBLIC_BOARD_DATE_TW: ${{ steps.taiwan-date.outputs.board_date }}
+          NEXT_PUBLIC_TODAY_TW: ${{ steps.taiwan-date.outputs.today }}
 
       - name: Update completed match history
         run: npm run update:results
@@ -73,8 +80,8 @@ jobs:
         run: npm run build:github
         env:
           DEPLOY_TARGET: github-pages
-          NEXT_PUBLIC_BOARD_DATE_TW: ${{ steps.taiwan-date.outputs.date }}
-          NEXT_PUBLIC_TODAY_TW: ${{ steps.taiwan-date.outputs.date }}
+          NEXT_PUBLIC_BOARD_DATE_TW: ${{ steps.taiwan-date.outputs.board_date }}
+          NEXT_PUBLIC_TODAY_TW: ${{ steps.taiwan-date.outputs.today }}
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v5

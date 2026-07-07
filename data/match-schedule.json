@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-06T10:03:15.133Z",
+  "updatedAt": "2026-07-07T07:01:15.427Z",
   "source": "ESPN FIFA World Cup scoreboard",
   "records": [
     {
@@ -939,7 +939,7 @@
       "source": {
         "name": "ESPN",
         "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760504",
-        "fetchedAt": "2026-07-06T10:03:15.133Z"
+        "fetchedAt": "2026-07-07T07:01:15.427Z"
       },
       "firstSeenAt": "2026-07-01T11:42:47.885Z"
     },
@@ -959,7 +959,7 @@
       "source": {
         "name": "ESPN",
         "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760505",
-        "fetchedAt": "2026-07-06T10:03:15.133Z"
+        "fetchedAt": "2026-07-07T07:01:15.427Z"
       },
       "firstSeenAt": "2026-07-02T09:50:02.122Z"
     },
@@ -975,11 +975,11 @@
       "venue": "AT&T Stadium",
       "homeTeam": "POR",
       "awayTeam": "ESP",
-      "status": "scheduled",
+      "status": "final",
       "source": {
         "name": "ESPN",
         "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760506",
-        "fetchedAt": "2026-07-03T09:47:58.466Z"
+        "fetchedAt": "2026-07-07T07:01:15.427Z"
       },
       "firstSeenAt": "2026-07-03T09:47:58.466Z"
     },
@@ -995,11 +995,11 @@
       "venue": "Lumen Field",
       "homeTeam": "USA",
       "awayTeam": "BEL",
-      "status": "scheduled",
+      "status": "final",
       "source": {
         "name": "ESPN",
         "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760507",
-        "fetchedAt": "2026-07-02T09:50:02.122Z"
+        "fetchedAt": "2026-07-07T07:01:15.427Z"
       },
       "firstSeenAt": "2026-07-02T09:50:02.122Z"
     },
@@ -1064,6 +1064,26 @@
       "firstSeenAt": "2026-07-05T08:44:41.027Z"
     },
     {
+      "id": "esp-bel-760511",
+      "espnEventId": "760511",
+      "group": "淘汰賽",
+      "round": "8強淘汰賽",
+      "seasonSlug": "quarterfinals",
+      "matchDateTw": "2026-07-11",
+      "kickoffTw": "07/11 03:00",
+      "kickoffUtc": "2026-07-10T19:00Z",
+      "venue": "SoFi Stadium",
+      "homeTeam": "ESP",
+      "awayTeam": "BEL",
+      "status": "scheduled",
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760511",
+        "fetchedAt": "2026-07-07T07:01:15.427Z"
+      },
+      "firstSeenAt": "2026-07-07T07:01:15.427Z"
+    },
+    {
       "id": "nor-eng-760512",
       "espnEventId": "760512",
       "group": "淘汰賽",
@@ -1079,9 +1099,9 @@
       "source": {
         "name": "ESPN",
         "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760512",
-        "fetchedAt": "2026-07-06T10:03:15.133Z"
+        "fetchedAt": "2026-07-07T07:01:15.427Z"
       },
-      "firstSeenAt": "2026-07-06T10:03:15.133Z"
+      "firstSeenAt": "2026-07-07T07:01:15.427Z"
     }
   ]
 }

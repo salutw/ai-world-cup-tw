@@ -6,8 +6,9 @@ import { MatchCard } from "./MatchCard";
 
 interface MatchBoardProps {
   matches: Match[];
-  initialDateTw: string;
+  selectedDateTw: string;
   todayDateTw: string;
+  onDateChange: (dateTw: string) => void;
 }
 
 const filters = [
@@ -21,16 +22,12 @@ type FilterValue = (typeof filters)[number]["value"];
 
 function formatDateLabel(dateKey: string, todayDateTw: string) {
   const [, month, day] = dateKey.split("-");
-  return `${Number(month)}/${Number(day)}${dateKey === todayDateTw ? "（今日）" : ""}`;
+  return `${Number(month)}/${Number(day)}${dateKey === todayDateTw ? "（今天）" : ""}`;
 }
 
-export function MatchBoard({ matches, initialDateTw, todayDateTw }: MatchBoardProps) {
+export function MatchBoard({ matches, selectedDateTw, todayDateTw, onDateChange }: MatchBoardProps) {
   const [activeFilter, setActiveFilter] = useState<FilterValue>("all");
-  const [selectedDateTw, setSelectedDateTw] = useState(initialDateTw);
-  const availableDates = useMemo(
-    () => Array.from(new Set(matches.map((match) => match.matchDateTw))).sort(),
-    [matches]
-  );
+  const availableDates = useMemo(() => Array.from(new Set(matches.map((match) => match.matchDateTw))).sort(), [matches]);
   const selectedMatches = useMemo(
     () =>
       matches
@@ -45,7 +42,7 @@ export function MatchBoard({ matches, initialDateTw, todayDateTw }: MatchBoardPr
   const isSelectedToday = selectedDateTw === todayDateTw;
 
   function updateSelectedDate(dateTw: string) {
-    setSelectedDateTw(dateTw);
+    onDateChange(dateTw);
     setActiveFilter("all");
   }
 
@@ -54,7 +51,7 @@ export function MatchBoard({ matches, initialDateTw, todayDateTw }: MatchBoardPr
       <div className="section-toolbar">
         <div>
           <span className="eyebrow">Today Board</span>
-          <h2>{isSelectedToday ? "今日焦點賽事" : "該日焦點賽事"}</h2>
+          <h2>{isSelectedToday ? "今日焦點賽事" : "指定日期賽事"}</h2>
           <p className="board-date-note">
             台灣時間 {selectedDateTw} · 共 {selectedMatches.length} 場
           </p>
