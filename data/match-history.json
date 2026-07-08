@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-07T07:02:26.789Z",
+  "updatedAt": "2026-07-08T08:14:38.090Z",
   "source": "ESPN FIFA World Cup scoreboard and summary",
   "records": [
     {
@@ -3331,6 +3331,140 @@
         "fetchedAt": "2026-07-07T07:02:26.783Z"
       },
       "recordedAt": "2026-07-07T07:02:26.783Z"
+    },
+    {
+      "matchId": "arg-egy-760509",
+      "espnEventId": "760509",
+      "group": "淘汰賽",
+      "round": "16強淘汰賽",
+      "matchDateTw": "2026-07-08",
+      "kickoffTw": "07/08 00:00",
+      "homeTeam": "ARG",
+      "awayTeam": "EGY",
+      "homeScore": 3,
+      "awayScore": 2,
+      "finalScore": "3-2",
+      "completedAt": "2026-07-07T16:00Z",
+      "predictionSnapshot": {
+        "predictedScore": "3-0",
+        "probabilities": {
+          "homeWin": 75,
+          "draw": 18,
+          "awayWin": 7,
+          "over": 60,
+          "bothTeamsToScore": 46
+        },
+        "confidence": "高",
+        "modelVersion": "Scout v0.1",
+        "modelUpdatedAt": "2026/06/23 20:00"
+      },
+      "evaluation": {
+        "grade": "result",
+        "exactScore": false,
+        "resultCorrect": true,
+        "homeGoalError": 0,
+        "awayGoalError": 2,
+        "totalGoalError": 2,
+        "scoreDistance": 2
+      },
+      "statistics": {
+        "home": {
+          "possessionPct": 63.6,
+          "totalShots": 19,
+          "shotsOnTarget": 7,
+          "corners": 6,
+          "saves": 0,
+          "yellowCards": 0,
+          "redCards": 0
+        },
+        "away": {
+          "possessionPct": 36.4,
+          "totalShots": 5,
+          "shotsOnTarget": 2,
+          "corners": 1,
+          "saves": 4,
+          "yellowCards": 4,
+          "redCards": 0
+        }
+      },
+      "analysisReasons": [
+        "勝負方向判斷正確，但兩隊實際進球分布與模型的中央預估不同。",
+        "實際總進球比預估多 2 球，比賽節奏或把握機會效率高於模型假設。",
+        "埃及完成 2 次射正並攻入 2 球，客隊火力高於預期。"
+      ],
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760509",
+        "fetchedAt": "2026-07-08T08:14:38.023Z"
+      },
+      "recordedAt": "2026-07-08T08:14:38.023Z"
+    },
+    {
+      "matchId": "sui-col-760508",
+      "espnEventId": "760508",
+      "group": "淘汰賽",
+      "round": "16強淘汰賽",
+      "matchDateTw": "2026-07-08",
+      "kickoffTw": "07/08 04:00",
+      "homeTeam": "SUI",
+      "awayTeam": "COL",
+      "homeScore": 0,
+      "awayScore": 0,
+      "finalScore": "0-0",
+      "completedAt": "2026-07-07T20:00Z",
+      "predictionSnapshot": {
+        "predictedScore": "2-2",
+        "probabilities": {
+          "homeWin": 37,
+          "draw": 29,
+          "awayWin": 34,
+          "over": 58,
+          "bothTeamsToScore": 51
+        },
+        "confidence": "中等",
+        "modelVersion": "Scout v0.1",
+        "modelUpdatedAt": "2026/06/23 20:00"
+      },
+      "evaluation": {
+        "grade": "result",
+        "exactScore": false,
+        "resultCorrect": true,
+        "homeGoalError": 2,
+        "awayGoalError": 2,
+        "totalGoalError": 4,
+        "scoreDistance": 4
+      },
+      "statistics": {
+        "home": {
+          "possessionPct": 53.4,
+          "totalShots": 7,
+          "shotsOnTarget": 2,
+          "corners": 3,
+          "saves": 3,
+          "yellowCards": 3,
+          "redCards": 0
+        },
+        "away": {
+          "possessionPct": 46.6,
+          "totalShots": 15,
+          "shotsOnTarget": 3,
+          "corners": 7,
+          "saves": 2,
+          "yellowCards": 2,
+          "redCards": 0
+        }
+      },
+      "analysisReasons": [
+        "勝負方向判斷正確，但兩隊實際進球分布與模型的中央預估不同。",
+        "實際總進球比預估少 4 球，進攻轉化率低於模型假設。",
+        "瑞士只有 2 次射正，主隊進球產出低於預期。"
+      ],
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760508",
+        "fetchedAt": "2026-07-08T08:14:38.083Z"
+      },
+      "recordedAt": "2026-07-08T08:14:38.083Z"
     }
   ]
 }

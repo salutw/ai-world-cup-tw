@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-07T07:01:15.427Z",
+  "updatedAt": "2026-07-08T08:14:25.090Z",
   "source": "ESPN FIFA World Cup scoreboard",
   "records": [
     {
@@ -1015,11 +1015,11 @@
       "venue": "Mercedes-Benz Stadium",
       "homeTeam": "ARG",
       "awayTeam": "EGY",
-      "status": "scheduled",
+      "status": "final",
       "source": {
         "name": "ESPN",
         "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760509",
-        "fetchedAt": "2026-07-04T08:28:21.938Z"
+        "fetchedAt": "2026-07-08T08:14:25.090Z"
       },
       "firstSeenAt": "2026-07-04T08:28:21.938Z"
     },
@@ -1035,11 +1035,11 @@
       "venue": "BC Place",
       "homeTeam": "SUI",
       "awayTeam": "COL",
-      "status": "scheduled",
+      "status": "final",
       "source": {
         "name": "ESPN",
         "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760508",
-        "fetchedAt": "2026-07-04T08:28:21.938Z"
+        "fetchedAt": "2026-07-08T08:14:25.090Z"
       },
       "firstSeenAt": "2026-07-04T08:28:21.938Z"
     },
@@ -1102,6 +1102,26 @@
         "fetchedAt": "2026-07-07T07:01:15.427Z"
       },
       "firstSeenAt": "2026-07-07T07:01:15.427Z"
+    },
+    {
+      "id": "arg-sui-760513",
+      "espnEventId": "760513",
+      "group": "淘汰賽",
+      "round": "8強淘汰賽",
+      "seasonSlug": "quarterfinals",
+      "matchDateTw": "2026-07-12",
+      "kickoffTw": "07/12 09:00",
+      "kickoffUtc": "2026-07-12T01:00Z",
+      "venue": "GEHA Field at Arrowhead Stadium",
+      "homeTeam": "ARG",
+      "awayTeam": "SUI",
+      "status": "scheduled",
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760513",
+        "fetchedAt": "2026-07-08T08:14:25.090Z"
+      },
+      "firstSeenAt": "2026-07-08T08:14:25.090Z"
     }
   ]
 }
