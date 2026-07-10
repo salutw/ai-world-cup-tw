@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-08T08:14:38.090Z",
+  "updatedAt": "2026-07-10T09:23:42.971Z",
   "source": "ESPN FIFA World Cup scoreboard and summary",
   "records": [
     {
@@ -3465,6 +3465,73 @@
         "fetchedAt": "2026-07-08T08:14:38.083Z"
       },
       "recordedAt": "2026-07-08T08:14:38.083Z"
+    },
+    {
+      "matchId": "fra-mar-760510",
+      "espnEventId": "760510",
+      "group": "淘汰賽",
+      "round": "8強淘汰賽",
+      "matchDateTw": "2026-07-10",
+      "kickoffTw": "07/10 04:00",
+      "homeTeam": "FRA",
+      "awayTeam": "MAR",
+      "homeScore": 2,
+      "awayScore": 0,
+      "finalScore": "2-0",
+      "completedAt": "2026-07-09T20:00Z",
+      "predictionSnapshot": {
+        "predictedScore": "3-0",
+        "probabilities": {
+          "homeWin": 63,
+          "draw": 21,
+          "awayWin": 16,
+          "over": 60,
+          "bothTeamsToScore": 49
+        },
+        "confidence": "高",
+        "modelVersion": "Scout v0.1",
+        "modelUpdatedAt": "2026/06/23 20:00"
+      },
+      "evaluation": {
+        "grade": "result",
+        "exactScore": false,
+        "resultCorrect": true,
+        "homeGoalError": 1,
+        "awayGoalError": 0,
+        "totalGoalError": 1,
+        "scoreDistance": 1
+      },
+      "statistics": {
+        "home": {
+          "possessionPct": 48,
+          "totalShots": 22,
+          "shotsOnTarget": 8,
+          "corners": 5,
+          "saves": 1,
+          "yellowCards": 0,
+          "redCards": 0
+        },
+        "away": {
+          "possessionPct": 52,
+          "totalShots": 5,
+          "shotsOnTarget": 1,
+          "corners": 5,
+          "saves": 6,
+          "yellowCards": 1,
+          "redCards": 0
+        }
+      },
+      "analysisReasons": [
+        "勝負方向判斷正確，但兩隊實際進球分布與模型的中央預估不同。",
+        "實際總進球比預估少 1 球，進攻轉化率低於模型假設。",
+        "法國只有 8 次射正，主隊進球產出低於預期。"
+      ],
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760510",
+        "fetchedAt": "2026-07-10T09:23:42.964Z"
+      },
+      "recordedAt": "2026-07-10T09:23:42.964Z"
     }
   ]
 }

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-08T08:14:25.090Z",
+  "updatedAt": "2026-07-10T09:23:31.081Z",
   "source": "ESPN FIFA World Cup scoreboard",
   "records": [
     {
@@ -1055,11 +1055,11 @@
       "venue": "Gillette Stadium",
       "homeTeam": "FRA",
       "awayTeam": "MAR",
-      "status": "scheduled",
+      "status": "final",
       "source": {
         "name": "ESPN",
         "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760510",
-        "fetchedAt": "2026-07-05T08:44:41.027Z"
+        "fetchedAt": "2026-07-10T09:23:31.081Z"
       },
       "firstSeenAt": "2026-07-05T08:44:41.027Z"
     },
