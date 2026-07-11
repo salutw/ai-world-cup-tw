@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-10T09:23:42.971Z",
+  "updatedAt": "2026-07-11T07:45:04.327Z",
   "source": "ESPN FIFA World Cup scoreboard and summary",
   "records": [
     {
@@ -3532,6 +3532,72 @@
         "fetchedAt": "2026-07-10T09:23:42.964Z"
       },
       "recordedAt": "2026-07-10T09:23:42.964Z"
+    },
+    {
+      "matchId": "esp-bel-760511",
+      "espnEventId": "760511",
+      "group": "淘汰賽",
+      "round": "8強淘汰賽",
+      "matchDateTw": "2026-07-11",
+      "kickoffTw": "07/11 03:00",
+      "homeTeam": "ESP",
+      "awayTeam": "BEL",
+      "homeScore": 2,
+      "awayScore": 1,
+      "finalScore": "2-1",
+      "completedAt": "2026-07-10T19:00Z",
+      "predictionSnapshot": {
+        "predictedScore": "3-0",
+        "probabilities": {
+          "homeWin": 52,
+          "draw": 24,
+          "awayWin": 24,
+          "over": 61,
+          "bothTeamsToScore": 50
+        },
+        "confidence": "高",
+        "modelVersion": "Scout v0.1",
+        "modelUpdatedAt": "2026/06/23 20:00"
+      },
+      "evaluation": {
+        "grade": "result",
+        "exactScore": false,
+        "resultCorrect": true,
+        "homeGoalError": 1,
+        "awayGoalError": 1,
+        "totalGoalError": 0,
+        "scoreDistance": 2
+      },
+      "statistics": {
+        "home": {
+          "possessionPct": 67.9,
+          "totalShots": 17,
+          "shotsOnTarget": 8,
+          "corners": 5,
+          "saves": 1,
+          "yellowCards": 2,
+          "redCards": 0
+        },
+        "away": {
+          "possessionPct": 32.1,
+          "totalShots": 5,
+          "shotsOnTarget": 2,
+          "corners": 1,
+          "saves": 6,
+          "yellowCards": 2,
+          "redCards": 0
+        }
+      },
+      "analysisReasons": [
+        "勝負方向判斷正確，但兩隊實際進球分布與模型的中央預估不同。",
+        "西班牙只有 8 次射正，主隊進球產出低於預期。"
+      ],
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760511",
+        "fetchedAt": "2026-07-11T07:45:04.320Z"
+      },
+      "recordedAt": "2026-07-11T07:45:04.320Z"
     }
   ]
 }

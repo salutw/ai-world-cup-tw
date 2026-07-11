@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-10T09:23:31.081Z",
+  "updatedAt": "2026-07-11T07:44:52.956Z",
   "source": "ESPN FIFA World Cup scoreboard",
   "records": [
     {
@@ -1075,11 +1075,11 @@
       "venue": "SoFi Stadium",
       "homeTeam": "ESP",
       "awayTeam": "BEL",
-      "status": "scheduled",
+      "status": "final",
       "source": {
         "name": "ESPN",
         "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760511",
-        "fetchedAt": "2026-07-07T07:01:15.427Z"
+        "fetchedAt": "2026-07-11T07:44:52.956Z"
       },
       "firstSeenAt": "2026-07-07T07:01:15.427Z"
     },
@@ -1122,6 +1122,26 @@
         "fetchedAt": "2026-07-08T08:14:25.090Z"
       },
       "firstSeenAt": "2026-07-08T08:14:25.090Z"
+    },
+    {
+      "id": "fra-esp-760514",
+      "espnEventId": "760514",
+      "group": "淘汰賽",
+      "round": "4強準決賽",
+      "seasonSlug": "semifinals",
+      "matchDateTw": "2026-07-15",
+      "kickoffTw": "07/15 03:00",
+      "kickoffUtc": "2026-07-14T19:00Z",
+      "venue": "AT&T Stadium",
+      "homeTeam": "FRA",
+      "awayTeam": "ESP",
+      "status": "scheduled",
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760514",
+        "fetchedAt": "2026-07-11T07:44:52.956Z"
+      },
+      "firstSeenAt": "2026-07-11T07:44:52.956Z"
     }
   ]
 }
