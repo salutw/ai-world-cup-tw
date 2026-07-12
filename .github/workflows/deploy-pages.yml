@@ -57,7 +57,16 @@ jobs:
           echo "board_date=$board_date" >> "$GITHUB_OUTPUT"
 
       - name: Update match schedule
-        run: npm run update:schedule
+        shell: bash
+        run: |
+          for attempt in 1 2 3; do
+            if npm run update:schedule; then
+              exit 0
+            fi
+            echo "update:schedule failed on attempt $attempt; retrying shortly..."
+            sleep $((attempt * 60))
+          done
+          exit 1
 
       - name: Build match catalog
         run: npm run build:github
@@ -67,7 +76,16 @@ jobs:
           NEXT_PUBLIC_TODAY_TW: ${{ steps.taiwan-date.outputs.today }}
 
       - name: Update completed match history
-        run: npm run update:results
+        shell: bash
+        run: |
+          for attempt in 1 2 3; do
+            if npm run update:results; then
+              exit 0
+            fi
+            echo "update:results failed on attempt $attempt; retrying shortly..."
+            sleep $((attempt * 60))
+          done
+          exit 1
 
       - name: Sync SQLite history database
         shell: bash

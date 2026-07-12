@@ -168,12 +168,32 @@ async function readSchedule() {
   }
 }
 
-async function fetchJson(url) {
-  const response = await fetch(url, {
-    headers: { "user-agent": "ai-world-cup-tw-schedule-updater/1.0" }
+function sleep(ms) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms);
   });
-  if (!response.ok) throw new Error(`Fetch failed ${response.status}: ${url}`);
-  return response.json();
+}
+
+async function fetchJson(url, attempts = 3) {
+  let lastError;
+
+  for (let attempt = 1; attempt <= attempts; attempt += 1) {
+    try {
+      const response = await fetch(url, {
+        headers: { "user-agent": "ai-world-cup-tw-schedule-updater/1.0" }
+      });
+      if (!response.ok) throw new Error(`Fetch failed ${response.status}: ${url}`);
+      return response.json();
+    } catch (error) {
+      lastError = error;
+      if (attempt < attempts) {
+        console.warn(`Fetch attempt ${attempt}/${attempts} failed: ${url}`);
+        await sleep(1500 * attempt);
+      }
+    }
+  }
+
+  throw lastError;
 }
 
 function eventRecord(event, fetchedAt) {

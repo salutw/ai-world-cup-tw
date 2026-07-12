@@ -47,6 +47,12 @@ function teamStats(summary, homeAway) {
   };
 }
 
+function sleep(ms) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
+}
+
 function probabilityForOutcome(probabilities, actualOutcome) {
   if (actualOutcome === "home") return probabilities.homeWin;
   if (actualOutcome === "away") return probabilities.awayWin;
@@ -117,12 +123,26 @@ function buildReasons(match, actual, homeStats, awayStats) {
   return reasons.slice(0, 3);
 }
 
-async function fetchJson(url) {
-  const response = await fetch(url, {
-    headers: { "user-agent": "ai-world-cup-tw-results-updater/1.0" }
-  });
-  if (!response.ok) throw new Error(`Fetch failed ${response.status}: ${url}`);
-  return response.json();
+async function fetchJson(url, attempts = 3) {
+  let lastError;
+
+  for (let attempt = 1; attempt <= attempts; attempt += 1) {
+    try {
+      const response = await fetch(url, {
+        headers: { "user-agent": "ai-world-cup-tw-results-updater/1.0" }
+      });
+      if (!response.ok) throw new Error(`Fetch failed ${response.status}: ${url}`);
+      return response.json();
+    } catch (error) {
+      lastError = error;
+      if (attempt < attempts) {
+        console.warn(`Fetch attempt ${attempt}/${attempts} failed: ${url}`);
+        await sleep(1500 * attempt);
+      }
+    }
+  }
+
+  throw lastError;
 }
 
 const catalog = JSON.parse(await readFile(catalogPath, "utf8"));
@@ -172,7 +192,14 @@ for (const match of matches) {
   ) {
     continue;
   }
-  const summary = await fetchJson(`${scoreboardBase}/summary?event=${event.id}`);
+  let summary = null;
+
+  try {
+    summary = await fetchJson(`${scoreboardBase}/summary?event=${event.id}`);
+  } catch (error) {
+    console.warn(`Summary unavailable for ESPN event ${event.id}; recording score without detailed match statistics.`);
+  }
+
   const homeStats = teamStats(summary, "home");
   const awayStats = teamStats(summary, "away");
   const [predictedHome, predictedAway] = parseScore(match.prediction.predictedScore);
