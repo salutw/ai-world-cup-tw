@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-11T07:44:52.956Z",
+  "updatedAt": "2026-07-12T09:03:01.100Z",
   "source": "ESPN FIFA World Cup scoreboard",
   "records": [
     {
@@ -1095,11 +1095,11 @@
       "venue": "Hard Rock Stadium",
       "homeTeam": "NOR",
       "awayTeam": "ENG",
-      "status": "scheduled",
+      "status": "final",
       "source": {
         "name": "ESPN",
         "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760512",
-        "fetchedAt": "2026-07-07T07:01:15.427Z"
+        "fetchedAt": "2026-07-12T09:03:01.100Z"
       },
       "firstSeenAt": "2026-07-07T07:01:15.427Z"
     },
@@ -1115,11 +1115,11 @@
       "venue": "GEHA Field at Arrowhead Stadium",
       "homeTeam": "ARG",
       "awayTeam": "SUI",
-      "status": "scheduled",
+      "status": "final",
       "source": {
         "name": "ESPN",
         "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760513",
-        "fetchedAt": "2026-07-08T08:14:25.090Z"
+        "fetchedAt": "2026-07-12T09:03:01.100Z"
       },
       "firstSeenAt": "2026-07-08T08:14:25.090Z"
     },
@@ -1142,6 +1142,26 @@
         "fetchedAt": "2026-07-11T07:44:52.956Z"
       },
       "firstSeenAt": "2026-07-11T07:44:52.956Z"
+    },
+    {
+      "id": "eng-arg-760515",
+      "espnEventId": "760515",
+      "group": "淘汰賽",
+      "round": "4強準決賽",
+      "seasonSlug": "semifinals",
+      "matchDateTw": "2026-07-16",
+      "kickoffTw": "07/16 03:00",
+      "kickoffUtc": "2026-07-15T19:00Z",
+      "venue": "Mercedes-Benz Stadium",
+      "homeTeam": "ENG",
+      "awayTeam": "ARG",
+      "status": "scheduled",
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760515",
+        "fetchedAt": "2026-07-12T09:03:01.100Z"
+      },
+      "firstSeenAt": "2026-07-12T09:03:01.100Z"
     }
   ]
 }
