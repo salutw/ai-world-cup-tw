@@ -7,6 +7,7 @@ const forceRefresh = process.argv.includes("--refresh");
 const catalogArgument = process.argv.find((argument) => !argument.startsWith("--") && argument !== process.argv[0] && argument !== process.argv[1]);
 const catalogPath = path.join(root, catalogArgument || "out/api/matches");
 const historyPath = path.join(root, "data/match-history.json");
+const schedulePath = path.join(root, "data/match-schedule.json");
 const scoreboardBase = "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world";
 
 function parseScore(score) {
@@ -53,14 +54,14 @@ function sleep(ms) {
   });
 }
 
-function probabilityForOutcome(probabilities, actualOutcome) {
-  if (actualOutcome === "home") return probabilities.homeWin;
-  if (actualOutcome === "away") return probabilities.awayWin;
-  return probabilities.draw;
+function probabilityForOutcome(probabilities = {}, actualOutcome) {
+  if (actualOutcome === "home") return probabilities.homeWin ?? 0;
+  if (actualOutcome === "away") return probabilities.awayWin ?? 0;
+  return probabilities.draw ?? 0;
 }
 
-function buildReasons(match, actual, homeStats, awayStats) {
-  const [predictedHome, predictedAway] = parseScore(match.prediction.predictedScore);
+function buildReasons(match, predictionSnapshot, actual, homeStats, awayStats) {
+  const [predictedHome, predictedAway] = parseScore(predictionSnapshot.predictedScore);
   const actualOutcome = outcome(actual.homeScore, actual.awayScore);
   const predictedOutcome = outcome(predictedHome, predictedAway);
   const predictedTotal = predictedHome + predictedAway;
@@ -72,7 +73,7 @@ function buildReasons(match, actual, homeStats, awayStats) {
   } else if (predictedOutcome === actualOutcome) {
     reasons.push("勝負方向判斷正確，但兩隊實際進球分布與模型的中央預估不同。");
   } else {
-    const actualProbability = probabilityForOutcome(match.prediction.probabilities, actualOutcome);
+    const actualProbability = probabilityForOutcome(predictionSnapshot.probabilities, actualOutcome);
     if (actualProbability <= 25) {
       reasons.push(`實際賽果的賽前機率只有 ${actualProbability}%，屬於模型明顯低估的結果。`);
     } else if (actualProbability <= 40) {
@@ -145,9 +146,26 @@ async function fetchJson(url, attempts = 3) {
   throw lastError;
 }
 
+function predictionSnapshotFor(match, scheduleRecord) {
+  const snapshot = scheduleRecord?.predictionSnapshot;
+  return {
+    predictedScore: snapshot?.predictedScore ?? match.prediction.predictedScore,
+    probabilities: {
+      ...match.prediction.probabilities,
+      ...(snapshot?.probabilities || {})
+    },
+    confidence: snapshot?.confidence ?? match.prediction.confidence,
+    modelVersion: snapshot?.modelVersion ?? match.prediction.modelVersion,
+    modelUpdatedAt: snapshot?.modelUpdatedAt ?? match.prediction.modelUpdatedAt
+  };
+}
+
 const catalog = JSON.parse(await readFile(catalogPath, "utf8"));
 const history = JSON.parse(await readFile(historyPath, "utf8"));
+const schedule = JSON.parse(await readFile(schedulePath, "utf8"));
 const matches = catalog.data;
+const scheduleByMatchId = new Map((schedule.records || []).map((record) => [record.id, record]));
+const scheduleByEventId = new Map((schedule.records || []).map((record) => [String(record.espnEventId), record]));
 const dates = matches.map((match) => match.matchDateTw).sort();
 const queryStart = addDays(dates[0], -1);
 const queryEnd = dates.at(-1);
@@ -202,7 +220,9 @@ for (const match of matches) {
 
   const homeStats = teamStats(summary, "home");
   const awayStats = teamStats(summary, "away");
-  const [predictedHome, predictedAway] = parseScore(match.prediction.predictedScore);
+  const scheduleRecord = scheduleByMatchId.get(match.id) || scheduleByEventId.get(String(event.id));
+  const predictionSnapshot = predictionSnapshotFor(match, scheduleRecord);
+  const [predictedHome, predictedAway] = parseScore(predictionSnapshot.predictedScore);
   const actualOutcome = outcome(actual.homeScore, actual.awayScore);
   const predictedOutcome = outcome(predictedHome, predictedAway);
   const record = {
@@ -218,13 +238,7 @@ for (const match of matches) {
     awayScore: actual.awayScore,
     finalScore: `${actual.homeScore}-${actual.awayScore}`,
     completedAt: event.date,
-    predictionSnapshot: {
-      predictedScore: match.prediction.predictedScore,
-      probabilities: match.prediction.probabilities,
-      confidence: match.prediction.confidence,
-      modelVersion: match.prediction.modelVersion,
-      modelUpdatedAt: match.prediction.modelUpdatedAt
-    },
+    predictionSnapshot,
     evaluation: {
       grade:
         predictedHome === actual.homeScore && predictedAway === actual.awayScore
@@ -243,7 +257,7 @@ for (const match of matches) {
       home: homeStats,
       away: awayStats
     },
-    analysisReasons: buildReasons(match, actual, homeStats, awayStats),
+    analysisReasons: buildReasons(match, predictionSnapshot, actual, homeStats, awayStats),
     source: {
       name: "ESPN",
       eventUrl: `https://www.espn.com/soccer/match/_/gameId/${event.id}`,

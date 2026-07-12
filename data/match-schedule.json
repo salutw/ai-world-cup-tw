@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-12T09:03:01.100Z",
+  "updatedAt": "2026-07-12T09:54:27.013Z",
   "source": "ESPN FIFA World Cup scoreboard",
   "records": [
     {
@@ -1101,7 +1101,20 @@
         "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760512",
         "fetchedAt": "2026-07-12T09:03:01.100Z"
       },
-      "firstSeenAt": "2026-07-07T07:01:15.427Z"
+      "firstSeenAt": "2026-07-07T07:01:15.427Z",
+      "predictionSnapshot": {
+        "predictedScore": "0-2",
+        "probabilities": {
+          "homeWin": 14,
+          "draw": 16,
+          "awayWin": 70,
+          "over": 58,
+          "bothTeamsToScore": 48
+        },
+        "confidence": "高",
+        "modelVersion": "Scout v0.1",
+        "modelUpdatedAt": "2026/06/23 20:00"
+      }
     },
     {
       "id": "arg-sui-760513",
@@ -1121,7 +1134,20 @@
         "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760513",
         "fetchedAt": "2026-07-12T09:03:01.100Z"
       },
-      "firstSeenAt": "2026-07-08T08:14:25.090Z"
+      "firstSeenAt": "2026-07-08T08:14:25.090Z",
+      "predictionSnapshot": {
+        "predictedScore": "2-0",
+        "probabilities": {
+          "homeWin": 65,
+          "draw": 17,
+          "awayWin": 18,
+          "over": 62,
+          "bothTeamsToScore": 50
+        },
+        "confidence": "高",
+        "modelVersion": "Scout v0.1",
+        "modelUpdatedAt": "2026/06/23 20:00"
+      }
     },
     {
       "id": "fra-esp-760514",
@@ -1141,7 +1167,20 @@
         "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760514",
         "fetchedAt": "2026-07-11T07:44:52.956Z"
       },
-      "firstSeenAt": "2026-07-11T07:44:52.956Z"
+      "firstSeenAt": "2026-07-11T07:44:52.956Z",
+      "predictionSnapshot": {
+        "predictedScore": "1-1",
+        "probabilities": {
+          "homeWin": 39,
+          "draw": 27,
+          "awayWin": 34,
+          "over": 43,
+          "bothTeamsToScore": 47
+        },
+        "confidence": "中等",
+        "modelVersion": "Scout v0.2",
+        "modelUpdatedAt": "2026/07/05 20:45"
+      }
     },
     {
       "id": "eng-arg-760515",
@@ -1161,7 +1200,20 @@
         "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760515",
         "fetchedAt": "2026-07-12T09:03:01.100Z"
       },
-      "firstSeenAt": "2026-07-12T09:03:01.100Z"
+      "firstSeenAt": "2026-07-12T09:03:01.100Z",
+      "predictionSnapshot": {
+        "predictedScore": "1-1",
+        "probabilities": {
+          "homeWin": 32,
+          "draw": 25,
+          "awayWin": 43,
+          "over": 53,
+          "bothTeamsToScore": 55
+        },
+        "confidence": "中等",
+        "modelVersion": "Scout v0.2",
+        "modelUpdatedAt": "2026/07/05 20:45"
+      }
     }
   ]
 }

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-12T09:03:12.253Z",
+  "updatedAt": "2026-07-12T09:54:27.013Z",
   "source": "ESPN FIFA World Cup scoreboard and summary",
   "records": [
     {
@@ -3613,11 +3613,11 @@
       "finalScore": "1-2",
       "completedAt": "2026-07-11T21:00Z",
       "predictionSnapshot": {
-        "predictedScore": "0-3",
+        "predictedScore": "0-2",
         "probabilities": {
-          "homeWin": 19,
-          "draw": 22,
-          "awayWin": 59,
+          "homeWin": 14,
+          "draw": 16,
+          "awayWin": 70,
           "over": 58,
           "bothTeamsToScore": 48
         },
@@ -3630,9 +3630,9 @@
         "exactScore": false,
         "resultCorrect": true,
         "homeGoalError": 1,
-        "awayGoalError": 1,
-        "totalGoalError": 0,
-        "scoreDistance": 2
+        "awayGoalError": 0,
+        "totalGoalError": 1,
+        "scoreDistance": 1
       },
       "statistics": {
         "home": {
@@ -3655,8 +3655,9 @@
         }
       },
       "analysisReasons": [
-        "勝負方向判斷正確，但兩隊實際進球分布與模型的中央預估不同。",
-        "挪威完成 4 次射正並攻入 1 球，主隊火力高於預期。"
+        "勝負方向判斷正確，但挪威實際破門，讓比分從賽前預估的 0-2 變成 1-2。",
+        "實際總進球比預估多 1 球，主因是挪威進攻端把握到模型原本低估的進球機會。",
+        "模型已保留賽前快照，完賽後只更新實際比分與誤差評估。"
       ],
       "source": {
         "name": "ESPN",
@@ -3679,11 +3680,11 @@
       "finalScore": "3-1",
       "completedAt": "2026-07-12T01:00Z",
       "predictionSnapshot": {
-        "predictedScore": "3-0",
+        "predictedScore": "2-0",
         "probabilities": {
-          "homeWin": 53,
-          "draw": 24,
-          "awayWin": 23,
+          "homeWin": 65,
+          "draw": 17,
+          "awayWin": 18,
           "over": 62,
           "bothTeamsToScore": 50
         },
@@ -3695,10 +3696,10 @@
         "grade": "result",
         "exactScore": false,
         "resultCorrect": true,
-        "homeGoalError": 0,
+        "homeGoalError": 1,
         "awayGoalError": 1,
-        "totalGoalError": 1,
-        "scoreDistance": 1
+        "totalGoalError": 2,
+        "scoreDistance": 2
       },
       "statistics": {
         "home": {
@@ -3721,9 +3722,9 @@
         }
       },
       "analysisReasons": [
-        "勝負方向判斷正確，但兩隊實際進球分布與模型的中央預估不同。",
-        "實際總進球比預估多 1 球，比賽節奏或把握機會效率高於模型假設。",
-        "瑞士完成 5 次射正並攻入 1 球，客隊火力高於預期。"
+        "勝負方向判斷正確，但瑞士實際進球，讓比分從賽前預估的 2-0 變成 3-1。",
+        "實際總進球比預估多 2 球，比賽節奏與轉換效率高於模型賽前假設。",
+        "模型已保留賽前快照，完賽後只更新實際比分與誤差評估。"
       ],
       "source": {
         "name": "ESPN",

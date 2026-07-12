@@ -767,6 +767,7 @@ interface ImportedScheduleRecord {
     eventUrl: string;
     fetchedAt: string;
   };
+  predictionSnapshot?: MatchResult["predictionSnapshot"];
 }
 
 const importedSchedule = matchScheduleData as {
@@ -1265,9 +1266,14 @@ function makeImportedScheduleMatch(record: ImportedScheduleRecord): Match {
   const home = getTeam(record.homeTeam);
   const away = getTeam(record.awayTeam);
   const useWeightedModel = record.status !== "final";
-  const probabilities = probabilitiesFromPower(record.homeTeam, record.awayTeam, useWeightedModel);
-  const predictedScore = predictedScoreFromModel(probabilities);
+  const snapshot = record.predictionSnapshot;
+  const probabilities = snapshot?.probabilities ?? probabilitiesFromPower(record.homeTeam, record.awayTeam, useWeightedModel);
+  const predictedScore = snapshot?.predictedScore ?? predictedScoreFromModel(probabilities);
   const edge = probabilities.homeWin - probabilities.awayWin;
+  const predictionConfidence =
+    snapshot?.confidence ?? (Math.abs(edge) >= 28 ? "高" : Math.abs(edge) >= 12 ? "中高" : "中等");
+  const predictionModelVersion = snapshot?.modelVersion ?? (useWeightedModel ? weightedPredictionModelVersion : legacyPredictionModelVersion);
+  const predictionModelUpdatedAt = snapshot?.modelUpdatedAt ?? (useWeightedModel ? weightedPredictionUpdatedAt : legacyPredictionUpdatedAt);
   const isKnockout = isKnockoutRecord(record);
   const hasAsiaTeam = home.confederation === "AFC" || away.confederation === "AFC";
   const filterTags: Match["filterTags"] = ["high"];
@@ -1302,12 +1308,12 @@ function makeImportedScheduleMatch(record: ImportedScheduleRecord): Match {
     },
     prediction: makePrediction(
       predictedScore,
-      Math.abs(edge) >= 28 ? "高" : Math.abs(edge) >= 12 ? "中高" : "中等",
+      predictionConfidence,
       probabilities,
       {
         includeUpsetScoreline: useWeightedModel,
-        modelVersion: useWeightedModel ? weightedPredictionModelVersion : legacyPredictionModelVersion,
-        modelUpdatedAt: useWeightedModel ? weightedPredictionUpdatedAt : legacyPredictionUpdatedAt
+        modelVersion: predictionModelVersion,
+        modelUpdatedAt: predictionModelUpdatedAt
       }
     ),
     summary: `${record.round}：${home.nameZh}對${away.nameZh}，模型目前估 ${predictedScore}，盤面判斷為${matchupFavoriteText(home, away, edge)}，重點不是只看隊名，而是勝率差、和局風險與本屆攻守狀態。`,

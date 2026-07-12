@@ -75,6 +75,9 @@ jobs:
           NEXT_PUBLIC_BOARD_DATE_TW: ${{ steps.taiwan-date.outputs.board_date }}
           NEXT_PUBLIC_TODAY_TW: ${{ steps.taiwan-date.outputs.today }}
 
+      - name: Snapshot pre-match predictions
+        run: npm run snapshot:predictions
+
       - name: Update completed match history
         shell: bash
         run: |
