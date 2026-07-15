@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-12T09:54:27.013Z",
+  "updatedAt": "2026-07-15T07:55:51.988Z",
   "source": "ESPN FIFA World Cup scoreboard and summary",
   "records": [
     {
@@ -3732,6 +3732,72 @@
         "fetchedAt": "2026-07-12T09:03:12.246Z"
       },
       "recordedAt": "2026-07-12T09:03:12.246Z"
+    },
+    {
+      "matchId": "fra-esp-760514",
+      "espnEventId": "760514",
+      "group": "淘汰賽",
+      "round": "4強準決賽",
+      "matchDateTw": "2026-07-15",
+      "kickoffTw": "07/15 03:00",
+      "homeTeam": "FRA",
+      "awayTeam": "ESP",
+      "homeScore": 0,
+      "awayScore": 2,
+      "finalScore": "0-2",
+      "completedAt": "2026-07-14T19:00Z",
+      "predictionSnapshot": {
+        "predictedScore": "1-1",
+        "probabilities": {
+          "homeWin": 39,
+          "draw": 27,
+          "awayWin": 34,
+          "over": 43,
+          "bothTeamsToScore": 47
+        },
+        "confidence": "中等",
+        "modelVersion": "Scout v0.2",
+        "modelUpdatedAt": "2026/07/05 20:45"
+      },
+      "evaluation": {
+        "grade": "miss",
+        "exactScore": false,
+        "resultCorrect": false,
+        "homeGoalError": 1,
+        "awayGoalError": 1,
+        "totalGoalError": 0,
+        "scoreDistance": 2
+      },
+      "statistics": {
+        "home": {
+          "possessionPct": 49.1,
+          "totalShots": 10,
+          "shotsOnTarget": 3,
+          "corners": 7,
+          "saves": 0,
+          "yellowCards": 2,
+          "redCards": 0
+        },
+        "away": {
+          "possessionPct": 50.9,
+          "totalShots": 10,
+          "shotsOnTarget": 2,
+          "corners": 1,
+          "saves": 3,
+          "yellowCards": 1,
+          "redCards": 0
+        }
+      },
+      "analysisReasons": [
+        "實際賽果的賽前機率為 34%，模型有保留可能性，但中央比分選錯方向。",
+        "法國只有 3 次射正，主隊進球產出低於預期。"
+      ],
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760514",
+        "fetchedAt": "2026-07-15T07:55:51.981Z"
+      },
+      "recordedAt": "2026-07-15T07:55:51.981Z"
     }
   ]
 }

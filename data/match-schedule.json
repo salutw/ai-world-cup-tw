@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-12T09:54:27.013Z",
+  "updatedAt": "2026-07-15T07:55:40.571Z",
   "source": "ESPN FIFA World Cup scoreboard",
   "records": [
     {
@@ -1161,11 +1161,11 @@
       "venue": "AT&T Stadium",
       "homeTeam": "FRA",
       "awayTeam": "ESP",
-      "status": "scheduled",
+      "status": "final",
       "source": {
         "name": "ESPN",
         "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760514",
-        "fetchedAt": "2026-07-11T07:44:52.956Z"
+        "fetchedAt": "2026-07-15T07:55:40.571Z"
       },
       "firstSeenAt": "2026-07-11T07:44:52.956Z",
       "predictionSnapshot": {
