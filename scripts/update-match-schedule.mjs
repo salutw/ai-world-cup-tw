@@ -117,7 +117,7 @@ function roundLabel(slug) {
   if (slug === "round-of-16") return "16強淘汰賽";
   if (slug === "quarterfinals" || slug === "quarter-finals") return "8強淘汰賽";
   if (slug === "semifinals" || slug === "semi-finals") return "4強準決賽";
-  if (slug === "third-place-playoff") return "季軍戰";
+  if (slug === "third-place-playoff" || slug === "3rd-place-match") return "季軍戰";
   if (slug === "final") return "冠軍賽";
   return "淘汰賽";
 }

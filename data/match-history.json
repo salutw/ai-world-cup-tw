@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-15T07:55:51.988Z",
+  "updatedAt": "2026-07-16T07:48:10.988Z",
   "source": "ESPN FIFA World Cup scoreboard and summary",
   "records": [
     {
@@ -3798,6 +3798,73 @@
         "fetchedAt": "2026-07-15T07:55:51.981Z"
       },
       "recordedAt": "2026-07-15T07:55:51.981Z"
+    },
+    {
+      "matchId": "eng-arg-760515",
+      "espnEventId": "760515",
+      "group": "淘汰賽",
+      "round": "4強準決賽",
+      "matchDateTw": "2026-07-16",
+      "kickoffTw": "07/16 03:00",
+      "homeTeam": "ENG",
+      "awayTeam": "ARG",
+      "homeScore": 1,
+      "awayScore": 2,
+      "finalScore": "1-2",
+      "completedAt": "2026-07-15T19:00Z",
+      "predictionSnapshot": {
+        "predictedScore": "1-1",
+        "probabilities": {
+          "homeWin": 32,
+          "draw": 25,
+          "awayWin": 43,
+          "over": 53,
+          "bothTeamsToScore": 55
+        },
+        "confidence": "中等",
+        "modelVersion": "Scout v0.2",
+        "modelUpdatedAt": "2026/07/05 20:45"
+      },
+      "evaluation": {
+        "grade": "miss",
+        "exactScore": false,
+        "resultCorrect": false,
+        "homeGoalError": 0,
+        "awayGoalError": 1,
+        "totalGoalError": 1,
+        "scoreDistance": 1
+      },
+      "statistics": {
+        "home": {
+          "possessionPct": 35.8,
+          "totalShots": 5,
+          "shotsOnTarget": 2,
+          "corners": 2,
+          "saves": 3,
+          "yellowCards": 1,
+          "redCards": 0
+        },
+        "away": {
+          "possessionPct": 64.2,
+          "totalShots": 15,
+          "shotsOnTarget": 5,
+          "corners": 6,
+          "saves": 1,
+          "yellowCards": 3,
+          "redCards": 0
+        }
+      },
+      "analysisReasons": [
+        "實際賽果原有 43% 機率，模型風險分布有涵蓋，但單一預估比分未能命中。",
+        "實際總進球比預估多 1 球，比賽節奏或把握機會效率高於模型假設。",
+        "阿根廷完成 5 次射正並攻入 2 球，客隊火力高於預期。"
+      ],
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760515",
+        "fetchedAt": "2026-07-16T07:48:10.982Z"
+      },
+      "recordedAt": "2026-07-16T07:48:10.982Z"
     }
   ]
 }

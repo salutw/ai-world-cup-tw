@@ -7,10 +7,15 @@ on:
       - main
   workflow_dispatch:
   schedule:
-    # 14:00 Taiwan time, daily. GitHub cron uses UTC.
-    - cron: "0 6 * * *"
-    # 15:00 Taiwan time backup run, in case GitHub delays or skips the first cron.
-    - cron: "0 7 * * *"
+    # GitHub cron uses UTC. Avoid the top of the hour because scheduled jobs can be delayed or dropped.
+    # 14:17 Taiwan time, daily.
+    - cron: "17 6 * * *"
+    # 15:17 Taiwan time backup run.
+    - cron: "17 7 * * *"
+    # 16:17 Taiwan time backup run, useful when GitHub delays the earlier runs.
+    - cron: "17 8 * * *"
+    # 17:17 Taiwan time final backup run for post-match score updates.
+    - cron: "17 9 * * *"
 
 permissions:
   contents: write

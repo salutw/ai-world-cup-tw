@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-15T07:55:40.571Z",
+  "updatedAt": "2026-07-16T07:47:50.198Z",
   "source": "ESPN FIFA World Cup scoreboard",
   "records": [
     {
@@ -1194,11 +1194,11 @@
       "venue": "Mercedes-Benz Stadium",
       "homeTeam": "ENG",
       "awayTeam": "ARG",
-      "status": "scheduled",
+      "status": "final",
       "source": {
         "name": "ESPN",
         "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760515",
-        "fetchedAt": "2026-07-12T09:03:01.100Z"
+        "fetchedAt": "2026-07-16T07:47:16.767Z"
       },
       "firstSeenAt": "2026-07-12T09:03:01.100Z",
       "predictionSnapshot": {
@@ -1209,6 +1209,72 @@
           "awayWin": 43,
           "over": 53,
           "bothTeamsToScore": 55
+        },
+        "confidence": "中等",
+        "modelVersion": "Scout v0.2",
+        "modelUpdatedAt": "2026/07/05 20:45"
+      }
+    },
+    {
+      "id": "fra-eng-760516",
+      "espnEventId": "760516",
+      "group": "淘汰賽",
+      "round": "季軍戰",
+      "seasonSlug": "3rd-place-match",
+      "matchDateTw": "2026-07-19",
+      "kickoffTw": "07/19 05:00",
+      "kickoffUtc": "2026-07-18T21:00Z",
+      "venue": "Hard Rock Stadium",
+      "homeTeam": "FRA",
+      "awayTeam": "ENG",
+      "status": "scheduled",
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760516",
+        "fetchedAt": "2026-07-16T07:47:16.767Z"
+      },
+      "firstSeenAt": "2026-07-16T07:47:16.767Z",
+      "predictionSnapshot": {
+        "predictedScore": "1-1",
+        "probabilities": {
+          "homeWin": 39,
+          "draw": 27,
+          "awayWin": 34,
+          "over": 45,
+          "bothTeamsToScore": 49
+        },
+        "confidence": "中等",
+        "modelVersion": "Scout v0.2",
+        "modelUpdatedAt": "2026/07/05 20:45"
+      }
+    },
+    {
+      "id": "esp-arg-760517",
+      "espnEventId": "760517",
+      "group": "淘汰賽",
+      "round": "冠軍賽",
+      "seasonSlug": "final",
+      "matchDateTw": "2026-07-20",
+      "kickoffTw": "07/20 03:00",
+      "kickoffUtc": "2026-07-19T19:00Z",
+      "venue": "MetLife Stadium",
+      "homeTeam": "ESP",
+      "awayTeam": "ARG",
+      "status": "scheduled",
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760517",
+        "fetchedAt": "2026-07-16T07:47:16.767Z"
+      },
+      "firstSeenAt": "2026-07-16T07:47:16.767Z",
+      "predictionSnapshot": {
+        "predictedScore": "1-1",
+        "probabilities": {
+          "homeWin": 37,
+          "draw": 28,
+          "awayWin": 35,
+          "over": 50,
+          "bothTeamsToScore": 54
         },
         "confidence": "中等",
         "modelVersion": "Scout v0.2",
