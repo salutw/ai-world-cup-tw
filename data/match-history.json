@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-16T07:48:10.988Z",
+  "updatedAt": "2026-07-19T08:34:15.934Z",
   "source": "ESPN FIFA World Cup scoreboard and summary",
   "records": [
     {
@@ -3865,6 +3865,73 @@
         "fetchedAt": "2026-07-16T07:48:10.982Z"
       },
       "recordedAt": "2026-07-16T07:48:10.982Z"
+    },
+    {
+      "matchId": "fra-eng-760516",
+      "espnEventId": "760516",
+      "group": "淘汰賽",
+      "round": "季軍戰",
+      "matchDateTw": "2026-07-19",
+      "kickoffTw": "07/19 05:00",
+      "homeTeam": "FRA",
+      "awayTeam": "ENG",
+      "homeScore": 4,
+      "awayScore": 6,
+      "finalScore": "4-6",
+      "completedAt": "2026-07-18T21:00Z",
+      "predictionSnapshot": {
+        "predictedScore": "1-1",
+        "probabilities": {
+          "homeWin": 39,
+          "draw": 27,
+          "awayWin": 34,
+          "over": 45,
+          "bothTeamsToScore": 49
+        },
+        "confidence": "中等",
+        "modelVersion": "Scout v0.2",
+        "modelUpdatedAt": "2026/07/05 20:45"
+      },
+      "evaluation": {
+        "grade": "miss",
+        "exactScore": false,
+        "resultCorrect": false,
+        "homeGoalError": 3,
+        "awayGoalError": 5,
+        "totalGoalError": 8,
+        "scoreDistance": 8
+      },
+      "statistics": {
+        "home": {
+          "possessionPct": 45.9,
+          "totalShots": 19,
+          "shotsOnTarget": 9,
+          "corners": 3,
+          "saves": 4,
+          "yellowCards": 0,
+          "redCards": 0
+        },
+        "away": {
+          "possessionPct": 54.1,
+          "totalShots": 19,
+          "shotsOnTarget": 11,
+          "corners": 4,
+          "saves": 5,
+          "yellowCards": 0,
+          "redCards": 0
+        }
+      },
+      "analysisReasons": [
+        "實際賽果的賽前機率為 34%，模型有保留可能性，但中央比分選錯方向。",
+        "實際總進球比預估多 8 球，比賽節奏或把握機會效率高於模型假設。",
+        "英格蘭完成 11 次射正並攻入 6 球，客隊火力高於預期。"
+      ],
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760516",
+        "fetchedAt": "2026-07-19T08:34:15.927Z"
+      },
+      "recordedAt": "2026-07-19T08:34:15.927Z"
     }
   ]
 }

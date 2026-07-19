@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-16T07:47:50.198Z",
+  "updatedAt": "2026-07-19T08:34:04.648Z",
   "source": "ESPN FIFA World Cup scoreboard",
   "records": [
     {
@@ -1227,11 +1227,11 @@
       "venue": "Hard Rock Stadium",
       "homeTeam": "FRA",
       "awayTeam": "ENG",
-      "status": "scheduled",
+      "status": "final",
       "source": {
         "name": "ESPN",
         "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760516",
-        "fetchedAt": "2026-07-16T07:47:16.767Z"
+        "fetchedAt": "2026-07-19T08:34:04.648Z"
       },
       "firstSeenAt": "2026-07-16T07:47:16.767Z",
       "predictionSnapshot": {
