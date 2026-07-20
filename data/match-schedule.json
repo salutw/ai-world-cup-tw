@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-19T08:34:04.648Z",
+  "updatedAt": "2026-07-20T09:34:39.726Z",
   "source": "ESPN FIFA World Cup scoreboard",
   "records": [
     {
@@ -1260,11 +1260,11 @@
       "venue": "MetLife Stadium",
       "homeTeam": "ESP",
       "awayTeam": "ARG",
-      "status": "scheduled",
+      "status": "final",
       "source": {
         "name": "ESPN",
         "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760517",
-        "fetchedAt": "2026-07-16T07:47:16.767Z"
+        "fetchedAt": "2026-07-20T09:34:39.726Z"
       },
       "firstSeenAt": "2026-07-16T07:47:16.767Z",
       "predictionSnapshot": {

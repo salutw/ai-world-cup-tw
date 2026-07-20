@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-19T08:34:15.934Z",
+  "updatedAt": "2026-07-20T09:34:51.164Z",
   "source": "ESPN FIFA World Cup scoreboard and summary",
   "records": [
     {
@@ -3932,6 +3932,73 @@
         "fetchedAt": "2026-07-19T08:34:15.927Z"
       },
       "recordedAt": "2026-07-19T08:34:15.927Z"
+    },
+    {
+      "matchId": "esp-arg-760517",
+      "espnEventId": "760517",
+      "group": "淘汰賽",
+      "round": "冠軍賽",
+      "matchDateTw": "2026-07-20",
+      "kickoffTw": "07/20 03:00",
+      "homeTeam": "ESP",
+      "awayTeam": "ARG",
+      "homeScore": 1,
+      "awayScore": 0,
+      "finalScore": "1-0",
+      "completedAt": "2026-07-19T19:00Z",
+      "predictionSnapshot": {
+        "predictedScore": "1-1",
+        "probabilities": {
+          "homeWin": 37,
+          "draw": 28,
+          "awayWin": 35,
+          "over": 50,
+          "bothTeamsToScore": 54
+        },
+        "confidence": "中等",
+        "modelVersion": "Scout v0.2",
+        "modelUpdatedAt": "2026/07/05 20:45"
+      },
+      "evaluation": {
+        "grade": "miss",
+        "exactScore": false,
+        "resultCorrect": false,
+        "homeGoalError": 0,
+        "awayGoalError": 1,
+        "totalGoalError": 1,
+        "scoreDistance": 1
+      },
+      "statistics": {
+        "home": {
+          "possessionPct": 65.1,
+          "totalShots": 20,
+          "shotsOnTarget": 12,
+          "corners": 9,
+          "saves": 0,
+          "yellowCards": 0,
+          "redCards": 0
+        },
+        "away": {
+          "possessionPct": 34.9,
+          "totalShots": 2,
+          "shotsOnTarget": 0,
+          "corners": 4,
+          "saves": 11,
+          "yellowCards": 4,
+          "redCards": 1
+        }
+      },
+      "analysisReasons": [
+        "實際賽果的賽前機率為 37%，模型有保留可能性，但中央比分選錯方向。",
+        "實際總進球比預估少 1 球，進攻轉化率低於模型假設。",
+        "阿根廷只有 0 次射正，客隊進球產出低於預期。"
+      ],
+      "source": {
+        "name": "ESPN",
+        "eventUrl": "https://www.espn.com/soccer/match/_/gameId/760517",
+        "fetchedAt": "2026-07-20T09:34:51.157Z"
+      },
+      "recordedAt": "2026-07-20T09:34:51.157Z"
     }
   ]
 }
